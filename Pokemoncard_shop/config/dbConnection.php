@@ -1,8 +1,8 @@
 <?php
     function getDbConnection(){
         $host = "localhost";
-        $db_name = "supermercado";
-        $username = "vini";
+        $db_name = "pokemoncard_shop";
+        $username = "pokeadmin";
         $password = "root";
 
         try {
