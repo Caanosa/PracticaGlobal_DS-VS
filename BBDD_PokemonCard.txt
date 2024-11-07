@@ -12,39 +12,60 @@ CREATE TABLE Usuarios (
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE Idioma (
+    idioma_id INT AUTO_INCREMENT PRIMARY KEY
+);
+
 CREATE TABLE Productos (
     producto_id INT AUTO_INCREMENT PRIMARY KEY,
+    idioma_id INT,
     nombre VARCHAR(100) NOT NULL,
     descripcion TEXT,
     precio DECIMAL(10, 2) NOT NULL,
-    stock INT DEFAULT 0,
-    categoria VARCHAR(50),
+    stock INT,
+    categoria ENUM('Comun', 'Poco Comun', 'Rara', 'Holo Rara', 'Rara Inversa', 'Rara Ultra', 'Full Art', 'Secreta', 'Arcoiris', 'Dorada'),
+    tipo ENUM('Pack', 'Sobre', 'Carta'),
     imagen_url VARCHAR(255),
-    fecha_agregado TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    fecha_agregado TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (idioma_id) REFERENCES Idioma(idioma_id)
 );
 
 CREATE TABLE Pedidos (
     pedido_id INT AUTO_INCREMENT PRIMARY KEY,
     usuario_id INT,
     producto_id INT,
+    cantidad INT,
     fecha_pedido TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     estado ENUM('pendiente', 'procesado', 'enviado', 'entregado', 'cancelado') DEFAULT 'pendiente',
     FOREIGN KEY (usuario_id) REFERENCES Usuarios(usuario_id),
     FOREIGN KEY (producto_id) REFERENCES Productos(producto_id)
 );
 
-CREATE TABLE Likes (
-    like_id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE Filtros (
+    filtro_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_filtro VARCHAR(255)
+);
+
+CREATE TABLE Marcar (
+    marcar_id INT AUTO_INCREMENT PRIMARY KEY,
+    filtro_id INT,
+    producto_id INT,
+    FOREIGN KEY (producto_id) REFERENCES Productos(producto_id),
+    FOREIGN KEY (filtro_id) REFERENCES Filtros(filtro_id)
+);
+
+CREATE TABLE Me_gusta (
+    me_gusta_id INT AUTO_INCREMENT PRIMARY KEY,
     usuario_id INT,
     producto_id INT,
-    fecha_like TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    fecha_me_gusta TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (usuario_id) REFERENCES Usuarios(usuario_id),
     FOREIGN KEY (producto_id) REFERENCES Productos(producto_id),
     UNIQUE KEY (usuario_id, producto_id)
 );
 
-CREATE TABLE WishList (
-    wishlist_id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE Lista_deseados (
+    lista_deseados_id INT AUTO_INCREMENT PRIMARY KEY,
     usuario_id INT,
     producto_id INT,
     fecha_agregado TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
