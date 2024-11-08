@@ -2,7 +2,7 @@
     function getDbConnection(){
         $host = "localhost";
         $db_name = "pokemoncard_shop";
-        $username = "pokeadmin";
+        $username = "arceus";
         $password = "root";
 
         try {

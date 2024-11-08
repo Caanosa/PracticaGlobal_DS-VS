@@ -8,23 +8,39 @@
         private $telefono;
         private $administrador;
         private $fecha_registro;
-
-        public function __construct($usuairo_id, $nombre, $email, $contrasena, $direccion, $telefono,$administrador, $fecha_registro){
-            $this->usuairo_id = $usuairo_id;
-            $this->nombre = $nombre;
-            $this->email = $email;
-            $this->contrasena = $contrasena;
-            $this->direccion = $direccion;
-            $this->telefono = $telefono;
-            $this->administrador = $administrador;
-            $this->fecha_registro = $fecha_registro;
-        }
-        
         
         public function getUsuairo_id()
         {
-                return $this->usuairo_id;
+            return $this->usuairo_id;
+        }      
+
+        static function getLogin($email, $contrasena){
+            try{
+                $conn = getDbConnection();
+                $sentencia = $conn->prepare("SELECT * FROM producto WHERE correo=? and contrasena=?");
+                $sentencia->bindParam(1, $email);
+                $sentencia->bindParam(2, $contrasena);
+                $sentencia->execute();
+                $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+            }catch(Exception $e){
+                echo "Error";
+            }
         }
+
+        public function create(){
+            try{
+                $conn = getDbConnection();
+                $sentencia = $conn->prepare("INSERT INTO `producto` (`nombre`,`email`,`contrasena`,`administrador`) VALUES (?,?,?,?)");
+                $sentencia->bindParam(1, $this->nombre);
+                $sentencia->bindParam(2, $this->email);
+                $sentencia->bindParam(3, $this->contrasena);
+                $sentencia->bindParam(5, $this->administrador);
+                $sentencia->execute();
+            }catch(Exception $e){
+                echo "Error".$e->getMessage();
+            }
+        } 
 
         public function getNombre()
         {
