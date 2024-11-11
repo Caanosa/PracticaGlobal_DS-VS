@@ -1,0 +1,70 @@
+body{
+    background-image: url("../PokeCard_shop/imagenes/fondo_login.png");
+    height: 100%;
+    padding-top: 10%;
+}
+
+.login-div {
+    margin-left: 125vh;
+    background-color: white;
+    text-align: center;
+    padding: 20px;
+    width: 35vh;
+    height: 38vh;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+}
+
+img{
+    margin-left: 7%;
+    width: 80vh;
+    position: absolute;
+}
+
+p{
+    font-size: 3.5vh;
+    margin-bottom: 3vh;
+    margin-top: 2vh;
+}
+
+input{
+    width: 31vh;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 1.5vh;
+}
+
+label{
+    width: 31%;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    text-align: left;
+    font-size: 1.8vh;
+}
+
+button{
+    margin-top: 2vh;
+    width: 31vh;
+    padding: 10px;
+    background-color: #3b82f6;
+    color: white;
+    font-size: 1.9vh;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.registro-link{
+    display: flex;
+    justify-content: center;
+    padding-top: 2vh;
+    font-size: 1.8vh;
+}
+
+.contenedor-login{
+    display: inline;
+}
