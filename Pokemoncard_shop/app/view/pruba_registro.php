@@ -7,7 +7,8 @@
 </head>
 <body>
     <h1>Crear cuenta</h1>
-    <form action="login.php" method="POST">
+    <form method="POST">
+        Nombre: <input type="text" name="nombre"><br>
         Email: <input type="text" name="email"><br>
         contraseña: <input type="text" name="contrasena"><br>
         <input type="submit">
@@ -16,13 +17,20 @@
         require "../../app/controller/UsuarioController.php";
         $usuarioController = new UsuarioController();
         if($_SERVER['REQUEST_METHOD']=='POST'){
+            $campoNombreSaneado = htmlspecialchars(($_POST["nombre"]));
             $campoEmailSaneado = htmlspecialchars(($_POST["email"]));
             $campoContrasenaSaneado = htmlspecialchars($_POST["contrasena"]);
-            if(!filter_var($campoEmailSaneado, FILTER_VALIDATE_EMAIL)){
-                echo($usuarioController->getLogin($campoEmailSaneado, $campoContrasenaSaneado)?"si":"no");
+            $userdata = $usuarioController->crearUsuario($campoNombreSaneado, $campoEmailSaneado, $campoContrasenaSaneado);
+            if($userdata){
+                print_r($userdata);
             }else{
-                echo("Precio no valido");
+                echo("Usuario ya existente");
             }
+            // if(!filter_var($campoEmailSaneado, FILTER_VALIDATE_EMAIL)){
+                
+            // }else{
+            //     echo("Precio no valido");
+            // }
             
         }
     ?>

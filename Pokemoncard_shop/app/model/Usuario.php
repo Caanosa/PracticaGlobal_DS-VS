@@ -1,4 +1,5 @@
 <?php
+    require "../../config/dbConnection.php";
     class Usuario{
         private $usuairo_id;
         private $nombre;
@@ -17,26 +18,27 @@
         static function getLogin($email, $contrasena){
             try{
                 $conn = getDbConnection();
-                $sentencia = $conn->prepare("SELECT * FROM producto WHERE correo=? and contrasena=?");
+                $sentencia = $conn->prepare("SELECT * FROM usuarios WHERE email=? and contrasena=?");
                 $sentencia->bindParam(1, $email);
                 $sentencia->bindParam(2, $contrasena);
                 $sentencia->execute();
                 $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
                 return $result;
             }catch(Exception $e){
-                echo "Error";
+                echo "Error".$e->getMessage();
             }
         }
 
         public function create(){
             try{
                 $conn = getDbConnection();
-                $sentencia = $conn->prepare("INSERT INTO `producto` (`nombre`,`email`,`contrasena`,`administrador`) VALUES (?,?,?,?)");
+                $sentencia = $conn->prepare("INSERT INTO `usuarios` (`nombre`,`email`,`contrasena`,`administrador`) VALUES (?,?,?,?)");
                 $sentencia->bindParam(1, $this->nombre);
                 $sentencia->bindParam(2, $this->email);
                 $sentencia->bindParam(3, $this->contrasena);
-                $sentencia->bindParam(5, $this->administrador);
+                $sentencia->bindParam(4, $this->administrador);
                 $sentencia->execute();
+                return Usuario::getLogin($this->email, $this->contrasena);
             }catch(Exception $e){
                 echo "Error".$e->getMessage();
             }

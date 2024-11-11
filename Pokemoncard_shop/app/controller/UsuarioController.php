@@ -6,11 +6,14 @@
         }
 
         public function crearUsuario($nombre,$email,$contrasena){
-            $nuevoProducto = new Usuario();
-            $nuevoProducto->setNombre($nombre);
-            $nuevoProducto->setEmail($email);
-            $nuevoProducto->setAdministrador(1);
-            $nuevoProducto->create();
+            if(!Usuario::getLogin($email, $contrasena)){
+                $nuevoProducto = new Usuario();
+                $nuevoProducto->setNombre($nombre);
+                $nuevoProducto->setEmail($email);
+                $nuevoProducto->setContrasena($contrasena);
+                $nuevoProducto->setAdministrador(1);
+                return $nuevoProducto->create();
+            }
         }
     }
 ?>
