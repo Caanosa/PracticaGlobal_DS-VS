@@ -6,7 +6,7 @@
         }
 
         public function crearUsuario($nombre,$email,$contrasena){
-            if(!Usuario::getLogin($email, $contrasena)){
+            if(!Usuario::getUsuarioByEmail($email, $nombre)){
                 $nuevoProducto = new Usuario();
                 $nuevoProducto->setNombre($nombre);
                 $nuevoProducto->setEmail($email);
