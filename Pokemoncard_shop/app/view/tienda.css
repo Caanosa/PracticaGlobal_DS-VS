@@ -2,88 +2,93 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    /* background-color: #f4f4f4; */
     background-image: url("imagenes/fondo_tienda.png");
     font-family: Arial, sans-serif;
     flex-direction: column;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+
+
 }
 
 header {
     background-color: #333;
     color: white;
-    padding: 10px 0;
+    padding: 0.5vw 0;
     width: 100%;
 }
 
 nav ul {
     list-style-type: none;
     text-align: right;
-    margin-right: 35vh;
+    margin-right: 15vw;
 }
 
 nav ul li {
     display: inline;
-    margin: 0 20px;
+    margin: 0 1.5vw;
 }
 
 nav ul li a {
     color: white;
     text-decoration: none;
-    font-size: 32px;
-    padding: 10px 15px;
-    border-radius: 5px;
+    font-size: 1.4vw;
+    padding: 1vw 1vw;
 }
 
 nav ul li a:hover {
     background-color: #575757;
 }
 
-.img-logo{
+.img-logo {
+    top: 0.3vw;
     position: absolute;
-    width: 20vh;
-    margin-left: 4VH;
+    width: 10vw;
+    margin-left: 4vw;
 }
 
 
 .galeria {
-    margin-top: 10vh;
+    margin-top: 2vw;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    padding: 10px;
-    border-radius: 8px;
+    gap: 4.5vw;
+    padding: 0.1vw;
+    border-radius: 1vw;
 }
 
 .galeria-item {
     background-color: #e0e0e0;
-    border-radius: 8px;
-    padding: 20px;
-    width: 25vh;
-    height: 30vh;
+    border-radius: 0.8vw;
+    padding: 0.8vw;
+    width: 12vw;
+    height: 17vw;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    font-size: 1vw;
     color: #333;
 }
 
 .pagination {
-    margin-top: 5vh;
-    margin-bottom: 5vh;
+    margin-top: 2vw;
+    margin-bottom: 2vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 1vw;
 }
 
-.galeria-container{
-    width: 150vh;
-    margin-left: 45vh;
+.galeria-container {
+    width: 60vw;
+    margin-left: 27vw;
 }
 
 .pagination button {
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 0.7vw 1.8vw;
+    font-size: 0.9vw;
     background-color: #333;
     color: white;
     border: none;
@@ -97,6 +102,116 @@ nav ul li a:hover {
 }
 
 .pagination span {
-    font-size: 18px;
+    font-size: 1vw;
 }
 
+.filter-container {
+    background-color: #e0e0e0;
+    border: 1px solid #ccc;
+    padding: 1.4vw;
+    width: 13vw;
+    border-radius: 8px;
+    position: absolute;
+    margin: 5vw;
+}
+
+.filter-container h3 {
+    font-size: 0.9vw;
+    font-weight: bold;
+    margin-bottom: 0.8vw;
+    color: #333;
+}
+
+.filter-section {
+    border-top: 1px solid #ccc;
+    padding-top: 0.8vw;
+    margin-top: 0.8vw;
+}
+
+.filter-section h4 {
+    font-size: 0.8vw;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.3vw;
+}
+
+.filter-section label {
+    font-size: 0.8vw;
+    color: #333;
+}
+
+.filter-section select,
+.filter-section input[type="text"],
+.filter-section input[type="range"] {
+    width: calc(100% - 10px);
+    padding: 5px;
+    margin-top: 0.2vw;
+    border: 1px solid #999;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.filter-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.9vw;
+}
+
+.filter-buttons button {
+    margin-top: 1vw;
+    padding: 0.5vw 0.6vw;
+    font-size: 0.9vw;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #333;
+    color: white;
+}
+
+.filter-buttons button:hover {
+    background-color: #575757;
+}
+
+.precio-range input[type="number"] {
+    width: 12vw;
+    height: 0.3vw;
+    padding: 0.5vw;
+    margin-right: 0.5vw;
+    margin-top: 0.2vw;
+    border: 1px solid #999;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 0.8vw;
+}
+
+.search-bar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2vw;
+    margin-bottom: 3vw;
+    margin-left: 10vw;
+}
+
+.search-bar-container input[type="text"] {
+    width: 40vw;
+    padding: 0.6vw;
+    font-size: 0.9vw;
+    border: 1px solid #999;
+    border-radius: 4px;
+}
+
+.search-bar-container button {
+    padding: 0.6vw 1vw;
+    font-size: 0.9vw;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin-left: 0.5vw;
+    cursor: pointer;
+}
+
+.search-bar-container button:hover {
+    background-color: #575757;
+}
