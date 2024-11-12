@@ -20,6 +20,58 @@
         </nav>
     </header>
 
+    <div class="filter-container">
+        <h3>Categorías</h3>
+        <div class="filter-section">
+            <label for="collectionType">Tipo:</label><br>
+            <select id="collectionType">
+                <option value="">Selecciona</option>
+                <option value="coleccion">Colección</option>
+                <option value="expansion">Expansión</option>
+            </select>
+        </div>
+        <div class="filter-section">
+            <label><input type="checkbox"> Pack</label><br>
+            <label><input type="checkbox"> Sobres</label><br>
+            <label><input type="checkbox"> Cartas</label><br>
+        </div>
+        <div class="filter-section">
+            <label><input type="checkbox"> Comun</label><br>
+            <label><input type="checkbox"> Poco comun</label><br>
+            <label><input type="checkbox"> Rara</label><br>
+            <label><input type="checkbox"> Holo rara</label><br>
+            <label><input type="checkbox"> Rara inversa</label><br>
+            <label><input type="checkbox"> Rara ultra</label><br>
+            <label><input type="checkbox"> Full art</label><br>
+            <label><input type="checkbox"> Secreta</label><br>
+            <label><input type="checkbox"> Arcoiris</label><br>
+            <label><input type="checkbox"> Dorada</label><br>
+        </div>
+        <div class="filter-section">
+            <label for="language">Idioma:</label><br>
+            <select id="language">
+                <option value="">Selecciona idioma</option>
+                <option value="espanol">Español</option>
+                <option value="ingles">Inglés</option>
+                <option value="japones">Japonés</option>
+                <option value="frances">Francés</option>
+                <option value="aleman">Alemán</option>
+            </select>
+        </div>
+        <div class="filter-section price-range">
+            <label>Precio min:</label>
+            <input type="range" min="0" max="100" value="0">
+            <label>Precio max:</label>
+            <input type="range" min="0" max="100" value="100">
+        </div>
+        <div class="filter-buttons">
+            <button>Borrar filtro</button>
+            <button>Filtrar</button>
+        </div>
+    </div>
+    
+    
+
         <div class="galeria-container">
             <section class="galeria" id="galeria"></section>
             <div class="pagination">
