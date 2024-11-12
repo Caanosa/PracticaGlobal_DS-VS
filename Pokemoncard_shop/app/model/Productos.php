@@ -28,7 +28,7 @@
                     $sentencia->bindParam(3, $this->nombre);
                     $sentencia->bindParam(4, $this->descripcion);
                     $sentencia->bindParam(5, $this->precio);
-                    $sentencia->bindParam(7, $this->stock);
+                    $sentencia->bindParam(6, $this->stock);
                     $sentencia->bindParam(7, $this->categoria);
                     $sentencia->bindParam(8, $this->tipo);
                     $sentencia->bindParam(9, $this->imagen_url);
