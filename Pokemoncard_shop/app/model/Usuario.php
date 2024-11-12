@@ -29,6 +29,20 @@
             }
         }
 
+        static function getUsuarioByEmail($email, $nombre){
+                try{
+                    $conn = getDbConnection();
+                    $sentencia = $conn->prepare("SELECT * FROM usuarios WHERE email=? or nombre=?");
+                    $sentencia->bindParam(1, $email);
+                    $sentencia->bindParam(2, $nombre);
+                    $sentencia->execute();
+                    $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+                    return $result;
+                }catch(Exception $e){
+                    echo "Error".$e->getMessage();
+                }
+            }
+
         public function create(){
             try{
                 $conn = getDbConnection();
