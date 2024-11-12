@@ -46,7 +46,7 @@
             }else{
                 echo ("<script>
                 var errorMensage = document.getElementById('error-mensage');
-                errorMensage.textContent = 'Ya existe un usuario con esta direcion de correo';
+                errorMensage.textContent = 'Ya existe un usuario con este correo o nombre';
                 </script>");
             }
             
