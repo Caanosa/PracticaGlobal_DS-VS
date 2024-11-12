@@ -2,7 +2,8 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    /* background-color: #f4f4f4; */
+    background-image: url("imagenes/fondo_tienda.png");
     font-family: Arial, sans-serif;
     flex-direction: column;
 }
@@ -37,29 +38,28 @@ nav ul li a:hover {
     background-color: #575757;
 }
 
-img{
+.img-logo{
     position: absolute;
     width: 20vh;
     margin-left: 4VH;
 }
 
 
-.gallery {
+.galeria {
+    margin-top: 10vh;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-    max-height: 600px;
-    overflow-y: auto;
+    gap: 20px;
     padding: 10px;
-    background-color: white;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.gallery-item {
+.galeria-item {
     background-color: #e0e0e0;
     border-radius: 8px;
     padding: 20px;
+    width: 25vh;
+    height: 30vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -68,11 +68,17 @@ img{
 }
 
 .pagination {
-    margin-top: 15px;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
+}
+
+.galeria-container{
+    width: 150vh;
+    margin-left: 45vh;
 }
 
 .pagination button {

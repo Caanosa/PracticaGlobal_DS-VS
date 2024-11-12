@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <img src="imagenes/image.png" alt="logo">
+        <img class="img-logo" src="imagenes/image.png" alt="logo">
         <nav>
             <ul>
                 <li><a href="#inicio">Inicio</a></li>
@@ -20,17 +20,17 @@
         </nav>
     </header>
 
-    <main>
-        <section class="gallery" id="gallery"></section>
-        <div class="pagination">
-            <button onclick="prevPage()" id="prevBtn" disabled>&laquo; Anterior</button>
-            <span id="pageIndicator">Página 1</span>
-            <button onclick="nextPage()" id="nextBtn">Siguiente &raquo;</button>
+        <div class="galeria-container">
+            <section class="galeria" id="galeria"></section>
+            <div class="pagination">
+                <button onclick="prevPage()" id="prevBtn" disabled>&laquo; Anterior</button>
+                <span id="pageIndicator">Página 1</span>
+                <button onclick="nextPage()" id="nextBtn">Siguiente &raquo;</button>
+            </div>        
         </div>
-    </main>
 
     <script>
-            const gallery = document.getElementById("gallery");
+            const galeria = document.getElementById("galeria");
             const pageIndicator = document.getElementById("pageIndicator");
             const prevBtn = document.getElementById("prevBtn");
             const nextBtn = document.getElementById("nextBtn");
@@ -41,18 +41,17 @@
             // Generar una lista de elementos (ejemplo con 100 elementos)
             const items = Array.from({ length: 100 }, (_, i) => `Elemento ${i + 1}`);
 
-            // Función para renderizar los elementos de la página actual
             function renderPage(page) {
-                gallery.innerHTML = "";
+                galeria.innerHTML = "";
                 const start = (page - 1) * itemsPerPage;
                 const end = start + itemsPerPage;
                 const currentItems = items.slice(start, end);
 
                 currentItems.forEach(item => {
                     const div = document.createElement("div");
-                    div.classList.add("gallery-item");
+                    div.classList.add("galeria-item");
                     div.textContent = item;
-                    gallery.appendChild(div);
+                    galeria.appendChild(div);
                 });
 
                 pageIndicator.textContent = `Página ${page}`;
@@ -60,7 +59,6 @@
                 nextBtn.disabled = end >= items.length;
             }
 
-            // Función para ir a la página anterior
             function prevPage() {
                 if (currentPage > 1) {
                     currentPage--;
@@ -68,7 +66,6 @@
                 }
             }
 
-            // Función para ir a la siguiente página
             function nextPage() {
                 if (currentPage * itemsPerPage < items.length) {
                     currentPage++;
@@ -76,9 +73,7 @@
                 }
             }
 
-            // Renderizar la primera página al cargar la página
             renderPage(currentPage);
-
     </script>
 </body>
 </html>
