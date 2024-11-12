@@ -6,7 +6,7 @@ body {
 
 .error-mensage {
     color: red;
-    font-size: 0.9em;
+    font-size: 0.9vw;
     height: 0.5em;
     margin-top: 2px;
     text-align: left;
