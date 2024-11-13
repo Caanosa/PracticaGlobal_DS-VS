@@ -32,7 +32,8 @@
             variable1 = <?php echo json_encode($productos) ?>;
             console.log(variable1[0].producto_id);
     </script>
-    <form id="formulario" class="filter-container"  method="POST" onsubmit="manejarEnvio(event)">
+    <!-- onsubmit="manejarEnvio(event)" -->
+    <form id="formulario" class="filter-container"  method="POST" >
         <h3>Filtros</h3>
         <div class="filter-section">
             <label for="collectionType">Exnsion:</label><br>
