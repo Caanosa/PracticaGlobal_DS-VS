@@ -1,5 +1,5 @@
 <?php
-    require "../../app/model/Productos.php";
+    require_once "../../app/model/Productos.php";
     class ProductoController{
         public function getAllProductos(){
             return Productos::getAllProductos();

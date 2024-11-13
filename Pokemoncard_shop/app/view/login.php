@@ -28,7 +28,7 @@
           </div>
     </div>
     <?php
-        require "../../app/controller/UsuarioController.php";
+        require_once "../../app/controller/UsuarioController.php";
         $usuarioController = new UsuarioController();
         if($_SERVER['REQUEST_METHOD']=='POST'){
             $campoEmailSaneado = htmlspecialchars(($_POST["email"]));

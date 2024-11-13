@@ -1,5 +1,5 @@
 <?php
-    require "../../app/model/Usuario.php";
+    require_once "../../app/model/Usuario.php";
     class UsuarioController{
         public function getLogin($email, $contrasena){
             return Usuario::getLogin($email, $contrasena);

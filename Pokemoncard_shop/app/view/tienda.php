@@ -21,15 +21,25 @@
             </ul>
         </nav>
     </header>
+    <?php
+        require_once "../../app/controller/ProductoController.php";
+        $productoController = new ProductoController();
 
-    <div class="filter-container">
+        $productos = $productoController->getAllProductos();
+        $hola2 = "hola";
+    ?>
+    <script>
+            variable1 = <?php echo json_encode($productos) ?>;
+            console.log(variable1[0].producto_id);
+    </script>
+    <form id="formulario" class="filter-container"  method="POST" onsubmit="manejarEnvio(event)">
         <h3>Filtros</h3>
         <div class="filter-section">
             <label for="collectionType">Exnsion:</label><br>
             <select id="collectionType">
                 <option value="">Todas</option>
                 <?php
-                    require "../../app/controller/FiltroController.php";
+                    require_once "../../app/controller/FiltroController.php";
                     $filtroController = new FiltroController();
 
                     $filtros = $filtroController->getAllFiltros();
@@ -40,15 +50,16 @@
                 ?>
             </select>
         </div>
-        <div class="filter-section">
+        <div class="filter-section filtro-tipo">
+            <h4>Tipo</h4>
             <label><input type="checkbox"> Pack</label><br>
             <label><input type="checkbox"> Sobres</label><br>
             <label><input type="checkbox"> Cartas</label><br>
         </div>
-        <div class="filter-section">
+        <div class="filter-section filtro-categoria">
 
             <h4>Categorías</h4>
-            <label><input type="checkbox"> Común</label><br>
+            <label><input type="checkbox" name="Comun"  value="Comun"> Común</label><br>
             <label><input type="checkbox"> Poco común</label><br>
             <label><input type="checkbox"> Rara</label><br>
             <label><input type="checkbox"> Holo rara</label><br>
@@ -64,7 +75,7 @@
             <select id="language">
                 <option value="">Todos</option>
                 <?php
-                    require "../../app/controller/IdiomaController.php";
+                    require_once "../../app/controller/IdiomaController.php";
                     $idiomaController = new IdiomaController();
 
                     $idiomas = $idiomaController->getAllIdiomas();
@@ -87,11 +98,11 @@
         </div>
         <div class="filter-buttons">
             <button onclick="clearFilters()">Borrar filtro</button>
-            <button onclick="applyFilters()">Filtrar</button>
+            <button onclick="applyFilters()" type="submit">Filtrar</button>
         </div>
 
-    </div>
-
+    </form>
+    
     <div class="galeria-container">
         <div class="search-bar-container">
             <input type="text" id="searchInput" placeholder="Buscar productos...">
@@ -105,7 +116,13 @@
             <button onclick="nextPage()" id="nextBtn">Siguiente &raquo;</button>
         </div>
     </div>
-
+    <?php
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            echo "<h2>si</h2>";
+        }else{
+            echo "<h2>no</h2>";
+        } 
+    ?>
     <script>
         const galeria = document.getElementById("galeria");
         const pageIndicator = document.getElementById("pageIndicator");
@@ -117,8 +134,11 @@
         let searchResults = [];
         let isSearching = false;
 
-        const items = Array.from({ length: 100 }, (_, i) => `Elemento ${i + 1}`);
+        const items = <?php echo json_encode($productos) ?>;
 
+        function manejarEnvio(event){
+            event.preventDefault();
+        }
         function renderPage(page) {
             galeria.innerHTML = "";
             const itemsToRender = isSearching ? searchResults : items; 
@@ -129,8 +149,11 @@
             currentItems.forEach(item => {
                 const div = document.createElement("div");
                 div.classList.add("galeria-item");
-                div.textContent = item;
+                const imagen = document.createElement("img");
+                imagen.classList.add("imagen-producto");
+                imagen.src  = item.imagen_url;
                 galeria.appendChild(div);
+                div.appendChild(imagen);
             });
 
             pageIndicator.textContent = `Página ${page}`;
@@ -151,10 +174,19 @@
         }
 
         function applyFilters() {
-            const minPrecio = document.getElementById("minPrecio").value;
-            const maxPrecio = document.getElementById("maxPrecio").value;
-
-            console.log(`Aplicando filtros - Min Precio: ${minPrecio}, Max Precio: ${maxPrecio}`);
+            // const minPrecio = document.getElementById("minPrecio").value;
+            // const maxPrecio = document.getElementById("maxPrecio").value;
+            expansion  = document.getElementById("collectionType").value;
+            idioma = document.getElementById("language").value;
+            max = document.getElementById("minPrecio").value;
+            min = document.getElementById("minPrecio").value;
+            tipo = [];
+            document.querySelectorAll(".filtro-tipo input[type='checkbox']").forEach(cb => tipo.push(cb.checked?1:0));
+            tipo = tipo.includes(1)?tipo.toString():"";
+            categoria = [];
+            document.querySelectorAll(".filtro-categoria input[type='checkbox']").forEach(cb => categoria.push(cb.checked?1:0));
+            categoria = categoria.includes(1)?categoria.toString():"";
+            console.log(tipo.includes(1));
             renderPage(1);
         }
 
@@ -174,7 +206,7 @@
 
         function searchItems() {
             const searchTerm = document.getElementById("searchInput").value.toLowerCase();
-            searchResults = items.filter(item => item.toLowerCase().includes(searchTerm));
+            searchResults = items.filter(item => item.nombre.toLowerCase().includes(searchTerm));
             isSearching = true;
             currentPage = 1;
             renderPage(currentPage);
