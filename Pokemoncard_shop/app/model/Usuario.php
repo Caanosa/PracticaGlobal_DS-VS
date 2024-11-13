@@ -1,5 +1,5 @@
 <?php
-    require "../../config/dbConnection.php";
+    require_once "../../config/dbConnection.php";
     class Usuario{
         private $usuairo_id;
         private $nombre;
