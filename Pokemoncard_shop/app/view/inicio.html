@@ -13,27 +13,88 @@
         <img class="img-logo" src="imagenes/image.png" alt="logo">
         <nav>
             <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#deseados">Deseados</a></li>
-                <li><a href="tienda.php">Tienda</a></li>
-                <li><a href="#publicar">Publicar</a></li>
-                <li><a href="login.html">Cuenta</a></li>
+
+                <li><a href="inicio.html">Inicio</a></li>
+                <li><a href="deseados.html">Deseados</a></li>
+                <li><a href="tienda.html">Tienda</a></li>
+                <li><a href="publicar.html">Publicar</a></li>
+                <li><a href="cuenta.html">Cuenta</a></li>
+
             </ul>
         </nav>
     </header>
 
     <div class="carousel">
         <div class="carousel-images">
-            <img src="imagenes/carrusel1.jpg" alt="Imagen 1">
-            <img src="imagenes/carrusel2.jpg" alt="Imagen 2">
-            <img src="imagenes/carrusel3.jpg" alt="Imagen 3">
-            <img src="imagenes/carrusel1.jpg" alt="Imagen 4">
-            <img src="imagenes/carrusel2.jpg" alt="Imagen 5">
-            <img src="imagenes/carrusel3.jpg" alt="Imagen 6">
+            <img class="carrusel2" src="imagenes/carrusel2.png" alt="Imagen 2">
+            <img class="carrusel3" src="imagenes/carrusel3.png" alt="Imagen 3">
+            <img class="carrusel1" src="imagenes/carrusel1.png" alt="Imagen 1">
         </div>
         <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
         <button class="next" onclick="moveSlide(1)">&#10095;</button>
     </div>
+
+    <div class="fondo_populares">
+        <div class="populares">
+            <p>PRODUCTOS POPULARES</p>
+        </div>
+
+        <div class="productos">
+            <div class="producto">
+                <h4>Producto 1</h4>
+                <p>Descripción del producto 1.</p>
+            </div>
+            <div class="producto">
+                <h4>Producto 2</h4>
+                <p>Descripción del producto 2.</p>
+            </div>
+            <div class="producto">
+                <h4>Producto 3</h4>
+                <p>Descripción del producto 3.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="fondo_recientes">
+        <p class="recientes">PRODUCTOS RECIENTES</p>
+        <div class="nuevos">
+            <div class="nuevo">
+                <h4>Producto 1</h4>
+                <p>Descripción del producto 1.</p>
+            </div>
+            <div class="nuevo">
+                <h4>Producto 2</h4>
+                <p>Descripción del producto 2.</p>
+            </div>
+            <div class="nuevo">
+                <h4>Producto 3</h4>
+                <p>Descripción del producto 3.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="noticias">
+        <div class="etb">
+            <p class="titulo_noticias">¡Hazte con la nueva colección llamada Chispas Flugurantes!</p>
+            <img class="etb_img" src="imagenes/etb_chispas_fulgurantes.png" alt="">
+
+        </div>
+    </div>
+
+
+    <footer class="footer">
+        <div class="copyright">
+            <a href="">Copyright © 2024 PokemonCard_shop</a>
+        </div>
+        <div>
+            <a href="avisoLegal.html">Aviso legal</a> |
+            <a href="privacidad.html">Política de privacidad</a> |
+            <a href="coockies.html">Política de Cookies</a> |
+            <a href="envios.html">Política de envíos</a> |
+            <a href="reembolso.html">Política de reembolso</a>
+        </div>
+    </footer>
+
 
     <script>
         let currentIndex = 0;
