@@ -42,7 +42,7 @@
             $campoContrasenaSaneado = htmlspecialchars($_POST["contrasena"]);
             $userdata = $usuarioController->crearUsuario($campoNombreSaneado, $campoEmailSaneado, $campoContrasenaSaneado);
             if($userdata){
-                header('Location: http://localhost/PracticaGlobal_DS-VS/Pokemoncard_shop/app/view/tienda.html');
+                header('Location: http://localhost/PracticaGlobal_DS-VS/Pokemoncard_shop/app/view/inicio.html');
             }else{
                 echo ("<script>
                 var errorMensage = document.getElementById('error-mensage');

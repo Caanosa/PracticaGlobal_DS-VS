@@ -13,7 +13,7 @@
         <img class="img-logo" src="imagenes/image.png" alt="logo">
         <nav>
             <ul>
-                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="inicio.html">Inicio</a></li>
                 <li><a href="#deseados">Deseados</a></li>
                 <li><a href="#tienda">Tienda</a></li>
                 <li><a href="#publicar">Publicar</a></li>
@@ -25,11 +25,19 @@
     <div class="filter-container">
         <h3>Filtros</h3>
         <div class="filter-section">
-            <label for="collectionType">Tipo:</label><br>
+            <label for="collectionType">Exnsion:</label><br>
             <select id="collectionType">
-                <option value="">Selecciona</option>
-                <option value="coleccion">Colección</option>
-                <option value="expansion">Expansión</option>
+                <option value="">Todas</option>
+                <?php
+                    require "../../app/controller/FiltroController.php";
+                    $filtroController = new FiltroController();
+
+                    $filtros = $filtroController->getAllFiltros();
+
+                    foreach ($filtros as $filtro) {
+                        echo "<option value='".$filtro["filtro_id"]."'>".$filtro["nombre_filtro"]."</option>";
+                    }
+                ?>
             </select>
         </div>
         <div class="filter-section">
@@ -54,12 +62,17 @@
         <div class="filter-section">
             <label for="language">Idioma:</label><br>
             <select id="language">
-                <option value="">Selecciona idioma</option>
-                <option value="español">Español</option>
-                <option value="ingles">Inglés</option>
-                <option value="japones">Japonés</option>
-                <option value="frances">Francés</option>
-                <option value="aleman">Alemán</option>
+                <option value="">Todos</option>
+                <?php
+                    require "../../app/controller/IdiomaController.php";
+                    $idiomaController = new IdiomaController();
+
+                    $idiomas = $idiomaController->getAllIdiomas();
+
+                    foreach ($idiomas as $idioma) {
+                        echo "<option value='".$idioma["idioma_id"]."'>".$idioma["nombre_idioma"]."</option>";
+                    }
+                ?>
             </select>
         </div>
         <div class="filter-section precio-range">

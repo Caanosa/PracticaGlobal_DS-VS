@@ -1,13 +1,20 @@
 <?php
+    require_once "../../config/dbConnection.php";
     class Idioma{
         private $idioma;
         private $nomnbre_idioma;
 
-        public function __construct($idioma, $nomnbre_idioma){
-            $this->idioma = $idioma;
-            $this->nomnbre_idioma = $nomnbre_idioma;
+        static function getAllIdiomas(){
+            try{
+                $conn = getDbConnection();
+                $sentencia = $conn->prepare("SELECT * FROM idioma");
+                $sentencia->execute();
+                $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+            }catch(Exception $e){
+                echo "Error al ejecutar la query";
+            }
         }
-
 
         public function getIdioma()
         {
