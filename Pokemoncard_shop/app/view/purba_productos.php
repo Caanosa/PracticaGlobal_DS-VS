@@ -32,7 +32,7 @@
         <input type="submit">
     </form>
     <?php
-        require "../../app/controller/ProductoController.php";
+        require_once "../../app/controller/ProductoController.php";
         $productoController = new ProductoController();
         if($_SERVER['REQUEST_METHOD']=='POST'){
             $campoUsuarioSaneado = htmlspecialchars(($_POST["usuario"]));

@@ -49,6 +49,22 @@
             }
         }
 
+        static function getAllProductosFiltered($expansion, $tipos, $categorias, $idioma, $min, $max){
+                $expansion = $expansion!=""?"and producto_id in (SELECT producto_id from marcar NATURAL JOIN filtros WHERE filtro_id in (\"".$expansion."\"))":"";
+                $tipos = $tipos != []?"and tipo in (\"".implode('","',$tipos)."\")":"";
+                $categorias = $categorias != []?"and categoria in (\"".implode('","',$categorias)."\")":"";
+                $idioma = $idioma != ""?"and idioma_id in (\"".$idioma."\")":"";
+
+                try{
+                    $conn = getDbConnection();
+                    $query = $conn->query("Select * from productos WHERE precio >= $min and precio <= $max $expansion $tipos $categorias $idioma");
+                    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                    return $result;
+                }catch(Exception $e){
+                    echo "Error al ejecutar la query";
+                }
+            }
+
         public function getIdioma_id()
         {
                 return $this->idioma_id;

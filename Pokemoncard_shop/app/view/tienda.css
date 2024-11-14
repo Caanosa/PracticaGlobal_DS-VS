@@ -72,6 +72,24 @@ nav ul li a:hover {
     color: #333;
 }
 
+.galeria-item :hover{
+    animation-duration: 0.2s;
+    animation-name: aumento;
+    width: 15vw;
+    height: 20vw;
+}
+
+@keyframes aumento {
+    from {
+        width: 12vw;
+        height: 17vw;
+    }
+  
+    to {
+        width: 15vw;
+        height: 20vw;
+    }
+}
 .pagination {
     margin-top: 2vw;
     margin-bottom: 2vw;
@@ -216,3 +234,7 @@ nav ul li a:hover {
     background-color: #575757;
 }
 
+.imagen-producto{
+    width: 100%;
+    border-radius: 0.8vw;
+}

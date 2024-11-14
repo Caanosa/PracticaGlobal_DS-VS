@@ -1,8 +1,13 @@
 <?php
-    require "../../app/model/Productos.php";
+    require_once "../../app/model/Productos.php";
     class ProductoController{
         public function getAllProductos(){
             return Productos::getAllProductos();
+        }
+
+        public function getAllProductosFiltered($expansion, $tipos, $categorias, $idioma, $min, $max){
+            
+            return Productos::getAllProductosFiltered($expansion, $tipos, $categorias, $idioma, $min, $max);
         }
 
         public function crearProducto($usuario_id, $idioma_id, $nombre, $descripcion, $precio,$stock, $categoria, $tipo, $imagen_url){
