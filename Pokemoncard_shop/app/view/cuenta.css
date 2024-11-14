@@ -1,0 +1,203 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url("imagenes/fondo_tienda.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 0.5vw 0;
+}
+
+nav ul {
+    list-style-type: none;
+    text-align: right;
+    margin-right: 15vw;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 1.5vw;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.4vw;
+    padding: 1vw 1vw;
+}
+
+nav ul li a:hover {
+    background-color: #575757;
+}
+
+.img-logo {
+    top: 0.3vw;
+    position: absolute;
+    width: 10vw;
+    margin-left: 4vw;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1vw;
+    background-color: #000;
+    color: #fff;
+    font-size: 0.7vw;
+}
+
+.copyright {
+    padding-right: 20vw;
+    padding-left: 20vw;
+}
+
+.footer a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 0.5vw;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Círculo para la imagen seleccionada */
+.image-picker {
+    display: flex;
+    justify-content: center;
+    margin-top: 3vw;
+}
+
+.circle {
+    width: 15vw;
+    height: 15vw;
+    border-radius: 50%;
+    background-image: url(imagenes/default_img.png);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+}
+
+.circle-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Estilo para el popup */
+.popup {
+    display: none;
+    position: fixed;
+    top: 10vw;
+    left: 20vw;
+    width: 60vw;
+    height: 20vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    padding-top: 1vw;
+    background-color: white;
+    width: 60vw;
+    height: 35vw;
+    border-radius: 0.4vw;
+    text-align: center;
+}
+
+.image-options {
+    margin-top: 0.7vw;
+
+}
+
+.image-options div div img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.image-options div div {
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    display: inline-block;
+    width: 11vw;
+    height: 11vw;
+    background-color: #000;
+    margin: 2.5vw;
+}
+
+.image-options img:hover {
+    transform: scale(1.1);
+}
+
+.close {
+    position: absolute;
+    top: 1vw;
+    right: 2vw;
+    font-size: 1.5vw;
+    color: #333;
+    cursor: pointer;
+}
+
+p {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2vw;
+}
+
+/* Estilos de pestañas */
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 15px;
+    font-size: 1vw;
+    margin-top: 2vw;
+}
+
+.tabs input {
+    display: none;
+}
+
+.tabs label {
+    cursor: pointer;
+    padding: 5px 10px;
+    border-bottom: 2px solid transparent;
+}
+
+.tabs input:checked+label {
+    border-bottom: 2px solid #fff;
+}
+
+/* Contenidos de las pestañas */
+.content {
+    display: none;
+}
+
+#tab-vendidos:checked~.content-container #vendidos,
+#tab-comprados:checked~.content-container #comprados,
+#tab-megusta:checked~.content-container #me-gusta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.content .box {
+    width: 60px;
+    height: 60px;
+    background-color: #aaa;
+}

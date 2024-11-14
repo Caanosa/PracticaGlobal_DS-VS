@@ -17,7 +17,7 @@ header {
     background-color: #333;
     color: white;
     padding: 0.5vw 0;
-    width: 100vw;
+    /* width: 100vw; */
 }
 
 nav ul {
@@ -52,7 +52,7 @@ nav ul li a:hover {
 
 .carousel {
     background-color: rgba(54, 11, 11, 0.842);
-    width: 100vw;
+    /* width: 100vw; */
     position: relative;
     overflow: hidden;
 }
@@ -113,7 +113,7 @@ nav ul li a:hover {
 }
 
 .populares{
-    width: 100vw;
+    /* width: 100vw; */
     height: 3vw;
     text-align: center;
     font-size: 1.6vw;
@@ -128,7 +128,6 @@ nav ul li a:hover {
     justify-content: center;
     gap: 2vw;
     margin-top: 2vw;
-
 }
 
 .producto {
@@ -165,7 +164,6 @@ nav ul li a:hover {
 
 .recientes{
     background-color: #5f00acbe;
-    width: 100vw;
     text-align: center;
     font-size: 1.6vw;
     margin-top: 6vw;
@@ -219,16 +217,59 @@ nav ul li a:hover {
 }
 
 .noticias{
-    width: 100vw;
+    width: 99.1vw;
     height: 33vw;
     background-image: url(imagenes/fondo_noticias.png);
 }
 
 .titulo_noticias{
-    width: 100vw;
+    padding-top: 8vw;
+    padding-left: 7vw;
+    height: 10vw;
+    width: 40vw;
     text-align: center;
-    font-size: 1.6vw;
+    font-size: 2vw;
     margin-top: 6vw;
     font-weight: 900;
     color: #000000d0;
+    display: inline-block;
+}
+
+.etb{
+    width: 99vw;
+}
+
+.etb_img{
+    left: 56vw;
+    margin-top: 10vw;
+    width: 30vw;
+    position: absolute;
+    box-shadow: 3px 3px 3px 3px rgba(32,32,32,0.3);
+    border-radius: 1vw;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1vw;
+    background-color: #000;
+    color: #fff;
+    font-size: 0.7vw;
+}
+
+.copyright{
+    padding-right: 20vw;
+    padding-left: 20vw;
+}
+
+.footer a{
+    color: #fff;
+    text-decoration: none;
+    margin: 0 0.5vw;
+
+}
+
+.footer a:hover {
+    text-decoration: underline;
 }
