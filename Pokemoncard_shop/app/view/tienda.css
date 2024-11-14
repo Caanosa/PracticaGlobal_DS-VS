@@ -9,8 +9,6 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
-
-
 }
 
 header {
@@ -237,4 +235,30 @@ nav ul li a:hover {
 .imagen-producto{
     width: 100%;
     border-radius: 0.8vw;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1vw;
+    background-color: #000;
+    color: #fff;
+    font-size: 0.7vw;
+}
+
+.copyright{
+    padding-right: 20vw;
+    padding-left: 20vw;
+}
+
+.footer a{
+    color: #fff;
+    text-decoration: none;
+    margin: 0 0.5vw;
+
+}
+
+.footer a:hover {
+    text-decoration: underline;
 }

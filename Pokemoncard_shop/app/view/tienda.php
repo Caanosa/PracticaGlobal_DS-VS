@@ -142,7 +142,18 @@
             <button onclick="nextPage()" id="nextBtn">Siguiente &raquo;</button>
         </div>
     </div>
-    
+    <footer class="footer">
+        <div class="copyright">
+            <a href="">Copyright © 2024 PokemonCard_shop</a>
+        </div>
+        <div>
+            <a href="avisoLegal.html">Aviso legal</a> |
+            <a href="privacidad.html">Política de privacidad</a> |
+            <a href="coockies.html">Política de Cookies</a> |
+            <a href="envios.html">Política de envíos</a> |
+            <a href="reembolso.html">Política de reembolso</a>
+        </div>
+    </footer>
     <script>
         const galeria = document.getElementById("galeria");
         const pageIndicator = document.getElementById("pageIndicator");
