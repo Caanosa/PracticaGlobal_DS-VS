@@ -49,6 +49,17 @@
             }
         }
 
+        static function getAllProductosFiltered(){
+                try{
+                    $conn = getDbConnection();
+                    $query = $conn->query("Select * from productos NATURAL JOIN idioma");
+                    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                    return $result;
+                }catch(Exception $e){
+                    echo "Error al ejecutar la query";
+                }
+            }
+
         public function getIdioma_id()
         {
                 return $this->idioma_id;

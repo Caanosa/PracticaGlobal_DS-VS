@@ -5,6 +5,11 @@
             return Productos::getAllProductos();
         }
 
+        public function getAllProductosFiltered($expansion, $tipos, $categorias, $idioma, $min, $max){
+            
+            return Productos::getAllProductos();
+        }
+
         public function crearProducto($usuario_id, $idioma_id, $nombre, $descripcion, $precio,$stock, $categoria, $tipo, $imagen_url){
             $nuevoProducto = new Productos();
             $nuevoProducto->setUsuario_id($usuario_id);
