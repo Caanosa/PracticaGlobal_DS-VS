@@ -26,7 +26,7 @@
         $productoController = new ProductoController();
         if($_SERVER['REQUEST_METHOD']=='POST'){
             $expansion = $_POST["expansion"];
-            $tiposNombre = ["Pack","Sobres","Cartas"];
+            $tiposNombre = ["Pack","Sobre","Carta"];
             $tiposInt = [];
             $tipos = [];
             foreach ($tiposNombre as $tipo) {
@@ -43,7 +43,7 @@
             foreach ($categoriasNombre as $categoria) {
                 if(in_array($categoria, $_POST)){
                     array_push($categoriasInt,1);
-                    array_push($tipos, $tipo);
+                    array_push($categorias, $categoria);
                 }else{
                     array_push($categoriasInt,0);
                 }
@@ -52,18 +52,12 @@
             $min = $_POST["min"];
             $max = $_POST["max"];
             
-            $provisional = $productoController->getAllProductos();
+            $productos = $productoController->getAllProductosFiltered($expansion, $tipos, $categorias, $idiomasSelect, $min, $max);
         }else{
-            echo "<h2>no</h2>";
-        } 
-        $productos = $productoController->getAllProductos();
-        $hola2 = "hola";
+            $productos = $productoController->getAllProductos();
+        }
         
     ?>
-    <script>
-            variable1 = <?php echo json_encode($productos) ?>;
-            console.log(variable1[0].producto_id);
-    </script>
     <!-- onsubmit="manejarEnvio(event)" -->
     <form id="formulario" class="filter-container"  method="POST" >
         <h3>Filtros</h3>
@@ -85,8 +79,8 @@
         <div class="filter-section filtro-tipo">
             <h4>Tipo</h4>
             <label><input type="checkbox" name="Pack"  value="Pack" <?php echo isset($tiposInt) &&$tiposInt[0]==1?"checked":""?>> Pack</label><br>
-            <label><input type="checkbox" name="Sobres"  value="Sobres" <?php echo isset($tiposInt) &&$tiposInt[1]==1?"checked":""?>> Sobres</label><br>
-            <label><input type="checkbox" name="Cartas"  value="Cartas" <?php echo isset($tiposInt) &&$tiposInt[2]==1?"checked":""?>> Cartas</label><br>
+            <label><input type="checkbox" name="Sobres"  value="Sobre" <?php echo isset($tiposInt) &&$tiposInt[1]==1?"checked":""?>> Sobres</label><br>
+            <label><input type="checkbox" name="Cartas"  value="Carta" <?php echo isset($tiposInt) &&$tiposInt[2]==1?"checked":""?>> Cartas</label><br>
         </div>
         <div class="filter-section filtro-categoria">
 
@@ -126,11 +120,11 @@
             <br>
             <label>max:</label>
             <br>
-            <input type="number" id="maxPrecio" name="max" min="0" max="1000" value="<?php echo isset($max) ?$max:100?>">
+            <input type="number" id="maxPrecio" name="max" min="0" max="1000" value="<?php echo isset($max) ?$max:1000?>">
         </div>
         <div class="filter-buttons">
             <button onclick="clearFilters()">Borrar filtro</button>
-            <button onclick="applyFilters()" type="submit">Filtrar</button>
+            <button type="submit">Filtrar</button>
         </div>
 
     </form>
@@ -192,27 +186,10 @@
             document.querySelectorAll(".filter-section input[type='checkbox']").forEach(cb => cb.checked = false);
             document.getElementById("language").value = "";
             document.getElementById("minPrecio").value = 0;
-            document.getElementById("maxPrecio").value = 100;
+            document.getElementById("maxPrecio").value = 1000;
             document.getElementById("searchInput").value = "";
             isSearching = false;
             searchResults = [];
-            renderPage(1);
-        }
-
-        function applyFilters() {
-            // const minPrecio = document.getElementById("minPrecio").value;
-            // const maxPrecio = document.getElementById("maxPrecio").value;
-            expansion  = document.getElementById("collectionType").value;
-            idioma = document.getElementById("language").value;
-            max = document.getElementById("minPrecio").value;
-            min = document.getElementById("minPrecio").value;
-            tipo = [];
-            document.querySelectorAll(".filtro-tipo input[type='checkbox']").forEach(cb => tipo.push(cb.checked?1:0));
-            tipo = tipo.includes(1)?tipo.toString():"";
-            categoria = [];
-            document.querySelectorAll(".filtro-categoria input[type='checkbox']").forEach(cb => categoria.push(cb.checked?1:0));
-            categoria = categoria.includes(1)?categoria.toString():"";
-            console.log(tipo.includes(1));
             renderPage(1);
         }
 

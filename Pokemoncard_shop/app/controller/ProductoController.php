@@ -7,7 +7,7 @@
 
         public function getAllProductosFiltered($expansion, $tipos, $categorias, $idioma, $min, $max){
             
-            return Productos::getAllProductos();
+            return Productos::getAllProductosFiltered($expansion, $tipos, $categorias, $idioma, $min, $max);
         }
 
         public function crearProducto($usuario_id, $idioma_id, $nombre, $descripcion, $precio,$stock, $categoria, $tipo, $imagen_url){
