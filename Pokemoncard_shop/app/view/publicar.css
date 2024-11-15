@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url("imagenes/fondo_tienda.png");
+    font-family: Arial, sans-serif;
+    flex-direction: column;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    
+
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 0.5vw 0;
+    /* width: 100vw; */
+}
+
+nav ul {
+    list-style-type: none;
+    text-align: right;
+    margin-right: 15vw;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 1.5vw;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.4vw;
+    padding: 1vw 1vw;
+}
+
+nav ul li a:hover {
+    background-color: #575757;
+}
+
+.img-logo {
+    top: 0.3vw;
+    position: absolute;
+    width: 10vw;
+    margin-left: 4vw;
+}
