@@ -26,7 +26,7 @@
         
               <p id="error-mensage" class="error-mensage"></p>
         
-              <button type="submit">Entrar</button>
+              <button type="submit">Registrarme</button>
 
               <a href="login.php" class="login-link">Ya tengo una cuenta</a>
 
@@ -35,6 +35,7 @@
     </div>
     <?php
         require_once "../../app/controller/UsuarioController.php";
+        session_start();
         $usuarioController = new UsuarioController();
         if($_SERVER['REQUEST_METHOD']=='POST'){
             $campoNombreSaneado = htmlspecialchars(($_POST["nombre"]));
@@ -42,6 +43,7 @@
             $campoContrasenaSaneado = htmlspecialchars($_POST["contrasena"]);
             $userdata = $usuarioController->crearUsuario($campoNombreSaneado, $campoEmailSaneado, $campoContrasenaSaneado);
             if($userdata){
+                $_SESSION['usuario'] = [$userdata[0]["usuario_id"], $userdata[0]["nombre"]];
                 header('Location: http://localhost/PracticaGlobal_DS-VS/Pokemoncard_shop/app/view/inicio.html');
             }else{
                 echo ("<script>

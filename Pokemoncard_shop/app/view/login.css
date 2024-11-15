@@ -4,16 +4,21 @@ body{
     padding-top: 20vh;
 }
 
+.tituloLogin {
+    font-size: 1.7vw;
+    margin-bottom: 1vw;
+    margin-top: 0.3vw;
+}
+
 .login-div {
     margin-left: 63vw;
     background-color: white;
     text-align: center;
     padding: 20px;
     width: 20vw;
-    height: 17vw;
+    height: 18vw;
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
 }
 
 .error-mensage {

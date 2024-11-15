@@ -17,7 +17,7 @@
                 <li><a href="#deseados">Deseados</a></li>
                 <li><a href="#tienda">Tienda</a></li>
                 <li><a href="#publicar">Publicar</a></li>
-                <li><a href="<?php session_start();  echo isset($_SESSION['usuario'])?"cuenta.html":"login.php"?>"><?php echo isset($_SESSION['usuario'])?$_SESSION['usuario'][1]:"hola"?></a></li>
+                <li><a href="<?php session_start();  echo isset($_SESSION['usuario'])?"cuenta.html":"login.php"?>"><?php echo isset($_SESSION['usuario'])?$_SESSION['usuario'][1]:"Cuenta"?></a></li>
             </ul>
         </nav>
     </header>
