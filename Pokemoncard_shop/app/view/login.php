@@ -28,6 +28,7 @@
           </div>
     </div>
     <?php
+        session_start();
         require_once "../../app/controller/UsuarioController.php";
         $usuarioController = new UsuarioController();
         if($_SERVER['REQUEST_METHOD']=='POST'){
@@ -35,6 +36,7 @@
             $campoContrasenaSaneado = htmlspecialchars($_POST["contrasena"]);
             $userdata = $usuarioController->getLogin($campoEmailSaneado, $campoContrasenaSaneado);
             if($userdata){
+                $_SESSION['usuario'] = [$userdata[0]["usuario_id"], $userdata[0]["nombre"]];
                 header('Location: http://localhost/PracticaGlobal_DS-VS/Pokemoncard_shop/app/view/inicio.html');
             }else{
                 echo ("<script>
