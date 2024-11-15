@@ -80,7 +80,7 @@ footer {
     width: 15vw;
     height: 15vw;
     border-radius: 50%;
-    background-image: url(imagenes/default_img.png);
+    background-color: #ffffffc4;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -183,21 +183,55 @@ p {
 }
 
 /* Contenidos de las pestañas */
-.content {
-    display: none;
+.content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
-#tab-vendidos:checked~.content-container #vendidos,
-#tab-comprados:checked~.content-container #comprados,
-#tab-megusta:checked~.content-container #me-gusta {
-    display: flex;
+.content {
+    width: 80vw;
+    display: none;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
+    gap: 20px;
+    margin-top: 1vw;
 }
 
 .content .box {
-    width: 60px;
-    height: 60px;
-    background-color: #aaa;
+    width: 18vw;
+    height: 18vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5vw;
+    color: #fff;
+}
+
+/* Mostrar la sección correspondiente cuando la pestaña está seleccionada */
+#tab-vendidos:checked ~ .content-container #vendidos {
+    display: flex;
+}
+
+#tab-comprados:checked ~ .content-container #comprados {
+    display: flex;
+}
+
+#tab-megusta:checked ~ .content-container #me-gusta {
+    display: flex;
+}
+
+/* Colores específicos para cada sección */
+#vendidos .box {
+    background-color: blue;
+}
+
+#comprados .box {
+    background-color: red;
+}
+
+#me-gusta .box {
+    background-color: yellow;
+    color: #333;
 }

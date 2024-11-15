@@ -58,6 +58,7 @@
         }
         
     ?>
+    <div class="cuerpo">
     <!-- onsubmit="manejarEnvio(event)" -->
     <form id="formulario" class="filter-container"  method="POST" >
         <h3>Filtros</h3>
@@ -142,6 +143,7 @@
             <button onclick="nextPage()" id="nextBtn">Siguiente &raquo;</button>
         </div>
     </div>
+    </div>
     <footer class="footer">
         <div class="copyright">
             <a href="">Copyright © 2024 PokemonCard_shop</a>
@@ -160,16 +162,13 @@
         const prevBtn = document.getElementById("prevBtn");
         const nextBtn = document.getElementById("nextBtn");
 
-        const itemsPerPage = 20;
+        const itemsPerPage = 12;
         let currentPage = 1;
         let searchResults = [];
         let isSearching = false;
 
         const items = <?php echo json_encode($productos) ?>;
 
-        function manejarEnvio(event){
-            event.preventDefault();
-        }
         function renderPage(page) {
             galeria.innerHTML = "";
             const itemsToRender = isSearching ? searchResults : items; 

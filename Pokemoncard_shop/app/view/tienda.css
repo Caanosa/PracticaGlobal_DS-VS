@@ -262,3 +262,7 @@ footer {
 .footer a:hover {
     text-decoration: underline;
 }
+
+.cuerpo{
+    height: 78vw;
+}
