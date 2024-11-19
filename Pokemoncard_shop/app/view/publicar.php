@@ -22,7 +22,31 @@
         </nav>
     </header>
     <div class="divTexto">
-        
+        <div class="container">
+            <div class="image-section">
+                <div class="dos_elemetos">
+                    <input id="imagenURL" type="text" placeholder="URL">
+                    <button onclick="cargarimg()">Cargar</button>
+                </div>
+                <img class="image-placeholder" id="imagen">
+            </div>
+            <div class="form-section">
+                <input type="text" placeholder="nombre">
+                <textarea placeholder="Descripcion"></textarea>
+                <div class="dos_elementos">
+                    <input type="text" placeholder="Tipo">
+                    <input type="text" placeholder="Categoria/stock">
+                </div>
+                <input type="text" placeholder="Idioma">
+                <input type="text" placeholder="Precio">
+                <button class="publish-button">Publicar</button>
+            </div>
+        </div>
     </div>
+    <script>
+        function cargarimg(){
+            document.getElementById("imagen").src = document.getElementById("imagenURL").value; 
+        }
+    </script>
 </body>
 </html>
