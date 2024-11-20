@@ -76,13 +76,26 @@
         <label for="tab-megusta">Me gusta</label>
     </div>
 
-    <!-- Contenedor de contenido de las pestañas -->
     <div class="content-container">
         <div id="vendidos" class="content">
-
+            <button onclick="prevPage()" id="prevBtn" disabled>&laquo; Anterior</button>
+            <button onclick="nextPage()" id="nextBtn">Siguiente &raquo;</button>
         </div>
     </div>
     </div>
+
+    <footer class="footer">
+        <div class="copyright">
+            <a href="">Copyright © 2024 PokemonCard_shop</a>
+        </div>
+        <div>
+            <a href="avisoLegal.html">Aviso legal</a> |
+            <a href="privacidad.html">Política de privacidad</a> |
+            <a href="coockies.html">Política de Cookies</a> |
+            <a href="envios.html">Política de envíos</a> |
+            <a href="reembolso.html">Política de reembolso</a>
+        </div>
+    </footer>
 
     <script>
         // Función para abrir el popup
@@ -102,8 +115,11 @@
         }
 
         const galeria = document.getElementById("vendidos");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
         const itemsPerPage = 8;
-         items = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+        let currentPage = 1;
+        items = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
         function renderPage(page) {
             galeria.innerHTML = "";
@@ -120,6 +136,23 @@
                 galeria.appendChild(div);
                 div.appendChild(imagen);
             });
+
+            prevBtn.disabled = page === 1;
+            nextBtn.disabled = end >= itemsToRender.length;
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                renderPage(currentPage);
+            }
+        }
+
+        function nextPage() {
+            if (currentPage * itemsPerPage < items.length) {
+                currentPage++;
+                renderPage(currentPage);
+            }
         }
 
         function pestania(tipo) {
