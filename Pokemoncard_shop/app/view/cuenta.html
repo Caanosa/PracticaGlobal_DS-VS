@@ -35,7 +35,8 @@
             <div class="image-options">
                 <div>
                     <div>
-                        <img src="imagenes/vamoacalmarno.jpg" alt="Imagen 1" onclick="setImage('imagenes/vamoacalmarno.jpg');">
+                        <img src="imagenes/vamoacalmarno.jpg" alt="Imagen 1"
+                            onclick="setImage('imagenes/vamoacalmarno.jpg');">
 
                     </div>
                     <div>
@@ -64,109 +65,79 @@
     </div>
 
     <p>Nombre</p>
+    <div class="tabs">
+        <input type="radio" name="tabs" id="tab-vendidos" checked>
+        <label for="tab-vendidos" onclick="pestania('vendido')">Vendidos</label>
 
-    <div class="conjunto">
-        <div>
-            <div class="titulos">
-                <p>Vendidos</p>
-            </div>
-    
-            <div class="productos">
-                <div class="producto">
-                    <h4>Producto 1</h4>
-                    <p>Descripción del producto 1.</p>
-                </div>
-                <div class="producto">
-                    <h4>Producto 2</h4>
-                    <p>Descripción del producto 2.</p>
-                </div>
-                <div class="producto">
-                    <h4>Producto 3</h4>
-                    <p>Descripción del producto 3.</p>
-                </div>
-                <div class="producto">
-                    <h4>Producto 4</h4>
-                    <p>Descripción del producto 4.</p>
-                </div>
-            </div>
-        </div>
-    
-        <div>
-            <div class="titulos">
-                <p>Comprados</p>
-            </div>
-    
-            <div class="productos">
-                <div class="producto">
-                    <h4>Producto 1</h4>
-                    <p>Descripción del producto 1.</p>
-                </div>
-                <div class="producto">
-                    <h4>Producto 2</h4>
-                    <p>Descripción del producto 2.</p>
-                </div>
-                <div class="producto">
-                    <h4>Producto 3</h4>
-                    <p>Descripción del producto 3.</p>
-                </div>
-                <div class="producto">
-                    <h4>Producto 4</h4>
-                    <p>Descripción del producto 4.</p>
-                </div>
-            </div>
-        </div>
-    
-        <div>
-            <div class="titulos">
-                <p>Me gusta</p>
-            </div>
-    
-            <div class="productos">
-                <div class="producto">
-                    <h4>Producto 1</h4>
-                    <p>Descripción del producto 1.</p>
-                </div>
-                <div class="producto">
-                    <h4>Producto 2</h4>
-                    <p>Descripción del producto 2.</p>
-                </div>
-                <div class="producto">
-                    <h4>Producto 3</h4>
-                    <p>Descripción del producto 3.</p>
-                </div>
-                <div class="producto">
-                    <h4>Producto 4</h4>
-                    <p>Descripción del producto 4.</p>
-                </div>
-            </div>
+        <input type="radio" name="tabs" id="tab-comprados">
+        <label for="tab-comprados" onclick="pestania('comprado')">Comprados</label>
+
+        <input type="radio" name="tabs" id="tab-megusta" onclick="pestania('gusta')">
+        <label for="tab-megusta">Me gusta</label>
+    </div>
+
+    <!-- Contenedor de contenido de las pestañas -->
+    <div class="content-container">
+        <div id="vendidos" class="content">
+
         </div>
     </div>
-    
-    <footer class="footer">
-        <div class="copyright">
-            <a href="">Copyright © 2024 PokemonCard_shop</a>
-        </div>
-        <div>
-            <a href="avisoLegal.html">Aviso legal</a> |
-            <a href="privacidad.html">Política de privacidad</a> |
-            <a href="coockies.html">Política de Cookies</a> |
-            <a href="envios.html">Política de envíos</a> |
-            <a href="reembolso.html">Política de reembolso</a>
-        </div>
-    </footer>
+    </div>
 
     <script>
+        // Función para abrir el popup
         function openPopup() {
             document.getElementById("popup").style.display = "block";
         }
+
+        // Función para cerrar el popup
         function closePopup() {
             document.getElementById("popup").style.display = "none";
         }
 
+        // Función para establecer la imagen en el círculo
         function setImage(src) {
             document.getElementById("circleImage").src = src;
-            closePopup(); 
+            closePopup(); // Cerrar el popup al seleccionar la imagen
         }
+
+        const galeria = document.getElementById("vendidos");
+        const itemsPerPage = 8;
+         items = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+
+        function renderPage(page) {
+            galeria.innerHTML = "";
+            const itemsToRender = items;
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const currentItems = itemsToRender.slice(start, end);
+
+            currentItems.forEach(item => {
+                const div = document.createElement("div");
+                div.classList.add("box");
+                const imagen = document.createElement("p");
+                imagen.textContent = item;
+                galeria.appendChild(div);
+                div.appendChild(imagen);
+            });
+        }
+
+        function pestania(tipo) {
+            switch (tipo) {
+                case "vendido":
+                    items = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+                    break;
+                case "comprado":
+                    items = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2];
+                    break;
+                case "gusta":
+                    items = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3];
+                    break;
+            }
+            renderPage(1);
+        }
+
+        renderPage(1);
     </script>
 
 </html>
