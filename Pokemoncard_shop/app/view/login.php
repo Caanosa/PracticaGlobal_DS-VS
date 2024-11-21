@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Login</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="/app/view/login.css">
 </head>
 <body>
     <div class="contenedor-login">
-        <img src="imagenes/PokemonCard_shop_LOGO.png" alt="logo">
+        <img src="/app/view/imagenes/PokemonCard_shop_LOGO.png" alt="logo">
         <div class="login-div">
             <form  method="POST">
               <p class="tituloLogin">Iniciar sesión</p>
@@ -37,7 +37,7 @@
             $userdata = $usuarioController->getLogin($campoEmailSaneado, $campoContrasenaSaneado);
             if($userdata){
                 $_SESSION['usuario'] = [$userdata[0]["usuario_id"], $userdata[0]["nombre"]];
-                header('Location: http://localhost/PracticaGlobal_DS-VS/Pokemoncard_shop/app/view/inicio.html');
+                header('Location: http://pokemoncardshop.com');
             }else{
                 echo ("<script>
                 var errorMensage = document.getElementById('error-mensage');
