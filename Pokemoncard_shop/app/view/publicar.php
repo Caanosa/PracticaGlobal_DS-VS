@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="publicar.css">
+    <link rel="stylesheet" href="/app/view/publicar.css">
 </head>
 <body>
 <header>
@@ -34,10 +34,35 @@
                 <input type="text" placeholder="nombre">
                 <textarea placeholder="Descripcion"></textarea>
                 <div class="dos_elementos">
-                    <input type="text" placeholder="Tipo">
-                    <input type="text" placeholder="Categoria/stock">
+                    <select>
+                        <option valu="Pack">Pack</option>
+                        <option valu="Sobre">Sobre</option>
+                        <option valu="Carta">Carta</option>
+                    </select>
+                    <select id="collectionType" name="expansion">
+                        <?php
+                            require_once "../../app/controller/FiltroController.php";
+                            $filtroController = new FiltroController();
+
+                            $filtros = $filtroController->getAllFiltros();
+                            foreach ($filtros as $filtro) {
+                                echo "<option value='".$filtro["filtro_id"]."' ".(isset($expansion) && $expansion == $filtro["filtro_id"]?'selected':'').">".$filtro["nombre_filtro"]."</option>";
+                            }
+                        ?>
+                    </select>
                 </div>
-                <input type="text" placeholder="Idioma">
+                <select id="language" name="idioma">
+                    <?php
+                        require_once "../../app/controller/IdiomaController.php";
+                        $idiomaController = new IdiomaController();
+
+                        $idiomas = $idiomaController->getAllIdiomas();
+
+                        foreach ($idiomas as $idioma) {
+                            echo "<option value='".$idioma["idioma_id"]."' ".(isset($idiomasSelect) && $idiomasSelect == $idioma["idioma_id"]?'selected':'').">".$idioma["nombre_idioma"]."</option>";
+                        }
+                    ?>
+                </select>
                 <input type="text" placeholder="Precio">
                 <button class="publish-button">Publicar</button>
             </div>
