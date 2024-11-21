@@ -16,7 +16,7 @@
                 <li><a href="/app/view/inicio.html">Inicio</a></li>
                 <li><a href="#deseados">Deseados</a></li>
                 <li><a href="#tienda">Tienda</a></li>
-                <li><a href="publicar.php">Publicar</a></li>
+                <li><a href="/app/view/publicar.php">Publicar</a></li>
                 <li><a href="<?php session_start();  echo isset($_SESSION['usuario'])?"/app/view/cuenta.html":"/app/view/login.php"?>"><?php echo isset($_SESSION['usuario'])?$_SESSION['usuario'][1]:"Cuenta"?></a></li>
 
             </ul>

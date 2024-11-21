@@ -107,7 +107,7 @@ nav ul li a:hover {
     height: 60px;
 }
 .publish-button {
-    background-color: #a00;
+    background-color: #333;
     color: white;
     border: none;
     padding: 10px;
@@ -116,7 +116,17 @@ nav ul li a:hover {
     cursor: pointer;
 }
 .publish-button:hover {
-    background-color: #900;
+    background-color: #434344;
+}
+#expansiones{
+    display: flex; 
+    gap: 15px;
+}
+.expansionUnica{
+    border-radius: 10px;
+    color: white;
+    background-color: #333;
+    padding: 10px;
 }
 
 

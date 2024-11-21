@@ -31,15 +31,17 @@
                 <img class="image-placeholder" id="imagen">
             </div>
             <div class="form-section">
-                <input type="text" placeholder="nombre">
+                <input type="text" placeholder="nombre" >
                 <textarea placeholder="Descripcion"></textarea>
                 <div class="dos_elementos">
-                    <select>
+                    <select id="tipo" onchange="tipo()">
+                        <option>Tipo de articulo</option>
                         <option valu="Pack">Pack</option>
                         <option valu="Sobre">Sobre</option>
                         <option valu="Carta">Carta</option>
                     </select>
-                    <select id="collectionType" name="expansion">
+                    <select id="collectionType" name="expansion" onchange="addExpansion()">
+                        <option>Expansiones</option>
                         <?php
                             require_once "../../app/controller/FiltroController.php";
                             $filtroController = new FiltroController();
@@ -50,6 +52,9 @@
                             }
                         ?>
                     </select>
+                </div>
+                <div id="expansiones">
+
                 </div>
                 <select id="language" name="idioma">
                     <?php
@@ -69,6 +74,35 @@
         </div>
     </div>
     <script>
+        const tipoComponent = document.getElementById("tipo");
+        const expansion = document.getElementById("collectionType");
+        const expansionesDiv = document.getElementById("expansiones");
+        multipleExpansion = false;
+        expansiones = [];
+        function tipo(){
+            multipleExpansion = tipoComponent.value=="Carta";
+            expansion.value = "Expansiones";
+            if(!multipleExpansion){
+                expansionesDiv.innerHTML = "";
+                expansiones = [];
+            }
+        }
+        function addExpansion(){
+            if(multipleExpansion){
+                expansionesDiv.innerHTML = "";
+                valor = [expansion.value,expansion.options[expansion.selectedIndex].text];
+                if(valor[1] != "Expansiones" && !expansiones.some(e=> e[0]==valor[0])){
+                    expansiones.push(valor);
+                }
+                expansiones.forEach(item => {
+                    const p = document.createElement("p");
+                    p.classList.add("expansionUnica");
+                    p.textContent = item[1];
+                    expansionesDiv.appendChild(p);
+                });
+            }
+        }
+
         function cargarimg(){
             document.getElementById("imagen").src = document.getElementById("imagenURL").value; 
         }
