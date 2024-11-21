@@ -5,19 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página tienda</title>
-    <link rel="stylesheet" href="tienda.css">
+    <link rel="stylesheet" href="/app/view/tienda.css">
 </head>
 
 <body>
     <header>
-        <img class="img-logo" src="imagenes/image.png" alt="logo">
+        <img class="img-logo" src="/app/view/imagenes/image.png" alt="logo">
         <nav>
             <ul>
-                <li><a href="inicio.html">Inicio</a></li>
+                <li><a href="/app/view/inicio.html">Inicio</a></li>
                 <li><a href="#deseados">Deseados</a></li>
                 <li><a href="#tienda">Tienda</a></li>
                 <li><a href="#publicar">Publicar</a></li>
-                <li><a href="<?php session_start();  echo isset($_SESSION['usuario'])?"cuenta.html":"login.php"?>"><?php echo isset($_SESSION['usuario'])?$_SESSION['usuario'][1]:"hola"?></a></li>
+                <li><a href="<?php session_start();  echo isset($_SESSION['usuario'])?"/app/view/cuenta.html":"/app/view/login.php"?>"><?php echo isset($_SESSION['usuario'])?$_SESSION['usuario'][1]:"hola"?></a></li>
             </ul>
         </nav>
     </header>
@@ -147,11 +147,11 @@
             <a href="">Copyright © 2024 PokemonCard_shop</a>
         </div>
         <div>
-            <a href="avisoLegal.html">Aviso legal</a> |
-            <a href="privacidad.html">Política de privacidad</a> |
-            <a href="coockies.html">Política de Cookies</a> |
-            <a href="envios.html">Política de envíos</a> |
-            <a href="reembolso.html">Política de reembolso</a>
+            <a href="/app/view/avisoLegal.html">Aviso legal</a> |
+            <a href="/app/view/privacidad.html">Política de privacidad</a> |
+            <a href="/app/view/coockies.html">Política de Cookies</a> |
+            <a href="/app/view/envios.html">Política de envíos</a> |
+            <a href="/app/view/reembolso.html">Política de reembolso</a>
         </div>
     </footer>
     <script>
