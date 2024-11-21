@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Registro</title>
-    <link rel="stylesheet" href="registro.css">
+    <link rel="stylesheet" href="/app/view/registro.css">
 </head>
 <body>
     <div class="contenedor-registro">
-        <img src="imagenes/PokemonCard_shop_LOGO.png" alt="logo">
+        <img src="/app/view/imagenes/PokemonCard_shop_LOGO.png" alt="logo">
         <div class="registro-div">
             <form id="registroForm" onsubmit="return validarFormulario(event)" method="POST">
               <p class="tituloRegistro">Registro</p>
@@ -42,7 +42,7 @@
             $campoContrasenaSaneado = htmlspecialchars($_POST["contrasena"]);
             $userdata = $usuarioController->crearUsuario($campoNombreSaneado, $campoEmailSaneado, $campoContrasenaSaneado);
             if($userdata){
-                header('Location: http://localhost/PracticaGlobal_DS-VS/Pokemoncard_shop/app/view/inicio.html');
+                header('Location: http://pokemoncardshop.com');
             }else{
                 echo ("<script>
                 var errorMensage = document.getElementById('error-mensage');
