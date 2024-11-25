@@ -22,6 +22,8 @@
         </nav>
     </header>
 
+    <button class="salir">Cerrar Sessión</button>
+
     <div class="image-picker">
         <div class="circle" onclick="openPopup();">
             <img id="circleImage" src="" class="circle-img">
@@ -64,6 +66,7 @@
     </div>
 
     <p>Nombre</p>
+    <p class="ercora">100 ❤</p>
     <div class="tabs">
         <input type="radio" name="tabs" id="tab-vendidos" checked>
         <label for="tab-vendidos" onclick="pestania('vendido')">Vendidos</label>
@@ -77,9 +80,9 @@
 
     <div class="content-container">
         <div id="vendidos" class="content">
-            <button onclick="prevPage()" id="prevBtn" disabled>&laquo; Anterior</button>
-            <button onclick="nextPage()" id="nextBtn">Siguiente &raquo;</button>
         </div>
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
     </div>
     </div>
 
@@ -114,8 +117,7 @@
         }
 
         const galeria = document.getElementById("vendidos");
-        const prevBtn = document.getElementById("prevBtn");
-        const nextBtn = document.getElementById("nextBtn");
+
         const itemsPerPage = 8;
         let currentPage = 1;
         items = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
@@ -136,23 +138,8 @@
                 div.appendChild(imagen);
             });
 
-            prevBtn.disabled = page === 1;
-            nextBtn.disabled = end >= itemsToRender.length;
         }
 
-        function prevPage() {
-            if (currentPage > 1) {
-                currentPage--;
-                renderPage(currentPage);
-            }
-        }
-
-        function nextPage() {
-            if (currentPage * itemsPerPage < items.length) {
-                currentPage++;
-                renderPage(currentPage);
-            }
-        }
 
         function pestania(tipo) {
             switch (tipo) {
