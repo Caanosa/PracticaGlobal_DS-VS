@@ -68,14 +68,15 @@ nav ul li a:hover {
     justify-content: center;
     font-size: 1vw;
     color: #333;
+
 }
 
-.galeria-item :hover{
+/* .galeria-item :hover{
     animation-duration: 0.2s;
     animation-name: aumento;
     width: 15vw;
     height: 20vw;
-}
+} */
 
 @keyframes aumento {
     from {
@@ -265,4 +266,22 @@ footer {
 
 .cuerpo{
     height: 78vw;
+}
+
+.imagen-galeria{
+    width: 15vw;
+    height: 20vw;
+    object-fit: cover;
+    border-radius: 1.5vw;
+}
+
+.precio{
+
+}
+
+.info-galeria-item{
+    height: 3vw;
+    width: 15vw;
+    background-color: #000000;
+    margin-top: 15.55vw;
 }
