@@ -11,7 +11,7 @@
         <img src="/app/view/imagenes/PokemonCard_shop_LOGO.png" alt="logo">
         <div class="login-div">
             <form  method="POST">
-              <p>Iniciar sesión</p>
+              <p class="tituloLogin">Iniciar sesión</p>
               <label for="email">Correo</label>
               <input type="email" id="email" placeholder="Correo" name="email">
         

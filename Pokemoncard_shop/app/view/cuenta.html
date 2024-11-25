@@ -22,6 +22,8 @@
         </nav>
     </header>
 
+    <button class="salir">Cerrar Sessión</button>
+
     <div class="image-picker">
         <div class="circle" onclick="openPopup();">
             <img id="circleImage" src="" class="circle-img">
@@ -64,47 +66,38 @@
     </div>
 
     <p>Nombre</p>
+    <p class="ercora">100 ❤</p>
     <div class="tabs">
         <input type="radio" name="tabs" id="tab-vendidos" checked>
-        <label for="tab-vendidos">Vendidos</label>
-        
+        <label for="tab-vendidos" onclick="pestania('vendido')">Vendidos</label>
+
         <input type="radio" name="tabs" id="tab-comprados">
-        <label for="tab-comprados">Comprados</label>
-        
-        <input type="radio" name="tabs" id="tab-megusta">
+        <label for="tab-comprados" onclick="pestania('comprado')">Comprados</label>
+
+        <input type="radio" name="tabs" id="tab-megusta" onclick="pestania('gusta')">
         <label for="tab-megusta">Me gusta</label>
     </div>
 
-    <!-- Contenedor de contenido de las pestañas -->
     <div class="content-container">
         <div id="vendidos" class="content">
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
         </div>
-        
-        <div id="comprados" class="content">
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-        </div>
-        
-        <div id="me-gusta" class="content">
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-        </div>
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
     </div>
-</div>
+    </div>
+
+    <footer class="footer">
+        <div class="copyright">
+            <a href="">Copyright © 2024 PokemonCard_shop</a>
+        </div>
+        <div>
+            <a href="avisoLegal.html">Aviso legal</a> |
+            <a href="privacidad.html">Política de privacidad</a> |
+            <a href="coockies.html">Política de Cookies</a> |
+            <a href="envios.html">Política de envíos</a> |
+            <a href="reembolso.html">Política de reembolso</a>
+        </div>
+    </footer>
 
     <script>
         // Función para abrir el popup
@@ -122,6 +115,48 @@
             document.getElementById("circleImage").src = src;
             closePopup(); // Cerrar el popup al seleccionar la imagen
         }
+
+        const galeria = document.getElementById("vendidos");
+
+        const itemsPerPage = 8;
+        let currentPage = 1;
+        items = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+
+        function renderPage(page) {
+            galeria.innerHTML = "";
+            const itemsToRender = items;
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const currentItems = itemsToRender.slice(start, end);
+
+            currentItems.forEach(item => {
+                const div = document.createElement("div");
+                div.classList.add("box");
+                const imagen = document.createElement("p");
+                imagen.textContent = item;
+                galeria.appendChild(div);
+                div.appendChild(imagen);
+            });
+
+        }
+
+
+        function pestania(tipo) {
+            switch (tipo) {
+                case "vendido":
+                    items = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+                    break;
+                case "comprado":
+                    items = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2];
+                    break;
+                case "gusta":
+                    items = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3];
+                    break;
+            }
+            renderPage(1);
+        }
+
+        renderPage(1);
     </script>
 
 </html>

@@ -17,7 +17,7 @@
                 <li><a href="#deseados">Deseados</a></li>
                 <li><a href="#tienda">Tienda</a></li>
                 <li><a href="#publicar">Publicar</a></li>
-                <li><a href="<?php session_start();  echo isset($_SESSION['usuario'])?"/app/view/cuenta.html":"/app/view/login.php"?>"><?php echo isset($_SESSION['usuario'])?$_SESSION['usuario'][1]:"hola"?></a></li>
+                <li><a href="<?php session_start();  echo isset($_SESSION['usuario'])?"/app/view/cuenta.html":"/app/view/login.php"?>"><?php echo isset($_SESSION['usuario'])?$_SESSION['usuario'][1]:"Cuenta"?></a></li>
             </ul>
         </nav>
     </header>
@@ -51,13 +51,14 @@
             $idiomasSelect = $_POST["idioma"];
             $min = $_POST["min"];
             $max = $_POST["max"];
-            
+
             $productos = $productoController->getAllProductosFiltered($expansion, $tipos, $categorias, $idiomasSelect, $min, $max);
         }else{
             $productos = $productoController->getAllProductos();
         }
-        
+
     ?>
+    <div class="cuerpo">
     <!-- onsubmit="manejarEnvio(event)" -->
     <form id="formulario" class="filter-container"  method="POST" >
         <h3>Filtros</h3>
@@ -128,7 +129,7 @@
         </div>
 
     </form>
-    
+
     <div class="galeria-container">
         <div class="search-bar-container">
             <input type="text" id="searchInput" placeholder="Buscar productos...">
@@ -141,6 +142,7 @@
             <span id="pageIndicator">Página 1</span>
             <button onclick="nextPage()" id="nextBtn">Siguiente &raquo;</button>
         </div>
+    </div>
     </div>
     <footer class="footer">
         <div class="copyright">
@@ -160,19 +162,16 @@
         const prevBtn = document.getElementById("prevBtn");
         const nextBtn = document.getElementById("nextBtn");
 
-        const itemsPerPage = 20;
+        const itemsPerPage = 12;
         let currentPage = 1;
         let searchResults = [];
         let isSearching = false;
 
         const items = <?php echo json_encode($productos) ?>;
 
-        function manejarEnvio(event){
-            event.preventDefault();
-        }
         function renderPage(page) {
             galeria.innerHTML = "";
-            const itemsToRender = isSearching ? searchResults : items; 
+            const itemsToRender = isSearching ? searchResults : items;
             const start = (page - 1) * itemsPerPage;
             const end = start + itemsPerPage;
             const currentItems = itemsToRender.slice(start, end);
