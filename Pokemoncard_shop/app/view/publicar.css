@@ -129,4 +129,9 @@ nav ul li a:hover {
     padding: 10px;
 }
 
+.expansionUnica:hover{
+    background-color: #434344;
+    cursor: pointer;
+}
+
 

@@ -56,18 +56,24 @@
                 <div id="expansiones">
 
                 </div>
-                <select id="language" name="idioma">
-                    <?php
-                        require_once "../../app/controller/IdiomaController.php";
-                        $idiomaController = new IdiomaController();
+                <div class="dos_elementos">
+                    <select id="language" name="idioma">
+                        <?php
+                            require_once "../../app/controller/IdiomaController.php";
+                            $idiomaController = new IdiomaController();
 
-                        $idiomas = $idiomaController->getAllIdiomas();
+                            $idiomas = $idiomaController->getAllIdiomas();
 
-                        foreach ($idiomas as $idioma) {
-                            echo "<option value='".$idioma["idioma_id"]."' ".(isset($idiomasSelect) && $idiomasSelect == $idioma["idioma_id"]?'selected':'').">".$idioma["nombre_idioma"]."</option>";
-                        }
-                    ?>
-                </select>
+                            foreach ($idiomas as $idioma) {
+                                echo "<option value='".$idioma["idioma_id"]."' ".(isset($idiomasSelect) && $idiomasSelect == $idioma["idioma_id"]?'selected':'').">".$idioma["nombre_idioma"]."</option>";
+                            }
+                        ?>
+                    </select>
+                    <div id="CalidadStock">
+                        
+                    </div>
+                </div>
+                
                 <input type="text" placeholder="Precio">
                 <button class="publish-button">Publicar</button>
             </div>
@@ -77,6 +83,7 @@
         const tipoComponent = document.getElementById("tipo");
         const expansion = document.getElementById("collectionType");
         const expansionesDiv = document.getElementById("expansiones");
+        const calidadStockDiv = document.getElementById("CalidadStock");
         multipleExpansion = false;
         expansiones = [];
         function tipo(){
@@ -86,26 +93,65 @@
                 expansionesDiv.innerHTML = "";
                 expansiones = [];
             }
+            calidadStock();
         }
         function addExpansion(){
             if(multipleExpansion){
-                expansionesDiv.innerHTML = "";
                 valor = [expansion.value,expansion.options[expansion.selectedIndex].text];
                 if(valor[1] != "Expansiones" && !expansiones.some(e=> e[0]==valor[0])){
                     expansiones.push(valor);
                 }
-                expansiones.forEach(item => {
+                cargarExpansiones();
+                
+            }
+        }
+
+        function cargarExpansiones(){
+            expansionesDiv.innerHTML = "";
+            for (let i = 0; i < expansiones.length; i++) {
                     const p = document.createElement("p");
                     p.classList.add("expansionUnica");
-                    p.textContent = item[1];
+                    p.textContent = expansiones[i][1];
+                    p.onclick = function() {eleiminar(i)};
                     expansionesDiv.appendChild(p);
+                }
+        }
+
+        function calidadStock(){
+            calidadStockDiv.innerHTML = "";
+            if(multipleExpansion){
+                const select = document.createElement("select");
+                select.name = "calidad";
+                calidadStockDiv.appendChild(select);
+                var calidades = ['Calidades','Comun', 'Poco Comun', 'Rara', 'Holo Rara', 'Rara Inversa', 'Rara Ultra', 'Full Art', 'Secreta', 'Arcoiris', 'Dorada'];
+                calidades.forEach(calidad=>{
+                    const option =document.createElement("option");
+                    option.textContent = calidad;
+                    option.value =calidad;
+                    select.appendChild(option);
                 });
+            }else{
+                const input =document.createElement("input");
+                input.type = "number";
+                input.placeholder = "Stock"
+                calidadStockDiv.appendChild(input);
             }
+            
+        }
+
+        function eleiminar(item){
+            // alert(item);
+            // alert(expansiones.length);
+            // alert(expansiones.length != item+1);
+            // expansiones.length != item+1? expansiones.splice(item, 1):expansiones.pop();
+            expansiones.splice(item, 1);
+            cargarExpansiones();
         }
 
         function cargarimg(){
             document.getElementById("imagen").src = document.getElementById("imagenURL").value; 
         }
+        calidadStock()
     </script>
 </body>
 </html>
