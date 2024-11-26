@@ -9,6 +9,27 @@
 </head>
 
 <body>
+    <?php
+        session_start();
+        require_once "../../app/controller/UsuarioController.php";
+        $usuarioController = new UsuarioController();
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            switch ($_POST['formulario']) {
+                case 1:
+                    $usuarioController->finalizarSesion();
+                    header('Location: http://pokemoncardshop.com');
+                    break;
+                case 2:
+                    $img_num = $_POST["numero_img"];
+                    $usuarioController->modificarImagen($usuarioController->getUSesion()[0],$img_num);
+                    break;
+                
+            }
+            
+        }   
+        $usuario =  $usuarioController->getById($usuarioController->getUSesion()[0]);
+    ?>
+
     <header>
         <img class="img-logo" src="/app/view/imagenes/image.png" alt="logo">
         <nav>
@@ -21,8 +42,11 @@
             </ul>
         </nav>
     </header>
-
-    <button class="salir">Cerrar Sessión</button>
+    <form method="POST">
+        <input type="hidden" name="formulario" value="1">
+        <button type="submit" class="salir">Cerrar Sessión</button>
+    </form>
+    
 
     <div class="image-picker">
         <div class="circle" onclick="openPopup();">
@@ -37,35 +61,35 @@
             <div class="image-options">
                 <div>
                     <div>
-                        <img src="/app/view/imagenes/vamoacalmarno.jpg" alt="Imagen 1" onclick="setImage('/app/view/imagenes/vamoacalmarno.jpg');">
+                        <img src="/app/view/imagenes/vamoacalmarno.jpg" alt="Imagen 1" onclick="setImage(1);">
 
                     </div>
                     <div>
-                        <img src="/app/view/imagenes/gengar.jpg" alt="Imagen 2" onclick="setImage('/app/view/imagenes/gengar.jpg');">
+                        <img src="/app/view/imagenes/gengar.jpg" alt="Imagen 2" onclick="setImage(2);">
 
                     </div>
                     <div>
-                        <img src="/app/view/imagenes/wingull.avif" alt="Imagen 3" onclick="setImage('/app/view/imagenes/wingull.avif');">
+                        <img src="/app/view/imagenes/wingull.avif" alt="Imagen 3" onclick="setImage(3);">
 
                     </div>
 
                 </div>
                 <div>
                     <div>
-                        <img src="/app/view/imagenes/victini.png" alt="Imagen 4" onclick="setImage('/app/view/imagenes/victini.png');">
+                        <img src="/app/view/imagenes/victini.png" alt="Imagen 4" onclick="setImage(4);">
                     </div>
                     <div>
-                        <img src="/app/view/imagenes/pikachu.jpeg" alt="Imagen 5" onclick="setImage('/app/view/imagenes/pikachu.jpeg');">
+                        <img src="/app/view/imagenes/pikachu.jpeg" alt="Imagen 5" onclick="setImage(5);">
                     </div>
                     <div>
-                        <img src="/app/view/imagenes/oshawott.png" alt="Imagen 6" onclick="setImage('/app/view/imagenes/oshawott.png');">
+                        <img src="/app/view/imagenes/oshawott.png" alt="Imagen 6" onclick="setImage(6);">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <p>Nombre</p>
+    <p><?php echo $usuario[0]['nombre']?></p>
     <p class="ercora">100 ❤</p>
     <div class="tabs">
         <input type="radio" name="tabs" id="tab-vendidos" checked>
@@ -100,6 +124,12 @@
     </footer>
 
     <script>
+        imagenes = ["/app/view/imagenes/vamoacalmarno.jpg","/app/view/imagenes/gengar.jpg","/app/view/imagenes/wingull.avif",
+        "/app/view/imagenes/victini.png","/app/view/imagenes/pikachu.jpeg","/app/view/imagenes/oshawott.png"];
+        numImg = <?php echo $usuario[0]['num_img'] != null ? $usuario[0]['num_img']: "false" ;?>;
+        if(numImg){
+            setImage(numImg);
+        }
         // Función para abrir el popup
         function openPopup() {
             document.getElementById("popup").style.display = "block";
@@ -111,8 +141,12 @@
         }
 
         // Función para establecer la imagen en el círculo
-        function setImage(src) {
-            document.getElementById("circleImage").src = src;
+        function setImage(posicion) {
+            document.getElementById("circleImage").src = imagenes[posicion-1];
+            var ajax = new XMLHttpRequest();
+            ajax.open('POST', '/app/view/cuenta.php ');
+            ajax.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+            ajax.send('numero_img='+posicion+'&formulario=2');
             closePopup(); // Cerrar el popup al seleccionar la imagen
         }
 
@@ -138,6 +172,10 @@
                 div.appendChild(imagen);
             });
 
+        }
+
+        function cerrarSeseion(){
+            
         }
 
 

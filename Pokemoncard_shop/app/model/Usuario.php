@@ -52,11 +52,35 @@
                 $sentencia->bindParam(3, $this->contrasena);
                 $sentencia->bindParam(4, $this->administrador);
                 $sentencia->execute();
-                return Usuario::getLogin($this->email, $this->contrasena);
             }catch(Exception $e){
                 echo "Error".$e->getMessage();
             }
-        } 
+        }
+        
+        static function getById($usuairo_id){
+                try{
+                        $conn = getDbConnection();
+                        $sentencia = $conn->prepare("SELECT * FROM usuarios WHERE usuario_id=?");
+                        $sentencia->bindParam(1, $usuairo_id);
+                        $sentencia->execute();
+                        $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+                        return $result;
+                }catch(Exception $e){
+                        echo "Error".$e->getMessage();
+                }
+        }
+
+        static function modificarImagen($id,$numImagen){
+                try{
+                        $conn = getDbConnection();
+                        $sentencia = $conn->prepare("UPDATE `usuarios` SET num_img=? WHERE usuario_id=?");
+                        $sentencia->bindParam(1, $numImagen);
+                        $sentencia->bindParam(2, $id);
+                        $sentencia->execute();
+                    }catch(Exception $e){
+                        echo "Error".$e->getMessage();
+                    }
+        }
 
         public function getNombre()
         {
