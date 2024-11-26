@@ -60,10 +60,10 @@
     ?>
     <div class="cuerpo">
     <!-- onsubmit="manejarEnvio(event)" -->
-    <form id="formulario" class="filter-container"  method="POST" >
+    <form id="formulario" class="filter-container"  method="POST">
         <h3>Filtros</h3>
         <div class="filter-section">
-            <label for="collectionType">Exnsion:</label><br>
+            <label for="collectionType">Expansion:</label><br>
             <select id="collectionType" name="expansion">
                 <option value="">Todas</option>
                 <?php
@@ -127,7 +127,6 @@
             <button onclick="clearFilters()">Borrar filtro</button>
             <button type="submit">Filtrar</button>
         </div>
-
     </form>
 
     <div class="galeria-container">
