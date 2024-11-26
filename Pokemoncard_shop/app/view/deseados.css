@@ -92,7 +92,7 @@ footer {
     padding: 2vw;
     width: 12vw;
     height: 17vw;
-    background-color: #aaa;
+    background-color: #ffffff;
     margin-bottom: 5vw;
     box-shadow: 3px 3px 3px 3px rgba(32,32,32,0.3);
 
@@ -177,7 +177,6 @@ footer {
     align-items: center;
     margin-top: 2vw;
     margin-bottom: 3vw;
-    margin-left: 10vw;
 }
 
 .search-bar-container input[type="text"] {
