@@ -23,5 +23,17 @@
             $nuevoProducto->setImagen_url($imagen_url);
             $nuevoProducto->create();
         }
+
+        public function recuperarLikes($id){
+            return Productos::recuperarLikes($id);
+        }
+
+        public function recuperarVendidos($id){
+            return Productos::recuperarVendidos($id);
+        }
+
+        public function recuperarComprados($id){
+            return Productos::recuperarComprados($id);
+        }
     }
 ?>

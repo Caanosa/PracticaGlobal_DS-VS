@@ -82,6 +82,20 @@
                     }
         }
 
+        static function recuperarLikes($id){
+                try{
+                        $conn = getDbConnection();
+                        $sentencia = $conn->prepare("SELECT COUNT(m.producto_id) as likes FROM `usuarios` as u JOIN `productos`as p ON p.usuario_id = u.usuario_id JOIN  `me_gusta` AS m ON p.producto_id = m.producto_id WHERE u.usuario_id = ?");
+                        $sentencia->bindParam(1, $id);
+                        $sentencia->execute();
+                        $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+                        return $result;
+                }catch(Exception $e){
+                        echo "Error".$e->getMessage();
+                }
+        }
+
+
         public function getNombre()
         {
                 return $this->nombre;

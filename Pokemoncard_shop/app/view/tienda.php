@@ -218,7 +218,8 @@
             document.getElementById("searchInput").value = "";
             isSearching = false;
             searchResults = [];
-            renderPage(1);
+            currentPage = 1;
+            renderPage(currentPage);
         }
 
         function prevPage() {

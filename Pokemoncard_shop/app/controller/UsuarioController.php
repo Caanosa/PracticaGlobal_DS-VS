@@ -38,5 +38,9 @@
         public function finalizarSesion(){
             session_unset();
         }
+
+        public function recuperarLikes($id){
+            return Usuario::recuperarLikes($id);
+        }
     }
 ?>

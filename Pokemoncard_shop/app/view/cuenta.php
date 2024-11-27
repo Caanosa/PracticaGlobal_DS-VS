@@ -12,7 +12,11 @@
     <?php
         session_start();
         require_once "../../app/controller/UsuarioController.php";
+        require_once "../../app/controller/ProductoController.php";
         $usuarioController = new UsuarioController();
+        $productoController = new ProductoController();
+        $productos = [];
+        $holad = "KKKKKKKKKK";
         if($_SERVER['REQUEST_METHOD']=='POST'){
             switch ($_POST['formulario']) {
                 case 1:
@@ -23,11 +27,14 @@
                     $img_num = $_POST["numero_img"];
                     $usuarioController->modificarImagen($usuarioController->getUSesion()[0],$img_num);
                     break;
-                
-            }
-            
-        }   
+            }  
+        }
+        $vendidos = $productoController->recuperarVendidos($usuarioController->getUSesion()[0]);
+        $comprados = $productoController->recuperarComprados($usuarioController->getUSesion()[0]);
+        $Plikes = $productoController->recuperarLikes($usuarioController->getUSesion()[0]);
+
         $usuario =  $usuarioController->getById($usuarioController->getUSesion()[0]);
+        $likes = $usuarioController->recuperarLikes($usuarioController->getUSesion()[0]);
     ?>
 
     <header>
@@ -90,23 +97,23 @@
     </div>
 
     <p><?php echo $usuario[0]['nombre']?></p>
-    <p class="ercora">100 ❤</p>
+    <p class="ercora"><?= $likes[0]["likes"] ?> ❤</p>
     <div class="tabs">
         <input type="radio" name="tabs" id="tab-vendidos" checked>
-        <label for="tab-vendidos" onclick="pestania('vendido')">Vendidos</label>
+        <label for="tab-vendidos" onclick="pestania(1)">Vendidos</label>
 
         <input type="radio" name="tabs" id="tab-comprados">
-        <label for="tab-comprados" onclick="pestania('comprado')">Comprados</label>
+        <label for="tab-comprados" onclick="pestania(2)">Comprados</label>
 
-        <input type="radio" name="tabs" id="tab-megusta" onclick="pestania('gusta')">
+        <input type="radio" name="tabs" id="tab-megusta" onclick="pestania(3)">
         <label for="tab-megusta">Me gusta</label>
     </div>
 
     <div class="content-container">
         <div id="vendidos" class="content">
         </div>
-        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
-        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+        <button class="prev" onclick="prevPage()" id="prevBtn">&#10094;</button>
+        <button class="next" onclick="nextPage()" id="nextBtn">&#10095;</button>
     </div>
     </div>
 
@@ -143,18 +150,25 @@
         // Función para establecer la imagen en el círculo
         function setImage(posicion) {
             document.getElementById("circleImage").src = imagenes[posicion-1];
-            var ajax = new XMLHttpRequest();
-            ajax.open('POST', '/app/view/cuenta.php ');
-            ajax.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-            ajax.send('numero_img='+posicion+'&formulario=2');
+            if(posicion != numImg){
+                var ajax = new XMLHttpRequest();
+                ajax.open('POST', '/app/view/cuenta.php ');
+                ajax.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                ajax.send('numero_img='+posicion+'&formulario=2');
+            }
             closePopup(); // Cerrar el popup al seleccionar la imagen
         }
 
         const galeria = document.getElementById("vendidos");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
 
         const itemsPerPage = 8;
         let currentPage = 1;
-        items = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+        vendidos = <?= json_encode($vendidos) ?>;
+        comprados = <?= json_encode($comprados) ?>;
+        likes = <?= json_encode($Plikes) ?>;
+        items = vendidos;
 
         function renderPage(page) {
             galeria.innerHTML = "";
@@ -167,34 +181,45 @@
                 const div = document.createElement("div");
                 div.classList.add("box");
                 const imagen = document.createElement("p");
-                imagen.textContent = item;
+                imagen.textContent = item['nombre'];
                 galeria.appendChild(div);
                 div.appendChild(imagen);
             });
-
+            prevBtn.disabled = page === 1;
+            nextBtn.disabled = end >= itemsToRender.length;
         }
 
-        function cerrarSeseion(){
-            
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                renderPage(currentPage);
+            }
         }
 
+        function nextPage() {
+            if (currentPage * itemsPerPage < items.length) {
+                currentPage++;
+                renderPage(currentPage);
+            }
+        }
 
         function pestania(tipo) {
             switch (tipo) {
-                case "vendido":
-                    items = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+                case 1:
+                    items = vendidos;
                     break;
-                case "comprado":
-                    items = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2];
+                case 2:
+                    items = comprados;
                     break;
-                case "gusta":
-                    items = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3];
+                case 3:
+                    items = likes;
                     break;
             }
-            renderPage(1);
+            currentPage = 1;
+            renderPage(currentPage);
         }
 
-        renderPage(1);
+        renderPage(currentPage);
     </script>
 
 </html>
