@@ -60,14 +60,14 @@
 
     ?>
     <div class="cuerpo">
-        <!-- onsubmit="manejarEnvio(event)" -->
-        <form id="formulario" class="filter-container" method="POST">
-            <h3>Filtros</h3>
-            <div class="filter-section">
-                <label for="collectionType">Exnsion:</label><br>
-                <select id="collectionType" name="expansion">
-                    <option value="">Todas</option>
-                    <?php
+    <!-- onsubmit="manejarEnvio(event)" -->
+    <form id="formulario" class="filter-container"  method="POST">
+        <h3>Filtros</h3>
+        <div class="filter-section">
+            <label for="collectionType">Expansion:</label><br>
+            <select id="collectionType" name="expansion">
+                <option value="">Todas</option>
+                <?php
                     require_once "../../app/controller/FiltroController.php";
                     $filtroController = new FiltroController();
 
@@ -111,25 +111,24 @@
                     foreach ($idiomas as $idioma) {
                         echo "<option value='" . $idioma["idioma_id"] . "' " . (isset($idiomasSelect) && $idiomasSelect == $idioma["idioma_id"] ? 'selected' : '') . ">" . $idioma["nombre_idioma"] . "</option>";
                     }
-                    ?>
-                </select>
-            </div>
-            <div class="filter-section precio-range">
-                <h3>Precio</h3>
-                <label>min:</label>
-                <br>
-                <input type="number" id="minPrecio" name="min" min="0" max="1000" value="<?php echo isset($min) ? $min : 0 ?>">
-                <br>
-                <label>max:</label>
-                <br>
-                <input type="number" id="maxPrecio" name="max" min="0" max="1000" value="<?php echo isset($max) ? $max : 1000 ?>">
-            </div>
-            <div class="filter-buttons">
-                <button onclick="clearFilters()">Borrar filtro</button>
-                <button type="submit">Filtrar</button>
-            </div>
-
-        </form>
+                ?>
+            </select>
+        </div>
+        <div class="filter-section precio-range">
+            <h3>Precio</h3>
+            <label>min:</label>
+            <br>
+            <input type="number" id="minPrecio" name="min" min="0" max="1000" value="<?php echo isset($min) ?$min:0?>">
+            <br>
+            <label>max:</label>
+            <br>
+            <input type="number" id="maxPrecio" name="max" min="0" max="1000" value="<?php echo isset($max) ?$max:1000?>">
+        </div>
+        <div class="filter-buttons">
+            <button onclick="clearFilters()">Borrar filtro</button>
+            <button type="submit">Filtrar</button>
+        </div>
+    </form>
 
         <div class="galeria-container">
             <div class="search-bar-container">
