@@ -1,5 +1,6 @@
 <?php
     require_once "../../app/model/Usuario.php";
+    require_once "../../app/controller/ProductoController.php";
     class UsuarioController{
         public function getLogin($email, $contrasena){
             return Usuario::getLogin($email, $contrasena);
@@ -18,6 +19,9 @@
         }
 
         public function guardarEnSesion($id, $nombre){
+           
+            $productoController = new ProductoController();
+            $productoController->cargarDeseadosSesion($id);
             $_SESSION['usuario'] = [$id, $nombre];
         }
 

@@ -9,7 +9,10 @@
 <body>
     <?php
         require_once "../../app/controller/UsuarioController.php";
+        require_once "../../app/controller/ProductoController.php";
         $usuarioController = new UsuarioController();
+        $productoController = new ProductoController();
+
     ?>
     <header>
         <img class="img-logo" src="/app/view/imagenes/image.png" alt="logo">
@@ -61,7 +64,7 @@
         const nextBtn = document.getElementById("nextBtn");
         const itemsPerPage = 8;
         let currentPage = 1;
-        items = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+        items = <?= json_encode($productoController->reuperarDseseadsoSesionConjunto()) ?>;
 
         function renderPage(page) {
             galeria.innerHTML = "";
@@ -74,7 +77,7 @@
                 const div = document.createElement("div");
                 div.classList.add("box");
                 const imagen = document.createElement("p");
-                imagen.textContent = item;
+                imagen.textContent = item["nombre"];
                 galeria.appendChild(div);
                 div.appendChild(imagen);
             });

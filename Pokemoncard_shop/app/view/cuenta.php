@@ -16,7 +16,6 @@
     $usuarioController = new UsuarioController();
     $productoController = new ProductoController();
     $productos = [];
-    $holad = "KKKKKKKKKK";
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         switch ($_POST['formulario']) {
             case 1:

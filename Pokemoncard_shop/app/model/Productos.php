@@ -36,7 +36,7 @@
                 }catch(Exception $e){
                     echo "Error".$e->getMessage();
                 }
-            } 
+        } 
 
         static function getAllProductos(){
             try{
@@ -108,7 +108,7 @@
         static function recuperarDeseados($id){
                 try{
                         $conn = getDbConnection();
-                        $sentencia = $conn->prepare("SELECT p.producto_id as producto_id, p.nombre AS nombre, p.precio as precio FROM `usuarios` as u JOIN  `lista_deseados` AS l ON u.usuario_id = l.usuario_id JOIN `productos`as p ON p.producto_id = l.producto_id  WHERE u.usuario_id = 1 ORDER By l.fecha_agregado;");
+                        $sentencia = $conn->prepare("SELECT p.producto_id as producto_id, p.nombre AS nombre, p.precio as precio FROM `usuarios` as u JOIN  `lista_deseados` AS l ON u.usuario_id = l.usuario_id JOIN `productos`as p ON p.producto_id = l.producto_id  WHERE u.usuario_id = ? ORDER By l.fecha_agregado;");
                         $sentencia->bindParam(1, $id);
                         $sentencia->execute();
                         $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
@@ -117,6 +117,10 @@
                         echo "Error".$e->getMessage();
                 }
         }
+
+
+
+
 
         public function getIdioma_id()
         {
