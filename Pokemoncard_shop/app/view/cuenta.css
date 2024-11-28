@@ -185,6 +185,8 @@ p {
 
 }
 
+
+
 footer {
     margin-top: 5vw;
     display: flex;
@@ -261,4 +263,7 @@ footer {
     cursor: not-allowed;
 }
 
+.cuerpo{
+    height: 79vw;
+}
 
