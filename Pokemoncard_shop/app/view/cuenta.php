@@ -40,11 +40,11 @@
         <img class="img-logo" src="/app/view/imagenes/image.png" alt="logo">
         <nav>
             <ul>
-                <li><a href="/app/view/inicio.html">Inicio</a></li>
-                <li><a href="/app/view/deseados.html">Deseados</a></li>
+                <li><a href="/app/view/inicio.php">Inicio</a></li>
+                <li><a href="/app/view/deseados.php">Deseados</a></li>
                 <li><a href="/app/view/tienda.php">Tienda</a></li>
-                <li><a href="/app/view/publicar.html">Publicar</a></li>
-                <li><a href="/app/view/login.php">Cuenta</a></li>
+                <li><a href="/app/view/publicar.php">Publicar</a></li>
+                <li><a href="<?php session_start();  echo $usuarioController->getUSesion() != null?"/app/view/cuenta.php":"/app/view/login.php"?>"><?php echo $usuarioController->getUSesion() != null?$usuarioController->getUSesion()[1]:"Cuenta"?></a></li>
             </ul>
         </nav>
     </header>
@@ -123,11 +123,11 @@
             <a href="">Copyright © 2024 PokemonCard_shop</a>
         </div>
         <div>
-            <a href="avisoLegal.html">Aviso legal</a> |
-            <a href="privacidad.html">Política de privacidad</a> |
-            <a href="coockies.html">Política de Cookies</a> |
-            <a href="envios.html">Política de envíos</a> |
-            <a href="reembolso.html">Política de reembolso</a>
+            <a href="avisoLegal.php">Aviso legal</a> |
+            <a href="privacidad.php">Política de privacidad</a> |
+            <a href="coockies.php">Política de Cookies</a> |
+            <a href="envios.php">Política de envíos</a> |
+            <a href="reembolso.php">Política de reembolso</a>
         </div>
     </footer>
 

@@ -9,15 +9,19 @@
 </head>
 
 <body>
+    <?php
+        require_once "../../app/controller/UsuarioController.php";
+        $usuarioController = new UsuarioController();
+    ?>
     <header>
         <img class="img-logo" src="/app/view/imagenes/image.png" alt="logo">
         <nav>
             <ul>
-                <li><a href="/app/view/inicio.html">Inicio</a></li>
-                <li><a href="/app/view/deseados.html">Deseados</a></li>
+                <li><a href="/app/view/inicio.php">Inicio</a></li>
+                <li><a href="/app/view/deseados.php">Deseados</a></li>
                 <li><a href="/app/view/tienda.php">Tienda</a></li>
-                <li><a href="/app/view/publicar.html">Publicar</a></li>
-                <li><a href="/app/view/login.html">Cuenta</a></li>
+                <li><a href="/app/view/publicar.php">Publicar</a></li>
+                <li><a href="<?php session_start();  echo $usuarioController->getUSesion() != null?"/app/view/cuenta.php":"/app/view/login.php"?>"><?php echo $usuarioController->getUSesion() != null?$usuarioController->getUSesion()[1]:"Cuenta"?></a></li>
             </ul>
         </nav>
     </header>
@@ -25,13 +29,13 @@
     <div class="divTexto">
         <title>Aviso Legal y Condiciones Generales de Uso</title>
         <h1>AVISO LEGAL Y CONDICIONES GENERALES DE USO</h1>
-        <p><a href="/app/view/inicio.html">http://www.pokemonCard_shop.es</a></p>
+        <p><a href="/app/view/inicio.php">http://www.pokemonCard_shop.es</a></p>
     
         <h2>I. INFORMACIÓN GENERAL</h2>
         <p>En cumplimiento con el deber de información dispuesto en la Ley 34/2002 de Servicios de la Sociedad de la
             Información y el Comercio Electrónico (LSSI-CE) de 11 de julio, se facilitan a continuación los siguientes datos
             de información general de este sitio web:</p>
-        <p>La titularidad de este sitio web, <a href="/app/view/inicio.html">https://www.pokemonCard_shop.es</a>, (en adelante,
+        <p>La titularidad de este sitio web, <a href="/app/view/inicio.php">https://www.pokemonCard_shop.es</a>, (en adelante,
             Sitio Web) la ostenta:</p>
         <p>y cuyos datos de contacto son:</p>
         <ul>
@@ -66,11 +70,11 @@
             <a href="https://creatuweb.xyz/">Copyright © 2024 PokemonCard_shop</a>
         </div>
         <div>
-            <a href="/app/view/avisoLegal.html">Aviso legal</a> |
-            <a href="/app/view/privacidad.html">Política de privacidad</a> |
-            <a href="/app/view/coockies.html">Política de Cookies</a> |
-            <a href="/app/view/envios.html">Política de envíos</a> |
-            <a href="/app/view/reembolso.html">Política de reembolso</a>
+            <a href="/app/view/avisoLegal.php">Aviso legal</a> |
+            <a href="/app/view/privacidad.php">Política de privacidad</a> |
+            <a href="/app/view/coockies.php">Política de Cookies</a> |
+            <a href="/app/view/envios.php">Política de envíos</a> |
+            <a href="/app/view/reembolso.php">Política de reembolso</a>
         </div>
     </footer>
 </body>
