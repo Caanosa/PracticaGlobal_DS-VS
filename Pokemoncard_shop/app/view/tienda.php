@@ -17,7 +17,7 @@
         <img class="img-logo" src="/app/view/imagenes/image.png" alt="logo">
         <nav>
             <ul>
-                <li><a href="/app/view/inicio.html">Inicio</a></li>
+                <li><a href="/app/view/inicio.php">Inicio</a></li>
                 <li><a href="#deseados">Deseados</a></li>
                 <li><a href="#tienda">Tienda</a></li>
                 <li><a href="#publicar">Publicar</a></li>
@@ -167,11 +167,11 @@
             <a href="">Copyright © 2024 PokemonCard_shop</a>
         </div>
         <div>
-            <a href="/app/view/avisoLegal.html">Aviso legal</a> |
-            <a href="/app/view/privacidad.html">Política de privacidad</a> |
-            <a href="/app/view/coockies.html">Política de Cookies</a> |
-            <a href="/app/view/envios.html">Política de envíos</a> |
-            <a href="/app/view/reembolso.html">Política de reembolso</a>
+            <a href="/app/view/avisoLegal.php">Aviso legal</a> |
+            <a href="/app/view/privacidad.php">Política de privacidad</a> |
+            <a href="/app/view/coockies.php">Política de Cookies</a> |
+            <a href="/app/view/envios.php">Política de envíos</a> |
+            <a href="/app/view/reembolso.php">Política de reembolso</a>
         </div>
     </footer>
     <script>

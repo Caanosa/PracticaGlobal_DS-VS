@@ -7,15 +7,19 @@
     <link rel="stylesheet" href="/app/view/enlacesFooter.css">
 </head>
 <body>
+    <?php
+        require_once "../../app/controller/UsuarioController.php";
+        $usuarioController = new UsuarioController();
+    ?>
     <header>
         <img class="img-logo" src="/app/view/imagenes/image.png" alt="logo">
         <nav>
             <ul>
-                <li><a href="/app/view/inicio.html">Inicio</a></li>
-                <li><a href="/app/view/deseados.html">Deseados</a></li>
+                <li><a href="/app/view/inicio.php">Inicio</a></li>
+                <li><a href="/app/view/deseados.php">Deseados</a></li>
                 <li><a href="/app/view/tienda.php">Tienda</a></li>
-                <li><a href="/app/view/publicar.html">Publicar</a></li>
-                <li><a href="/app/view/login.html">Cuenta</a></li>
+                <li><a href="/app/view/publicar.php">Publicar</a></li>
+                <li><a href="<?php session_start();  echo $usuarioController->getUSesion() != null?"/app/view/cuenta.php":"/app/view/login.php"?>"><?php echo $usuarioController->getUSesion() != null?$usuarioController->getUSesion()[1]:"Cuenta"?></a></li>
             </ul>
         </nav>
     </header>
@@ -34,7 +38,7 @@
     </ul>
 
     <h2>Proceso de Reembolso</h2>
-    <p>Al recibir su artículo devuelto, inspeccionaremos las mercancías. Una vez aprobado y el producto pase la fase de inspección, se procesará su reembolso íntegro de la compra realizada en <a href="inicio.html">http://www.pokemonCard_shop.es</a>.</p>
+    <p>Al recibir su artículo devuelto, inspeccionaremos las mercancías. Una vez aprobado y el producto pase la fase de inspección, se procesará su reembolso íntegro de la compra realizada en <a href="inicio.php">http://www.pokemonCard_shop.es</a>.</p>
 
     </div>
     <footer class="footer">
@@ -42,11 +46,11 @@
             <a href="https://creatuweb.xyz/">Copyright © 2024 PokemonCard_shop</a>
         </div>
         <div>
-            <a href="/app/view/avisoLegal.html">Aviso legal</a> |
-            <a href="/app/view/privacidad.html">Política de privacidad</a> |
-            <a href="/app/view/coockies.html">Política de Cookies</a> |
-            <a href="/app/view/envios.html">Política de envíos</a> |
-            <a href="/app/view/reembolso.html">Política de reembolso</a>
+            <a href="/app/view/avisoLegal.php">Aviso legal</a> |
+            <a href="/app/view/privacidad.php">Política de privacidad</a> |
+            <a href="/app/view/coockies.php">Política de Cookies</a> |
+            <a href="/app/view/envios.php">Política de envíos</a> |
+            <a href="/app/view/reembolso.php">Política de reembolso</a>
         </div>
     </footer>
 </body>
