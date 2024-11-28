@@ -256,6 +256,9 @@ footer {
     cursor: pointer;
 }
 
-
+.content-container button:disabled {
+    background-color: #888;
+    cursor: not-allowed;
+}
 
 

@@ -43,6 +43,7 @@
             $campoContrasenaSaneado = htmlspecialchars($_POST["contrasena"]);
             $userdata = $usuarioController->crearUsuario($campoNombreSaneado, $campoEmailSaneado, $campoContrasenaSaneado);
             if($userdata){
+                $usuarioController->guardarEnSesion($userdata[0]["usuario_id"],$userdata[0]["nombre"]);
                 header('Location: http://pokemoncardshop.com');
             }else{
                 echo ("<script>

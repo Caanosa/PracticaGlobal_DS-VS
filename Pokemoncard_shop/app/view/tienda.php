@@ -9,6 +9,10 @@
 </head>
 
 <body>
+    <?php
+        require_once "../../app/controller/UsuarioController.php";
+        $usuarioController = new UsuarioController();
+    ?>
     <header>
         <img class="img-logo" src="/app/view/imagenes/image.png" alt="logo">
         <nav>
@@ -17,8 +21,7 @@
                 <li><a href="#deseados">Deseados</a></li>
                 <li><a href="#tienda">Tienda</a></li>
                 <li><a href="#publicar">Publicar</a></li>
-                <li><a href="<?php session_start();
-                                echo isset($_SESSION['usuario']) ? "/app/view/cuenta.html" : "/app/view/login.php" ?>"><?php echo isset($_SESSION['usuario']) ? $_SESSION['usuario'][1] : "Cuenta" ?></a></li>
+                <li><a href="<?php session_start();  echo $usuarioController->getUSesion() != null?"/app/view/cuenta.php":"/app/view/login.php"?>"><?php echo $usuarioController->getUSesion() != null?$usuarioController->getUSesion()[1]:"Cuenta"?></a></li>
             </ul>
         </nav>
     </header>
@@ -215,7 +218,8 @@
             document.getElementById("searchInput").value = "";
             isSearching = false;
             searchResults = [];
-            renderPage(1);
+            currentPage = 1;
+            renderPage(currentPage);
         }
 
         function prevPage() {
