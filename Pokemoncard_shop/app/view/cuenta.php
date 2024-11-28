@@ -10,33 +10,32 @@
 
 <body>
     <?php
-        session_start();
-        require_once "../../app/controller/UsuarioController.php";
-        require_once "../../app/controller/ProductoController.php";
-        $usuarioController = new UsuarioController();
-        $productoController = new ProductoController();
-        $productos = [];
-        $holad = "KKKKKKKKKK";
-        if($_SERVER['REQUEST_METHOD']=='POST'){
-            switch ($_POST['formulario']) {
-                case 1:
-                    $usuarioController->finalizarSesion();
-                    header('Location: http://pokemoncardshop.com');
-                    break;
-                case 2:
-                    $img_num = $_POST["numero_img"];
-                    $usuarioController->modificarImagen($usuarioController->getUSesion()[0],$img_num);
-                    break;
-            }  
+    session_start();
+    require_once "../../app/controller/UsuarioController.php";
+    require_once "../../app/controller/ProductoController.php";
+    $usuarioController = new UsuarioController();
+    $productoController = new ProductoController();
+    $productos = [];
+    $holad = "KKKKKKKKKK";
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        switch ($_POST['formulario']) {
+            case 1:
+                $usuarioController->finalizarSesion();
+                header('Location: http://pokemoncardshop.com');
+                break;
+            case 2:
+                $img_num = $_POST["numero_img"];
+                $usuarioController->modificarImagen($usuarioController->getUSesion()[0], $img_num);
+                break;
         }
-        $vendidos = $productoController->recuperarVendidos($usuarioController->getUSesion()[0]);
-        $comprados = $productoController->recuperarComprados($usuarioController->getUSesion()[0]);
-        $Plikes = $productoController->recuperarLikes($usuarioController->getUSesion()[0]);
+    }
+    $vendidos = $productoController->recuperarVendidos($usuarioController->getUSesion()[0]);
+    $comprados = $productoController->recuperarComprados($usuarioController->getUSesion()[0]);
+    $Plikes = $productoController->recuperarLikes($usuarioController->getUSesion()[0]);
 
-        $usuario =  $usuarioController->getById($usuarioController->getUSesion()[0]);
-        $likes = $usuarioController->recuperarLikes($usuarioController->getUSesion()[0]);
+    $usuario =  $usuarioController->getById($usuarioController->getUSesion()[0]);
+    $likes = $usuarioController->recuperarLikes($usuarioController->getUSesion()[0]);
     ?>
-
     <header>
         <img class="img-logo" src="/app/view/imagenes/image.png" alt="logo">
         <nav>
@@ -49,72 +48,74 @@
             </ul>
         </nav>
     </header>
-    <form method="POST">
-        <input type="hidden" name="formulario" value="1">
-        <button type="submit" class="salir">Cerrar Sessión</button>
-    </form>
-    
+    <div class="cuerpo">
 
-    <div class="image-picker">
-        <div class="circle" onclick="openPopup();">
-            <img id="circleImage" src="" class="circle-img">
+        <form method="POST">
+            <input type="hidden" name="formulario" value="1">
+            <button type="submit" class="salir">Cerrar Sessión</button>
+        </form>
+
+
+        <div class="image-picker">
+            <div class="circle" onclick="openPopup();">
+                <img id="circleImage" src="" class="circle-img">
+            </div>
         </div>
-    </div>
 
-    <div id="popup" class="popup">
-        <div class="popup-content">
-            <span class="close" onclick="closePopup();">&times;</span>
-            <h3>Selecciona una imagen</h3>
-            <div class="image-options">
-                <div>
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span class="close" onclick="closePopup();">&times;</span>
+                <h3>Selecciona una imagen</h3>
+                <div class="image-options">
                     <div>
-                        <img src="/app/view/imagenes/vamoacalmarno.jpg" alt="Imagen 1" onclick="setImage(1);">
+                        <div>
+                            <img src="/app/view/imagenes/vamoacalmarno.jpg" alt="Imagen 1" onclick="setImage(1);">
+
+                        </div>
+                        <div>
+                            <img src="/app/view/imagenes/gengar.jpg" alt="Imagen 2" onclick="setImage(2);">
+
+                        </div>
+                        <div>
+                            <img src="/app/view/imagenes/wingull.avif" alt="Imagen 3" onclick="setImage(3);">
+
+                        </div>
 
                     </div>
                     <div>
-                        <img src="/app/view/imagenes/gengar.jpg" alt="Imagen 2" onclick="setImage(2);">
-
-                    </div>
-                    <div>
-                        <img src="/app/view/imagenes/wingull.avif" alt="Imagen 3" onclick="setImage(3);">
-
-                    </div>
-
-                </div>
-                <div>
-                    <div>
-                        <img src="/app/view/imagenes/victini.png" alt="Imagen 4" onclick="setImage(4);">
-                    </div>
-                    <div>
-                        <img src="/app/view/imagenes/pikachu.jpeg" alt="Imagen 5" onclick="setImage(5);">
-                    </div>
-                    <div>
-                        <img src="/app/view/imagenes/oshawott.png" alt="Imagen 6" onclick="setImage(6);">
+                        <div>
+                            <img src="/app/view/imagenes/victini.png" alt="Imagen 4" onclick="setImage(4);">
+                        </div>
+                        <div>
+                            <img src="/app/view/imagenes/pikachu.jpeg" alt="Imagen 5" onclick="setImage(5);">
+                        </div>
+                        <div>
+                            <img src="/app/view/imagenes/oshawott.png" alt="Imagen 6" onclick="setImage(6);">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <p><?php echo $usuario[0]['nombre']?></p>
-    <p class="ercora"><?= $likes[0]["likes"] ?> ❤</p>
-    <div class="tabs">
-        <input type="radio" name="tabs" id="tab-vendidos" checked>
-        <label for="tab-vendidos" onclick="pestania(1)">Vendidos</label>
+        <p><?php echo $usuario[0]['nombre'] ?></p>
+        <p class="ercora"><?= $likes[0]["likes"] ?> ❤</p>
+        <div class="tabs">
+            <input type="radio" name="tabs" id="tab-vendidos" checked>
+            <label for="tab-vendidos" onclick="pestania(1)">Vendidos</label>
 
-        <input type="radio" name="tabs" id="tab-comprados">
-        <label for="tab-comprados" onclick="pestania(2)">Comprados</label>
+            <input type="radio" name="tabs" id="tab-comprados">
+            <label for="tab-comprados" onclick="pestania(2)">Comprados</label>
 
-        <input type="radio" name="tabs" id="tab-megusta" onclick="pestania(3)">
-        <label for="tab-megusta">Me gusta</label>
-    </div>
-
-    <div class="content-container">
-        <div id="vendidos" class="content">
+            <input type="radio" name="tabs" id="tab-megusta" onclick="pestania(3)">
+            <label for="tab-megusta">Me gusta</label>
         </div>
-        <button class="prev" onclick="prevPage()" id="prevBtn">&#10094;</button>
-        <button class="next" onclick="nextPage()" id="nextBtn">&#10095;</button>
-    </div>
+
+        <div class="content-container">
+            <div id="vendidos" class="content">
+            </div>
+            <button class="prev" onclick="prevPage()" id="prevBtn">&#10094;</button>
+            <button class="next" onclick="nextPage()" id="nextBtn">&#10095;</button>
+        </div>
     </div>
 
     <footer class="footer">
@@ -130,11 +131,13 @@
         </div>
     </footer>
 
+
     <script>
-        imagenes = ["/app/view/imagenes/vamoacalmarno.jpg","/app/view/imagenes/gengar.jpg","/app/view/imagenes/wingull.avif",
-        "/app/view/imagenes/victini.png","/app/view/imagenes/pikachu.jpeg","/app/view/imagenes/oshawott.png"];
-        numImg = <?php echo $usuario[0]['num_img'] != null ? $usuario[0]['num_img']: "false" ;?>;
-        if(numImg){
+        imagenes = ["/app/view/imagenes/vamoacalmarno.jpg", "/app/view/imagenes/gengar.jpg", "/app/view/imagenes/wingull.avif",
+            "/app/view/imagenes/victini.png", "/app/view/imagenes/pikachu.jpeg", "/app/view/imagenes/oshawott.png"
+        ];
+        numImg = <?php echo $usuario[0]['num_img'] != null ? $usuario[0]['num_img'] : "false"; ?>;
+        if (numImg) {
             setImage(numImg);
         }
         // Función para abrir el popup
@@ -149,12 +152,12 @@
 
         // Función para establecer la imagen en el círculo
         function setImage(posicion) {
-            document.getElementById("circleImage").src = imagenes[posicion-1];
-            if(posicion != numImg){
+            document.getElementById("circleImage").src = imagenes[posicion - 1];
+            if (posicion != numImg) {
                 var ajax = new XMLHttpRequest();
                 ajax.open('POST', '/app/view/cuenta.php ');
                 ajax.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-                ajax.send('numero_img='+posicion+'&formulario=2');
+                ajax.send('numero_img=' + posicion + '&formulario=2');
             }
             closePopup(); // Cerrar el popup al seleccionar la imagen
         }
@@ -221,5 +224,6 @@
 
         renderPage(currentPage);
     </script>
+</body>
 
 </html>
