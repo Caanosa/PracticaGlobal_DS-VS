@@ -12,16 +12,17 @@
     <?php
         require_once "../../app/controller/UsuarioController.php";
         $usuarioController = new UsuarioController();
+        session_start();
     ?>
     <header>
         <img class="img-logo" src="/app/view/imagenes/image.png" alt="logo">
         <nav>
             <ul>
                 <li><a href="/app/view/inicio.php">Inicio</a></li>
-                <li><a href="#deseados">Deseados</a></li>
-                <li><a href="#tienda">Tienda</a></li>
-                <li><a href="#publicar">Publicar</a></li>
-                <li><a href="<?php session_start();  echo $usuarioController->getUSesion() != null?"/app/view/cuenta.php":"/app/view/login.php"?>"><?php echo $usuarioController->getUSesion() != null?$usuarioController->getUSesion()[1]:"Cuenta"?></a></li>
+                <li><a href="<?php echo $usuarioController->getUSesion() != null?"/app/view/deseados.php":"/app/view/login.php"?>">Deseados</a></li>
+                <li><a href="/app/view/tienda.php">Tienda</a></li>
+                <li><a href="/app/view/publicar.php">Publicar</a></li>
+                <li><a href="<?php echo $usuarioController->getUSesion() != null ? "/app/view/cuenta.php" : "/app/view/login.php" ?>"><?php echo $usuarioController->getUSesion() != null ? $usuarioController->getUSesion()[1] : "Cuenta" ?></a></li>
             </ul>
         </nav>
     </header>

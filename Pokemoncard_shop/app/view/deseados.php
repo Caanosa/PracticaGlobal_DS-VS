@@ -12,17 +12,17 @@
         require_once "../../app/controller/ProductoController.php";
         $usuarioController = new UsuarioController();
         $productoController = new ProductoController();
-
+        session_start();
     ?>
     <header>
         <img class="img-logo" src="/app/view/imagenes/image.png" alt="logo">
         <nav>
             <ul>
                 <li><a href="/app/view/inicio.php">Inicio</a></li>
-                <li><a href="/app/view/deseados.php">Deseados</a></li>
+                <li><a href="<?php echo $usuarioController->getUSesion() != null?"/app/view/deseados.php":"/app/view/login.php"?>">Deseados</a></li>
                 <li><a href="/app/view/tienda.php">Tienda</a></li>
                 <li><a href="/app/view/publicar.php">Publicar</a></li>
-                <li><a href="<?php session_start();  echo $usuarioController->getUSesion() != null?"/app/view/cuenta.php":"/app/view/login.php"?>"><?php echo $usuarioController->getUSesion() != null?$usuarioController->getUSesion()[1]:"Cuenta"?></a></li>
+                <li><a href="<?php echo $usuarioController->getUSesion() != null?"/app/view/cuenta.php":"/app/view/login.php"?>"><?php echo $usuarioController->getUSesion() != null?$usuarioController->getUSesion()[1]:"Cuenta"?></a></li>
             </ul>
         </nav>
     </header>
@@ -54,7 +54,7 @@
         const nextBtn = document.getElementById("nextBtn");
         const cerodeseadosimg = document.getElementById("cero_deseados_img");
         const cerodeseadosh1 = document.getElementById("cero_deseados_titulo");
-        const itemsPerPage = 8;
+        const itemsPerPage = 12;
         let currentPage = 1;
         isSearching = false;
         searchResults = [];
