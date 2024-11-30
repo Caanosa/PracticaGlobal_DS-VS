@@ -46,18 +46,7 @@
     </div>
     
 
-    <footer class="footer">
-        <div class="copyright">
-            <a href="">Copyright © 2024 PokemonCard_shop</a>
-        </div>
-        <div>
-            <a href="avisoLegal.php">Aviso legal</a> |
-            <a href="privacidad.php">Política de privacidad</a> |
-            <a href="coockies.php">Política de Cookies</a> |
-            <a href="envios.php">Política de envíos</a> |
-            <a href="reembolso.php">Política de reembolso</a>
-        </div>
-    </footer>
+    
 
     <script>
         const galeria = document.getElementById("galeria");
@@ -140,4 +129,16 @@
         renderPage(1);
     </script>
 </body>
+<footer class="footer">
+        <div class="copyright">
+            <a href="">Copyright © 2024 PokemonCard_shop</a>
+        </div>
+        <div>
+            <a href="avisoLegal.php">Aviso legal</a> |
+            <a href="privacidad.php">Política de privacidad</a> |
+            <a href="coockies.php">Política de Cookies</a> |
+            <a href="envios.php">Política de envíos</a> |
+            <a href="reembolso.php">Política de reembolso</a>
+        </div>
+</footer>
 </html>

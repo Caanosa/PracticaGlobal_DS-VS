@@ -1,3 +1,8 @@
+html {
+    min-height: 100%;
+    position: relative;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -7,6 +12,7 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
+    margin-bottom: 5%;
 }
 
 header {
@@ -46,6 +52,7 @@ nav ul li a:hover {
 
 
 footer {
+    position: absolute;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -53,6 +60,9 @@ footer {
     background-color: #000;
     color: #fff;
     font-size: 0.7vw;
+    height: 1.5%;
+    width: 98%;
+    bottom: 0;
 }
 
 .copyright{
