@@ -143,14 +143,14 @@
             <section class="galeria" id="galeria">
                 <div class="galeria-item">
                     <div>
-                        <!-- <img class="imagen-galeria" src="imagenes/gengar.jpg" alt=""> -->
+                        <img class="imagen-galeria" src="imagenes/gengar.jpg" alt="">
                     </div>
                     <div class="info-galeria-item">
-                        <div class="precio">
-
-                        </div>
                         <div class="nombre_producto">
-
+                            Carta de victini
+                        </div>
+                        <div class="precio">
+                            1000€
                         </div>
                     </div>
 

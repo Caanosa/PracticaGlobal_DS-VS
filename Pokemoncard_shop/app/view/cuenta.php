@@ -43,16 +43,23 @@
                 <li><a href="/app/view/deseados.php">Deseados</a></li>
                 <li><a href="/app/view/tienda.php">Tienda</a></li>
                 <li><a href="/app/view/publicar.php">Publicar</a></li>
-                <li><a href="<?php session_start();  echo $usuarioController->getUSesion() != null?"/app/view/cuenta.php":"/app/view/login.php"?>"><?php echo $usuarioController->getUSesion() != null?$usuarioController->getUSesion()[1]:"Cuenta"?></a></li>
+                <li><a href="<?php session_start();
+                                echo $usuarioController->getUSesion() != null ? "/app/view/cuenta.php" : "/app/view/login.php" ?>"><?php echo $usuarioController->getUSesion() != null ? $usuarioController->getUSesion()[1] : "Cuenta" ?></a></li>
             </ul>
         </nav>
     </header>
     <div class="cuerpo">
 
+        <form action="/app/view/editarUsuario.php" method="POST">
+            <input type="hidden" name="formulario" value="3">
+            <button type="submit" class="editar_usuario">Editar usuario</button>
+        </form>
+
+        
         <form method="POST">
             <input type="hidden" name="formulario" value="1">
             <button type="submit" class="salir">Cerrar Sessión</button>
-        </form>
+        </form> 
 
 
         <div class="image-picker">
