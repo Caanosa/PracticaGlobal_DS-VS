@@ -198,12 +198,26 @@
                 listavaciaimg.src = "";
                 listavaciatitulo.textContent = "";
                 currentItems.forEach(item => {
-                    const div = document.createElement("div");
-                    div.classList.add("box");
-                    const imagen = document.createElement("p");
-                    imagen.textContent = item['nombre'];
-                    galeria.appendChild(div);
-                    div.appendChild(imagen);
+                    const div1 = document.createElement("div");
+                    div1.classList.add("galeria-item");
+                    galeria.appendChild(div1);
+                    const div2 = document.createElement("div");
+                    div1.appendChild(div2);
+                    const imagen = document.createElement("img");
+                    imagen.src = item.imagen_url;
+                    imagen.classList.add("imagen-galeria");
+                    div2.appendChild(imagen);
+                    const div3 = document.createElement("div");
+                    div3.classList.add("info-galeria-item");
+                    div1.appendChild(div3);
+                    const div4 = document.createElement("div");
+                    div4.classList.add("nombre_producto");
+                    div4.textContent = item['nombre'];
+                    div3.appendChild(div4);
+                    const div5 = document.createElement("div");
+                    div5.classList.add("precio");
+                    div5.textContent = item['precio'];
+                    div3.appendChild(div5);
                 });
             }
             

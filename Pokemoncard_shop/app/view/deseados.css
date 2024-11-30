@@ -209,3 +209,88 @@ footer {
 #cero_deseados_titulo{
     font-size: 2vw;
 }
+
+.galeria {
+    margin-top: 2vw;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4.5vw;
+    padding: 0.1vw;
+    border-radius: 1vw;
+}
+
+.galeria-item {
+    box-shadow: 0.3px 0.3vw 0.5vw black;
+    border-radius: 1vw;
+    /* padding: 0.8vw; */
+    width: 15vw;
+    height: 20vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1vw;
+    color: #333;
+}
+
+.info-galeria-item{
+    position: absolute;
+    color: white;
+    border-radius: 0 0 1vw 1vw;
+    width: 15vw;
+    background-color: #00000080;
+    margin-top: 15.55vw;
+}
+
+.precio{
+    color: #f0f0f0;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.4vw;
+    margin-bottom: 0.5vw;
+}
+
+.nombre_producto{
+    color: #f0f0f0;
+    font-size: 1.1vw;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0.65vw;
+    margin-top: 0.6vw;
+}
+
+.imagen-galeria{
+    width: 15vw;
+    height: 20.5vw;
+    object-fit: cover;
+    border-radius: 1vw;
+}
+.galeria-item:hover {
+    animation-duration: 0.3s;
+    animation-name: aumento;
+    transform: scale(1.05);
+}
+
+/* .info-galeria-item :hover{
+    position: fixed;
+    color: white;
+    border-radius: 0 0 1vw 1vw;
+    width: 15vw;
+    background-color: #00000080;
+    margin-top: 15.55vw;
+} */
+
+/* .galeria-item :hover{
+    animation-name: aumento;
+    width: 16vw;
+    height: 21vw;
+} */
+
+@keyframes aumento {
+    from {
+        transform: scale(1);
+    }
+  
+    to {
+        transform: scale(1.05);
+    }
+}

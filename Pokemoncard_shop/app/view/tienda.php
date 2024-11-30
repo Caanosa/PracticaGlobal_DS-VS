@@ -140,22 +140,7 @@
             </div>
             
 
-            <section class="galeria" id="galeria">
-                <div class="galeria-item">
-                    <div>
-                        <img class="imagen-galeria" src="imagenes/gengar.jpg" alt="">
-                    </div>
-                    <div class="info-galeria-item">
-                        <div class="nombre_producto">
-                            Carta de victini
-                        </div>
-                        <div class="precio">
-                            1000€
-                        </div>
-                    </div>
-
-                </div>
-            </section>
+            <section class="galeria" id="galeria"></section>
             <img id="cero_deseados_img" src="" alt="">
             <h1 id="cero_deseados_titulo"></h1>
             <div class="pagination">
@@ -205,13 +190,26 @@
                 cerodeseadosimg.src = "";
                 cerodeseadosh1.textContent = "";
                 currentItems.forEach(item => {
-                    const div = document.createElement("div");
-                    div.classList.add("galeria-item");
+                    const div1 = document.createElement("div");
+                    div1.classList.add("galeria-item");
+                    galeria.appendChild(div1);
+                    const div2 = document.createElement("div");
+                    div1.appendChild(div2);
                     const imagen = document.createElement("img");
-                    imagen.classList.add("imagen-producto");
                     imagen.src = item.imagen_url;
-                    galeria.appendChild(div);
-                    div.appendChild(imagen);
+                    imagen.classList.add("imagen-galeria");
+                    div2.appendChild(imagen);
+                    const div3 = document.createElement("div");
+                    div3.classList.add("info-galeria-item");
+                    div1.appendChild(div3);
+                    const div4 = document.createElement("div");
+                    div4.classList.add("nombre_producto");
+                    div4.textContent = item['nombre'];
+                    div3.appendChild(div4);
+                    const div5 = document.createElement("div");
+                    div5.classList.add("precio");
+                    div5.textContent = item['precio'];
+                    div3.appendChild(div5);
                 });
             }
 
@@ -269,7 +267,7 @@
         }
 
 
-        //renderPage(currentPage);
+        renderPage(currentPage);
     </script>
 </body>
 
