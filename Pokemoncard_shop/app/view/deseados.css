@@ -201,3 +201,11 @@ footer {
 .search-bar-container button:hover {
     background-color: #575757;
 }
+
+#cero_deseados_img{
+    width: 25vw;
+}
+
+#cero_deseados_titulo{
+    font-size: 2vw;
+}

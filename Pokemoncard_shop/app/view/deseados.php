@@ -35,7 +35,8 @@
         </div>
 
         <div id="deseados" class="content"></div>
-
+        <img id="cero_deseados_img" src="" alt="">
+        <h1 id="cero_deseados_titulo"></h1>
         <section class="galeria" id="galeria"></section>
         <div class="pagination">
             <button onclick="prevPage()" id="prevBtn" disabled>&laquo; Anterior</button>
@@ -43,7 +44,7 @@
             <button onclick="nextPage()" id="nextBtn">Siguiente &raquo;</button>
         </div>
     </div>
-    </div>
+    
 
     <footer class="footer">
         <div class="copyright">
@@ -62,29 +63,52 @@
         const galeria = document.getElementById("deseados");
         const prevBtn = document.getElementById("prevBtn");
         const nextBtn = document.getElementById("nextBtn");
+        const cerodeseadosimg = document.getElementById("cero_deseados_img");
+        const cerodeseadosh1 = document.getElementById("cero_deseados_titulo");
         const itemsPerPage = 8;
         let currentPage = 1;
+        isSearching = false;
+        searchResults = [];
         items = <?= json_encode($productoController->reuperarDseseadsoSesionConjunto()) ?>;
 
         function renderPage(page) {
             galeria.innerHTML = "";
-            const itemsToRender = items;
+            const itemsToRender = isSearching ? searchResults : items;
             const start = (page - 1) * itemsPerPage;
             const end = start + itemsPerPage;
             const currentItems = itemsToRender.slice(start, end);
-
-            currentItems.forEach(item => {
-                const div = document.createElement("div");
-                div.classList.add("box");
-                const imagen = document.createElement("p");
-                imagen.textContent = item["nombre"];
-                galeria.appendChild(div);
-                div.appendChild(imagen);
-            });
-
+            if(items.length == 0){
+                cerodeseadosimg.src = "/app/view/imagenes/lista deseados2.png";
+                cerodeseadosh1.textContent = "Aun no tienes nada en lista de deseados";
+            }else{
+                if(itemsToRender.length == 0){
+                    cerodeseadosimg.src = "/app/view/imagenes/fallo busqueda.png";
+                    cerodeseadosh1.textContent = "No se an encotrado resultados";
+                }else{
+                    cerodeseadosimg.src = "";
+                    cerodeseadosh1.textContent = "";
+                    currentItems.forEach(item => {
+                        const div = document.createElement("div");
+                        div.classList.add("box");
+                        const imagen = document.createElement("p");
+                        imagen.textContent = item["nombre"];
+                        galeria.appendChild(div);
+                        div.appendChild(imagen);
+                    });
+                }
+            }
             prevBtn.disabled = page === 1;
             nextBtn.disabled = end >= itemsToRender.length;
         }
+
+        function searchItems() {
+            const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+            searchResults = items.filter(item => item.nombre.toLowerCase().includes(searchTerm));
+            isSearching = true;
+            currentPage = 1;
+            renderPage(currentPage);
+        }
+
 
         function prevPage() {
             if (currentPage > 1) {
@@ -98,14 +122,6 @@
                 currentPage++;
                 renderPage(currentPage);
             }
-        }
-        function pestania(tipo) {
-            switch (tipo) {
-                case "deseados":
-                    items = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-                    break;
-            }
-            renderPage(1);
         }
         renderPage(1);
     </script>

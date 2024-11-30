@@ -267,3 +267,11 @@ footer {
     height: 79vw;
 }
 
+#lista_vacia_img{
+    width: 25vw;
+}
+
+#lista_vacia_titulo{
+    font-size: 2vw;
+}
+

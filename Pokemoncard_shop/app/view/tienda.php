@@ -138,6 +138,7 @@
                 <input type="text" id="searchInput" placeholder="Buscar productos...">
                 <button onclick="searchItems()">Buscar</button>
             </div>
+            
 
             <section class="galeria" id="galeria">
                 <div class="galeria-item">
@@ -155,6 +156,8 @@
 
                 </div>
             </section>
+            <img id="cero_deseados_img" src="" alt="">
+            <h1 id="cero_deseados_titulo"></h1>
             <div class="pagination">
                 <button onclick="prevPage()" id="prevBtn" disabled>&laquo; Anterior</button>
                 <span id="pageIndicator">Página 1</span>
@@ -179,6 +182,8 @@
         const pageIndicator = document.getElementById("pageIndicator");
         const prevBtn = document.getElementById("prevBtn");
         const nextBtn = document.getElementById("nextBtn");
+        const cerodeseadosimg = document.getElementById("cero_deseados_img");
+        const cerodeseadosh1 = document.getElementById("cero_deseados_titulo");
 
         const itemsPerPage = 12;
         let currentPage = 1;
@@ -193,16 +198,22 @@
             const start = (page - 1) * itemsPerPage;
             const end = start + itemsPerPage;
             const currentItems = itemsToRender.slice(start, end);
-
-            currentItems.forEach(item => {
-                const div = document.createElement("div");
-                div.classList.add("galeria-item");
-                const imagen = document.createElement("img");
-                imagen.classList.add("imagen-producto");
-                imagen.src = item.imagen_url;
-                galeria.appendChild(div);
-                div.appendChild(imagen);
-            });
+            if(itemsToRender.length == 0){
+                cerodeseadosimg.src = "/app/view/imagenes/fallo busqueda.png";
+                cerodeseadosh1.textContent = "No se an encotrado resultados";
+            }else{
+                cerodeseadosimg.src = "";
+                cerodeseadosh1.textContent = "";
+                currentItems.forEach(item => {
+                    const div = document.createElement("div");
+                    div.classList.add("galeria-item");
+                    const imagen = document.createElement("img");
+                    imagen.classList.add("imagen-producto");
+                    imagen.src = item.imagen_url;
+                    galeria.appendChild(div);
+                    div.appendChild(imagen);
+                });
+            }
 
             pageIndicator.textContent = `Página ${page}`;
             prevBtn.disabled = page === 1;
