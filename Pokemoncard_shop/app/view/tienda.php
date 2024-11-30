@@ -12,16 +12,17 @@
     <?php
         require_once "../../app/controller/UsuarioController.php";
         $usuarioController = new UsuarioController();
+        session_start();
     ?>
     <header>
         <img class="img-logo" src="/app/view/imagenes/image.png" alt="logo">
         <nav>
             <ul>
                 <li><a href="/app/view/inicio.php">Inicio</a></li>
-                <li><a href="#deseados">Deseados</a></li>
-                <li><a href="#tienda">Tienda</a></li>
-                <li><a href="#publicar">Publicar</a></li>
-                <li><a href="<?php session_start();  echo $usuarioController->getUSesion() != null?"/app/view/cuenta.php":"/app/view/login.php"?>"><?php echo $usuarioController->getUSesion() != null?$usuarioController->getUSesion()[1]:"Cuenta"?></a></li>
+                <li><a href="<?php echo $usuarioController->getUSesion() != null?"/app/view/deseados.php":"/app/view/login.php"?>">Deseados</a></li>
+                <li><a href="/app/view/tienda.php">Tienda</a></li>
+                <li><a href="/app/view/publicar.php">Publicar</a></li>
+                <li><a href="<?php echo $usuarioController->getUSesion() != null ? "/app/view/cuenta.php" : "/app/view/login.php" ?>"><?php echo $usuarioController->getUSesion() != null ? $usuarioController->getUSesion()[1] : "Cuenta" ?></a></li>
             </ul>
         </nav>
     </header>
@@ -138,23 +139,11 @@
                 <input type="text" id="searchInput" placeholder="Buscar productos...">
                 <button onclick="searchItems()">Buscar</button>
             </div>
+            
 
-            <section class="galeria" id="galeria">
-                <div class="galeria-item">
-                    <div>
-                        <img class="imagen-galeria" src="imagenes/gengar.jpg" alt="">
-                    </div>
-                    <div class="info-galeria-item">
-                        <div class="nombre_producto">
-                            Carta de victini
-                        </div>
-                        <div class="precio">
-                            1000€
-                        </div>
-                    </div>
-
-                </div>
-            </section>
+            <section class="galeria" id="galeria"></section>
+            <img id="cero_deseados_img" src="" alt="">
+            <h1 id="cero_deseados_titulo"></h1>
             <div class="pagination">
                 <button onclick="prevPage()" id="prevBtn" disabled>&laquo; Anterior</button>
                 <span id="pageIndicator">Página 1</span>
@@ -179,6 +168,8 @@
         const pageIndicator = document.getElementById("pageIndicator");
         const prevBtn = document.getElementById("prevBtn");
         const nextBtn = document.getElementById("nextBtn");
+        const cerodeseadosimg = document.getElementById("cero_deseados_img");
+        const cerodeseadosh1 = document.getElementById("cero_deseados_titulo");
 
         const itemsPerPage = 12;
         let currentPage = 1;
@@ -193,16 +184,35 @@
             const start = (page - 1) * itemsPerPage;
             const end = start + itemsPerPage;
             const currentItems = itemsToRender.slice(start, end);
-
-            currentItems.forEach(item => {
-                const div = document.createElement("div");
-                div.classList.add("galeria-item");
-                const imagen = document.createElement("img");
-                imagen.classList.add("imagen-producto");
-                imagen.src = item.imagen_url;
-                galeria.appendChild(div);
-                div.appendChild(imagen);
-            });
+            if(itemsToRender.length == 0){
+                cerodeseadosimg.src = "/app/view/imagenes/fallo busqueda.png";
+                cerodeseadosh1.textContent = "No se an encotrado resultados";
+            }else{
+                cerodeseadosimg.src = "";
+                cerodeseadosh1.textContent = "";
+                currentItems.forEach(item => {
+                    const div1 = document.createElement("div");
+                    div1.classList.add("galeria-item");
+                    galeria.appendChild(div1);
+                    const div2 = document.createElement("div");
+                    div1.appendChild(div2);
+                    const imagen = document.createElement("img");
+                    imagen.src = item.imagen_url;
+                    imagen.classList.add("imagen-galeria");
+                    div2.appendChild(imagen);
+                    const div3 = document.createElement("div");
+                    div3.classList.add("info-galeria-item");
+                    div1.appendChild(div3);
+                    const div4 = document.createElement("div");
+                    div4.classList.add("nombre_producto");
+                    div4.textContent = item['nombre'];
+                    div3.appendChild(div4);
+                    const div5 = document.createElement("div");
+                    div5.classList.add("precio");
+                    div5.textContent = item['precio'];
+                    div3.appendChild(div5);
+                });
+            }
 
             pageIndicator.textContent = `Página ${page}`;
             prevBtn.disabled = page === 1;
@@ -258,7 +268,7 @@
         }
 
 
-        //renderPage(currentPage);
+        renderPage(currentPage);
     </script>
 </body>
 

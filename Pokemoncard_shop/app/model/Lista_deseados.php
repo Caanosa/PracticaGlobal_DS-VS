@@ -5,12 +5,17 @@
         private $producto_id;
         private $fecha_agregado;
 
-        public function __construct($lista_deseados_id, $usuairo_id, $producto_id, $fecha_agregado){
-            $this->lista_deseados_id = $lista_deseados_id;
-            $this->usuairo_id = $usuairo_id;
-            $this->producto_id = $producto_id;
-            $this->fecha_agregado = $fecha_agregado;
-        }
+        public function create(){
+            try{
+                $conn = getDbConnection();
+                $sentencia = $conn->prepare("INSERT INTO `lista_deseados`(`usuario_id`, `producto_id`) VALUES (?,?)");
+                $sentencia->bindParam(1, $this->usuairo_id);
+                $sentencia->bindParam(2, $this->producto_id);
+                $sentencia->execute();
+            }catch(Exception $e){
+                echo "Error".$e->getMessage();
+            }
+    }
 
         
         public function getLista_deseados_id()

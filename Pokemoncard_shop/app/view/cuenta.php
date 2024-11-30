@@ -16,7 +16,6 @@
     $usuarioController = new UsuarioController();
     $productoController = new ProductoController();
     $productos = [];
-    $holad = "KKKKKKKKKK";
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         switch ($_POST['formulario']) {
             case 1:
@@ -41,11 +40,10 @@
         <nav>
             <ul>
                 <li><a href="/app/view/inicio.php">Inicio</a></li>
-                <li><a href="/app/view/deseados.php">Deseados</a></li>
+                <li><a href="<?php echo $usuarioController->getUSesion() != null?"/app/view/deseados.php":"/app/view/login.php"?>">Deseados</a></li>
                 <li><a href="/app/view/tienda.php">Tienda</a></li>
                 <li><a href="/app/view/publicar.php">Publicar</a></li>
-                <li><a href="<?php session_start();
-                                echo $usuarioController->getUSesion() != null ? "/app/view/cuenta.php" : "/app/view/login.php" ?>"><?php echo $usuarioController->getUSesion() != null ? $usuarioController->getUSesion()[1] : "Cuenta" ?></a></li>
+                <li><a href="<?php echo $usuarioController->getUSesion() != null ? "/app/view/cuenta.php" : "/app/view/login.php" ?>"><?php echo $usuarioController->getUSesion() != null ? $usuarioController->getUSesion()[1] : "Cuenta" ?></a></li>
             </ul>
         </nav>
     </header>
@@ -121,6 +119,8 @@
             <div id="vendidos" class="content">
             </div>
             <button class="prev" onclick="prevPage()" id="prevBtn">&#10094;</button>
+            <img id="lista_vacia_img" src="/app/view/imagenes/cero megustas.png" alt="">
+            <h1 id="lista_vacia_titulo">Aun so as vendido ningun producto</h1>
             <button class="next" onclick="nextPage()" id="nextBtn">&#10095;</button>
         </div>
     </div>
@@ -172,6 +172,10 @@
         const galeria = document.getElementById("vendidos");
         const prevBtn = document.getElementById("prevBtn");
         const nextBtn = document.getElementById("nextBtn");
+        const listavaciaimg = document.getElementById("lista_vacia_img");
+        const listavaciatitulo = document.getElementById("lista_vacia_titulo");
+        imgen_vacio = "/app/view/imagenes/no vendidos1.png";
+        titulo_vacio = "Aun so as vendido ningun producto"
 
         const itemsPerPage = 8;
         let currentPage = 1;
@@ -186,15 +190,38 @@
             const start = (page - 1) * itemsPerPage;
             const end = start + itemsPerPage;
             const currentItems = itemsToRender.slice(start, end);
+            if(items.length == 0){
+                listavaciaimg.src = imgen_vacio;
+                listavaciatitulo.textContent = titulo_vacio;
+            }else{
+                listavaciaimg.src = "";
+                listavaciatitulo.textContent = "";
+                currentItems.forEach(item => {
+                    const div1 = document.createElement("div");
+                    div1.classList.add("galeria-item");
+                    galeria.appendChild(div1);
+                    const div2 = document.createElement("div");
+                    div1.appendChild(div2);
+                    const imagen = document.createElement("img");
+                    imagen.src = item.imagen_url;
+                    imagen.classList.add("imagen-galeria");
+                    div2.appendChild(imagen);
+                    const div3 = document.createElement("div");
+                    div3.classList.add("info-galeria-item");
+                    div1.appendChild(div3);
+                    const div4 = document.createElement("div");
+                    div4.classList.add("nombre_producto");
+                    div4.textContent = item['nombre'];
+                    div3.appendChild(div4);
+                    const div5 = document.createElement("div");
+                    div5.classList.add("precio");
+                    div5.textContent = item['precio'];
+                    div3.appendChild(div5);
+                });
+            }
+            
 
-            currentItems.forEach(item => {
-                const div = document.createElement("div");
-                div.classList.add("box");
-                const imagen = document.createElement("p");
-                imagen.textContent = item['nombre'];
-                galeria.appendChild(div);
-                div.appendChild(imagen);
-            });
+            
             prevBtn.disabled = page === 1;
             nextBtn.disabled = end >= itemsToRender.length;
         }
@@ -217,12 +244,18 @@
             switch (tipo) {
                 case 1:
                     items = vendidos;
+                    imgen_vacio = "/app/view/imagenes/no vendidos1.png";
+                    titulo_vacio = "Aun so as vendido ningun producto";
                     break;
                 case 2:
                     items = comprados;
+                    imgen_vacio = "/app/view/imagenes/no compras.png";
+                    titulo_vacio = "Aun so as comprado ningun producto";
                     break;
                 case 3:
                     items = likes;
+                    imgen_vacio = "/app/view/imagenes/cero megustas.png";
+                    titulo_vacio = "Dale megusta a los productos que hayas comprado";
                     break;
             }
             currentPage = 1;

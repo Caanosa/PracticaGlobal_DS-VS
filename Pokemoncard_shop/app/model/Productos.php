@@ -36,7 +36,7 @@
                 }catch(Exception $e){
                     echo "Error".$e->getMessage();
                 }
-            } 
+        } 
 
         static function getAllProductos(){
             try{
@@ -68,7 +68,7 @@
         static function recuperarVendidos($id){
                 try{
                         $conn = getDbConnection();
-                        $sentencia = $conn->prepare("SELECT p.producto_id as producto_id, p.nombre AS nombre, p.precio as precio FROM `usuarios` as u JOIN `productos`as p ON p.usuario_id = u.usuario_id JOIN  `pedidos` AS pe ON p.producto_id = pe.producto_id WHERE u.usuario_id = ? ORDER BY pe.fecha_pedido");
+                        $sentencia = $conn->prepare("SELECT p.producto_id as producto_id, p.nombre AS nombre, p.precio as precio, p.imagen_url AS imagen_url FROM `usuarios` as u JOIN `productos`as p ON p.usuario_id = u.usuario_id JOIN  `pedidos` AS pe ON p.producto_id = pe.producto_id WHERE u.usuario_id = ? ORDER BY pe.fecha_pedido");
                         $sentencia->bindParam(1, $id);
                         $sentencia->execute();
                         $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
@@ -81,7 +81,7 @@
         static function recuperarComprados($id){
                 try{
                         $conn = getDbConnection();
-                        $sentencia = $conn->prepare("SELECT p.producto_id as producto_id, p.nombre AS nombre, p.precio as precio FROM `usuarios` as u JOIN  `pedidos` AS pe ON u.usuario_id = pe.usuario_id JOIN `productos`as p ON p.producto_id = pe.producto_id  WHERE u.usuario_id = ? ORDER By pe.fecha_pedido;");
+                        $sentencia = $conn->prepare("SELECT p.producto_id as producto_id, p.nombre AS nombre, p.precio as precio, p.imagen_url AS imagen_url FROM `usuarios` as u JOIN  `pedidos` AS pe ON u.usuario_id = pe.usuario_id JOIN `productos`as p ON p.producto_id = pe.producto_id  WHERE u.usuario_id = ? ORDER By pe.fecha_pedido;");
                         $sentencia->bindParam(1, $id);
                         $sentencia->execute();
                         $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
@@ -95,7 +95,7 @@
         static function recuperarLikes($id){
                 try{
                         $conn = getDbConnection();
-                        $sentencia = $conn->prepare("SELECT p.producto_id as producto_id, p.nombre AS nombre, p.precio as precio FROM `usuarios` as u JOIN  `me_gusta` AS m ON u.usuario_id = m.usuario_id JOIN `productos`as p ON p.producto_id = m.producto_id  WHERE u.usuario_id = ? ORDER By m.fecha_me_gusta;");
+                        $sentencia = $conn->prepare("SELECT p.producto_id as producto_id, p.nombre AS nombre, p.precio as precio, p.imagen_url AS imagen_url FROM `usuarios` as u JOIN  `me_gusta` AS m ON u.usuario_id = m.usuario_id JOIN `productos`as p ON p.producto_id = m.producto_id  WHERE u.usuario_id = ? ORDER By m.fecha_me_gusta;");
                         $sentencia->bindParam(1, $id);
                         $sentencia->execute();
                         $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
@@ -108,7 +108,7 @@
         static function recuperarDeseados($id){
                 try{
                         $conn = getDbConnection();
-                        $sentencia = $conn->prepare("SELECT p.producto_id as producto_id, p.nombre AS nombre, p.precio as precio FROM `usuarios` as u JOIN  `lista_deseados` AS l ON u.usuario_id = l.usuario_id JOIN `productos`as p ON p.producto_id = l.producto_id  WHERE u.usuario_id = 1 ORDER By l.fecha_agregado;");
+                        $sentencia = $conn->prepare("SELECT p.producto_id as producto_id, p.nombre AS nombre, p.precio as precio, p.imagen_url AS imagen_url FROM `usuarios` as u JOIN  `lista_deseados` AS l ON u.usuario_id = l.usuario_id JOIN `productos`as p ON p.producto_id = l.producto_id  WHERE u.usuario_id = ? ORDER By l.fecha_agregado;");
                         $sentencia->bindParam(1, $id);
                         $sentencia->execute();
                         $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
@@ -117,6 +117,10 @@
                         echo "Error".$e->getMessage();
                 }
         }
+
+
+
+
 
         public function getIdioma_id()
         {
