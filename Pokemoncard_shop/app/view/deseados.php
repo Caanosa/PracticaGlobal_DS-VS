@@ -34,11 +34,9 @@
             <button>Guardar</button>
         </div>
 
-        <div id="deseados" class="content"></div>
         <img id="cero_deseados_img" src="" alt="">
         <h1 id="cero_deseados_titulo"></h1>
         <section class="galeria" id="galeria">
-            
         </section>
         <div class="pagination">
             <button onclick="prevPage()" id="prevBtn" disabled>&laquo; Anterior</button>
@@ -62,7 +60,7 @@
     </footer>
 
     <script>
-        const galeria = document.getElementById("deseados");
+        const galeria = document.getElementById("galeria");
         const prevBtn = document.getElementById("prevBtn");
         const nextBtn = document.getElementById("nextBtn");
         const cerodeseadosimg = document.getElementById("cero_deseados_img");
