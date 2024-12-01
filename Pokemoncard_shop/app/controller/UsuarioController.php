@@ -46,5 +46,15 @@
         public function recuperarLikes($id){
             return Usuario::recuperarLikes($id);
         }
+
+        public function modificar($id,$nombre,$email,$contrasena){
+            if(!Usuario::varificarModificacion($id, $nombre, $email)){
+                Usuario::modificar($id,$nombre,$email,$contrasena,1);
+                $this->guardarEnSesion($id, $nombre);
+                return true;
+            }else{
+                return false;
+            }
+        }
     }
 ?>

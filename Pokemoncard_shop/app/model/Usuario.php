@@ -95,6 +95,36 @@
                 }
         }
 
+        static function varificarModificacion($id, $nombre, $email){
+                try{
+                        $conn = getDbConnection();
+                        $sentencia = $conn->prepare("SELECT * FROM usuarios WHERE (nombre=? OR email=?) AND usuario_id != ?");
+                        $sentencia->bindParam(1, $nombre);
+                        $sentencia->bindParam(2, $email);
+                        $sentencia->bindParam(3, $id);
+                        $sentencia->execute();
+                        $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+                        return $result;
+                }catch(Exception $e){
+                        echo "Error".$e->getMessage();
+                }
+        }
+
+        static function modificar($id, $nombre, $email, $contrasena, $administrador){
+                try{
+                    $conn = getDbConnection();
+                    $sentencia = $conn->prepare("UPDATE `usuarios` SET nombre=?, email=?, contrasena=?, administrador=? WHERE usuario_id=?");
+                    $sentencia->bindParam(1, $nombre);
+                    $sentencia->bindParam(2, $email);
+                    $sentencia->bindParam(3, $contrasena);
+                    $sentencia->bindParam(4, $administrador);
+                    $sentencia->bindParam(5, $id);
+                    $sentencia->execute();
+                }catch(Exception $e){
+                    echo "Error".$e->getMessage();
+                }
+            }
+
 
         public function getNombre()
         {
