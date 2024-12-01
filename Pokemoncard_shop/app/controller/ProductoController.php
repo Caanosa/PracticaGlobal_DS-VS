@@ -23,5 +23,36 @@
             $nuevoProducto->setImagen_url($imagen_url);
             $nuevoProducto->create();
         }
+
+        public function recuperarLikes($id){
+            return Productos::recuperarLikes($id);
+        }
+
+        public function recuperarVendidos($id){
+            return Productos::recuperarVendidos($id);
+        }
+
+        public function recuperarComprados($id){
+            return Productos::recuperarComprados($id);
+        }
+
+        public function cargarDeseadosSesion($id){
+            $_SESSION['deseadosDB'] = Productos::recuperarDeseados($id);
+            $_SESSION['deseados'] = [];
+        }
+
+        public function reuperarDseseadsoSesion(){
+            if(isset($_SESSION['deseados'])){
+                return $_SESSION['deseados'];
+            }
+        }
+
+        public function reuperarDseseadsoSesionConjunto(){
+            if(isset($_SESSION['deseados'])&&isset($_SESSION['deseadosDB'])){
+                return  $_SESSION['deseados'] + $_SESSION['deseadosDB'];
+            }
+        }
+
+        
     }
 ?>

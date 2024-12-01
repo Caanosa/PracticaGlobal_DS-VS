@@ -58,11 +58,11 @@ nav ul li a:hover {
 }
 
 .galeria-item {
-    background-color: #e0e0e0;
-    border-radius: 0.8vw;
-    padding: 0.8vw;
-    width: 12vw;
-    height: 17vw;
+    box-shadow: 0.3px 0.3vw 0.5vw black;
+    border-radius: 1vw;
+    /* padding: 0.8vw; */
+    width: 14vw;
+    height: 20vw;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -70,22 +70,66 @@ nav ul li a:hover {
     color: #333;
 }
 
-.galeria-item :hover{
-    animation-duration: 0.2s;
-    animation-name: aumento;
-    width: 15vw;
-    height: 20vw;
+.info-galeria-item{
+    position: absolute;
+    color: white;
+    border-radius: 0 0 1vw 1vw;
+    width: 14vw;
+    background-color: #00000080;
+    margin-top: 15.55vw;
 }
+
+.precio{
+    color: #f0f0f0;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.4vw;
+    margin-bottom: 0.5vw;
+}
+
+.nombre_producto{
+    color: #f0f0f0;
+    font-size: 1.1vw;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0.65vw;
+    margin-top: 0.6vw;
+}
+
+.imagen-galeria{
+    width: 14vw;
+    height: 20.5vw;
+    object-fit: cover;
+    border-radius: 1vw;
+}
+.galeria-item:hover {
+    animation-duration: 0.3s;
+    animation-name: aumento;
+    transform: scale(1.05);
+}
+
+/* .info-galeria-item :hover{
+    position: fixed;
+    color: white;
+    border-radius: 0 0 1vw 1vw;
+    width: 15vw;
+    background-color: #00000080;
+    margin-top: 15.55vw;
+} */
+
+/* .galeria-item :hover{
+    animation-name: aumento;
+    width: 16vw;
+    height: 21vw;
+} */
 
 @keyframes aumento {
     from {
-        width: 12vw;
-        height: 17vw;
+        transform: scale(1);
     }
   
     to {
-        width: 15vw;
-        height: 20vw;
+        transform: scale(1.05);
     }
 }
 .pagination {
@@ -261,4 +305,18 @@ footer {
 
 .footer a:hover {
     text-decoration: underline;
+}
+
+.cuerpo{
+    height: 78vw;
+}
+
+#cero_deseados_img{
+    width: 25vw;;
+    margin-left: 17.3vw;
+}
+
+#cero_deseados_titulo{
+    font-size: 2vw;
+    margin-left: 15vw;
 }

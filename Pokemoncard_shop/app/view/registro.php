@@ -17,16 +17,16 @@
 
               <label for="email">Correo</label>
               <input type="email" id="email" placeholder="Correo" name="email">
-        
+
               <label for="password">Contraseña</label>
               <input type="password" id="password" placeholder="Contraseña" name="contrasena">
 
               <label for="confirmarPassword">Repetir contraseña</label>
               <input type="password" id="confirmarPassword" placeholder="Repetir Contraseña">
-        
+
               <p id="error-mensage" class="error-mensage"></p>
-        
-              <button type="submit">Entrar</button>
+
+              <button type="submit">Registrarme</button>
 
               <a href="login.php" class="login-link">Ya tengo una cuenta</a>
 
@@ -35,6 +35,7 @@
     </div>
     <?php
         require_once "../../app/controller/UsuarioController.php";
+        session_start();
         $usuarioController = new UsuarioController();
         if($_SERVER['REQUEST_METHOD']=='POST'){
             $campoNombreSaneado = htmlspecialchars(($_POST["nombre"]));
@@ -42,6 +43,7 @@
             $campoContrasenaSaneado = htmlspecialchars($_POST["contrasena"]);
             $userdata = $usuarioController->crearUsuario($campoNombreSaneado, $campoEmailSaneado, $campoContrasenaSaneado);
             if($userdata){
+                $usuarioController->guardarEnSesion($userdata[0]["usuario_id"],$userdata[0]["nombre"]);
                 header('Location: http://pokemoncardshop.com');
             }else{
                 echo ("<script>
@@ -49,7 +51,7 @@
                 errorMensage.textContent = 'Ya existe un usuario con este correo o nombre';
                 </script>");
             }
-            
+
         }
     ?>
 
