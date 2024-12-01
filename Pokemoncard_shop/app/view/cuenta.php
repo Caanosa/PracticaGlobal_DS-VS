@@ -15,6 +15,9 @@
     require_once "../../app/controller/ProductoController.php";
     $usuarioController = new UsuarioController();
     $productoController = new ProductoController();
+    if ($usuarioController->getUSesion() == null) {
+        header('Location: /app/view/login.php');
+    }
     $productos = [];
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         switch ($_POST['formulario']) {
@@ -40,19 +43,18 @@
         <nav>
             <ul>
                 <li><a href="/app/view/inicio.php">Inicio</a></li>
-                <li><a href="<?php echo $usuarioController->getUSesion() != null?"/app/view/deseados.php":"/app/view/login.php"?>">Deseados</a></li>
+                <li><a href="/app/view/deseados.php">Deseados</a></li>
                 <li><a href="/app/view/tienda.php">Tienda</a></li>
                 <li><a href="/app/view/publicar.php">Publicar</a></li>
-                <li><a href="<?php echo $usuarioController->getUSesion() != null ? "/app/view/cuenta.php" : "/app/view/login.php" ?>"><?php echo $usuarioController->getUSesion() != null ? $usuarioController->getUSesion()[1] : "Cuenta" ?></a></li>
+                <li><a href="/app/view/cuenta.php"><?php echo $usuarioController->getUSesion()[1] ?></a></li>
             </ul>
         </nav>
     </header>
     <div class="cuerpo">
 
-        <form action="/app/view/editarUsuario.php" method="POST">
-            <input type="hidden" name="formulario" value="3">
+        <a href="/app/view/editarUsuario.php" class="editar">
             <button type="submit" class="editar_usuario">Editar usuario</button>
-        </form>
+        </a>
 
         
         <form method="POST">

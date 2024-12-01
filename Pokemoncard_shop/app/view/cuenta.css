@@ -294,7 +294,7 @@ footer {
     font-size: 2vw;
 }
 
-form{
+form, .editar{
     display: inline-block;
 }
 
