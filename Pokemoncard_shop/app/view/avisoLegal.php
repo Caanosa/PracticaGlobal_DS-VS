@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aviso legal</title>
+    <title>PokémonCS - Aviso legal</title>
+    <link rel="icon" href="/app/view/imagenes/logo_ventana3.png">
     <link rel="stylesheet" href="/app/view/enlacesFooter.css">
 </head>
 
@@ -17,7 +18,7 @@
         <img class="img-logo" src="/app/view/imagenes/image.png" alt="logo">
         <nav>
             <ul>
-                <li><a href="/app/view/inicio.php">Inicio</a></li>
+                <li><a href="http://pokemoncardshop.com">Inicio</a></li>
                 <li><a href="<?php session_start();  echo $usuarioController->getUSesion() != null?"/app/view/deseados.php":"/app/view/login.php"?>">Deseados</a></li>
                 <li><a href="/app/view/tienda.php">Tienda</a></li>
                 <li><a href="/app/view/publicar.php">Publicar</a></li>
@@ -29,13 +30,13 @@
     <div class="divTexto">
         <title>Aviso Legal y Condiciones Generales de Uso</title>
         <h1>AVISO LEGAL Y CONDICIONES GENERALES DE USO</h1>
-        <p><a href="/app/view/inicio.php">http://www.pokemonCard_shop.es</a></p>
+        <p><a href="http://pokemoncardshop.com">http://www.pokemonCard_shop.es</a></p>
     
         <h2>I. INFORMACIÓN GENERAL</h2>
         <p>En cumplimiento con el deber de información dispuesto en la Ley 34/2002 de Servicios de la Sociedad de la
             Información y el Comercio Electrónico (LSSI-CE) de 11 de julio, se facilitan a continuación los siguientes datos
             de información general de este sitio web:</p>
-        <p>La titularidad de este sitio web, <a href="/app/view/inicio.php">https://www.pokemonCard_shop.es</a>, (en adelante,
+        <p>La titularidad de este sitio web, <a href="http://pokemoncardshop.com">https://www.pokemonCard_shop.es</a>, (en adelante,
             Sitio Web) la ostenta:</p>
         <p>y cuyos datos de contacto son:</p>
         <ul>
@@ -67,7 +68,7 @@
     
     <footer class="footer">
         <div class="copyright">
-            <a href="https://creatuweb.xyz/">Copyright © 2024 PokemonCard_shop</a>
+            <a href="http://pokemoncardshop.com">Copyright © 2024 PokemonCard_shop</a>
         </div>
         <div>
             <a href="/app/view/avisoLegal.php">Aviso legal</a> |

@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
+    <title>Pokémon Card Shop</title>
+    <link rel="icon" href="/app/view/imagenes/logo_ventana3.png">
     <link rel="stylesheet" href="/app/view/inicio.css">
 </head>
 
@@ -18,7 +19,7 @@
         <img class="img-logo" src="/app/view/imagenes/image.png" alt="logo">
         <nav>
             <ul>
-                <li><a href="/app/view/inicio.php">Inicio</a></li>
+                <li><a href="http://pokemoncardshop.com">Inicio</a></li>
                 <li><a href="<?php echo $usuarioController->getUSesion() != null?"/app/view/deseados.php":"/app/view/login.php"?>">Deseados</a></li>
                 <li><a href="/app/view/tienda.php">Tienda</a></li>
                 <li><a href="/app/view/publicar.php">Publicar</a></li>

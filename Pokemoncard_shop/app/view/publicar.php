@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>PokémonCS - Publicar</title>
+    <link rel="icon" href="/app/view/imagenes/logo_ventana3.png">
     <link rel="stylesheet" href="/app/view/publicar.css">
 </head>
 <body>
