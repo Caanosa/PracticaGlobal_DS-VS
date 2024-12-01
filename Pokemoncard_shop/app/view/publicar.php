@@ -29,31 +29,31 @@
             <!-- URL -->
             <div class="form-group">
                 <label for="url">URL</label>
-                <input type="text" id="url" name="url" >
+                <input type="text" id="url" name="url" required>
             </div>
     
             <!-- Nombre -->
             <div class="form-group">
                 <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" name="nombre">
+                <input type="text" id="nombre" name="nombre" required>
             </div>
     
             <!-- Imagen de vista previa -->
             <div class="form-group">
                 <label>Vista previa</label>
-                <div class="preview"><img class="image-placeholder" id="imagen"></div>
+                <img class="image-placeholder" id="imagen">
             </div>
     
             <!-- Descripción (Al lado de la Vista previa) -->
             <div class="form-group">
                 <label for="descripcion">Descripción</label>
-                <textarea id="descripcion" name="descripcion" rows="10"></textarea>
+                <textarea id="descripcion" name="descripcion" rows="10"  required></textarea>
             </div>
     
             <!-- Tipo de artículo -->
             <div class="form-group">
                 <label for="tipo-articulo">Tipo de Artículo</label>
-                <select id="tipo-articulo" name="tipo-articulo">
+                <select id="tipo-articulo" name="tipo-articulo"  onchange="tipo()">
                     <option valu="Pack">Pack</option>
                     <option valu="Sobre">Sobre</option>
                     <option valu="Carta">Carta</option>
@@ -63,7 +63,8 @@
             <!-- Expansión -->
             <div class="form-group">
                 <label for="expansion">Expansión</label>
-                <select id="expansion" name="expansion">
+                <select id="expansion" name="expansion" onchange="addExpansion()">
+                    <option></option>
                     <?php
                         require_once "../../app/controller/FiltroController.php";
                         $filtroController = new FiltroController();
@@ -74,6 +75,9 @@
                         }
                     ?>
                 </select>
+                <div id="expansiones">
+
+                </div>
             </div>
     
             <!-- Idioma -->
@@ -93,16 +97,14 @@
                 </select>
             </div>
     
-            <!-- Stock -->
-            <div class="form-group">
-                <label for="stock">Stock</label>
-                <input type="text" id="stock" name="stock" placeholder="Ej: 10 unidades">
+            <!-- Stock/Categoria -->
+            <div class="form-group"  id="CalidadStock">
             </div>
     
             <!-- Precio -->
             <div class="form-group">
                 <label for="precio">Precio</label>
-                <input type="text" id="precio" name="precio">
+                <input type="number" id="precio" name="precio" min="0" max="10" required>
             </div>
     
             <!-- Botón de publicar -->
@@ -170,8 +172,8 @@
         </div>
     </div>
     <script>
-        const tipoComponent = document.getElementById("tipo");
-        const expansion = document.getElementById("collectionType");
+        const tipoComponent = document.getElementById("tipo-articulo");
+        const expansion = document.getElementById("expansion");
         const expansionesDiv = document.getElementById("expansiones");
         const calidadStockDiv = document.getElementById("CalidadStock");
         const inputURL = document.getElementById("url");
@@ -179,11 +181,15 @@
         expansiones = [];
 
         inputURL.addEventListener("change", function(){
-            cargarimg()
+            cargarimg(inputURL.value)
         });
+
+        inputURL.onpaste = function(event){
+            cargarimg(event.clipboardData.getData('text/plain'));
+        };
         function tipo(){
             multipleExpansion = tipoComponent.value=="Carta";
-            expansion.value = "Expansiones";
+            expansion.value = "";
             if(!multipleExpansion){
                 expansionesDiv.innerHTML = "";
                 expansiones = [];
@@ -193,7 +199,7 @@
         function addExpansion(){
             if(multipleExpansion){
                 valor = [expansion.value,expansion.options[expansion.selectedIndex].text];
-                if(valor[1] != "Expansiones" && !expansiones.some(e=> e[0]==valor[0])){
+                if(valor[1] != "" && !expansiones.some(e=> e[0]==valor[0])){
                     expansiones.push(valor);
                 }
                 cargarExpansiones();
@@ -215,10 +221,13 @@
         function calidadStock(){
             calidadStockDiv.innerHTML = "";
             if(multipleExpansion){
+                const label =document.createElement("label");
+                label. textContent = "Calidad";
+                calidadStockDiv.appendChild(label);
                 const select = document.createElement("select");
                 select.name = "calidad";
                 calidadStockDiv.appendChild(select);
-                var calidades = ['Calidades','Comun', 'Poco Comun', 'Rara', 'Holo Rara', 'Rara Inversa', 'Rara Ultra', 'Full Art', 'Secreta', 'Arcoiris', 'Dorada'];
+                var calidades = ['','Comun', 'Poco Comun', 'Rara', 'Holo Rara', 'Rara Inversa', 'Rara Ultra', 'Full Art', 'Secreta', 'Arcoiris', 'Dorada'];
                 calidades.forEach(calidad=>{
                     const option =document.createElement("option");
                     option.textContent = calidad;
@@ -226,9 +235,14 @@
                     select.appendChild(option);
                 });
             }else{
+                const label =document.createElement("label");
+                label. textContent = "Stock";
+                calidadStockDiv.appendChild(label);
                 const input =document.createElement("input");
                 input.type = "number";
-                input.placeholder = "Stock"
+                input.min = 1;
+                input.max = 20;
+                input.required = true;
                 calidadStockDiv.appendChild(input);
             }
             
@@ -239,13 +253,15 @@
             // alert(expansiones.length);
             // alert(expansiones.length != item+1);
             // expansiones.length != item+1? expansiones.splice(item, 1):expansiones.pop();
+            if(expansiones[item][0] == expansion.value){
+                expansion.value = "";
+            }
             expansiones.splice(item, 1);
             cargarExpansiones();
         }
 
-        function cargarimg(){
-            alert("asas")
-            document.getElementById("imagen").src = inputURL.value; 
+        function cargarimg(value){
+            document.getElementById("imagen").src = value; 
         }
         calidadStock()
     </script>

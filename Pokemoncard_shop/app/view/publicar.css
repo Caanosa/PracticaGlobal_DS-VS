@@ -79,15 +79,15 @@ nav ul li a:hover {
     width: 14vw;
 }
 .image-placeholder {
-    width: 250px;
     height: 250px;
-    border: 2px solid #007BFF;
+    width: 100%;
+    background: #f4f4f4;
+    border: 1px dashed #ccc;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #e0e0e0;
-    color: #555;
-    font-size: 18px;
+    font-size: 14px;
+    color: #888;
     object-fit: contain;
 }
 
@@ -119,13 +119,15 @@ nav ul li a:hover {
 }
 #expansiones{
     display: flex; 
-    gap: 15px;
+    flex-wrap: wrap;
+    gap: 0px 15px;
 }
 .expansionUnica{
     border-radius: 10px;
     color: white;
     background-color: #333;
     padding: 10px;
+    margin-bottom: 0px;
 }
 
 .expansionUnica:hover{
@@ -163,7 +165,7 @@ nav ul li a:hover {
     font-size: 14px;
 }
 
-.form-group input[type="text"],
+.form-group input,
 .form-group select,
 .form-group textarea {
     padding: 10px;
@@ -192,15 +194,10 @@ nav ul li a:hover {
     background-color: #a065d3;
 }
 
-.preview {
-    height: 250px;
-    width: 100%;
-    background: #f4f4f4;
-    border: 1px dashed #ccc;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-    color: #888;
+#descripcion{
+    resize:none
 }
+
+
+
 
