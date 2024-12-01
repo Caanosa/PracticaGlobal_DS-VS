@@ -23,13 +23,102 @@
         </nav>
     </header>
     <div class="divTexto">
+        <form class="form-container">
+            <h2>Publicar Artículo</h2>
+            
+            <!-- URL -->
+            <div class="form-group">
+                <label for="url">URL</label>
+                <input type="text" id="url" name="url" >
+            </div>
+    
+            <!-- Nombre -->
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre">
+            </div>
+    
+            <!-- Imagen de vista previa -->
+            <div class="form-group">
+                <label>Vista previa</label>
+                <div class="preview"><img class="image-placeholder" id="imagen"></div>
+            </div>
+    
+            <!-- Descripción (Al lado de la Vista previa) -->
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <textarea id="descripcion" name="descripcion" rows="10"></textarea>
+            </div>
+    
+            <!-- Tipo de artículo -->
+            <div class="form-group">
+                <label for="tipo-articulo">Tipo de Artículo</label>
+                <select id="tipo-articulo" name="tipo-articulo">
+                    <option valu="Pack">Pack</option>
+                    <option valu="Sobre">Sobre</option>
+                    <option valu="Carta">Carta</option>
+                </select>
+            </div>
+    
+            <!-- Expansión -->
+            <div class="form-group">
+                <label for="expansion">Expansión</label>
+                <select id="expansion" name="expansion">
+                    <?php
+                        require_once "../../app/controller/FiltroController.php";
+                        $filtroController = new FiltroController();
+
+                        $filtros = $filtroController->getAllFiltros();
+                        foreach ($filtros as $filtro) {
+                            echo "<option value='".$filtro["filtro_id"]."' ".(isset($expansion) && $expansion == $filtro["filtro_id"]?'selected':'').">".$filtro["nombre_filtro"]."</option>";
+                        }
+                    ?>
+                </select>
+            </div>
+    
+            <!-- Idioma -->
+            <div class="form-group">
+                <label for="idioma">Idioma</label>
+                <select id="idioma" name="idioma">
+                    <?php
+                        require_once "../../app/controller/IdiomaController.php";
+                        $idiomaController = new IdiomaController();
+
+                        $idiomas = $idiomaController->getAllIdiomas();
+
+                        foreach ($idiomas as $idioma) {
+                            echo "<option value='".$idioma["idioma_id"]."' ".(isset($idiomasSelect) && $idiomasSelect == $idioma["idioma_id"]?'selected':'').">".$idioma["nombre_idioma"]."</option>";
+                        }
+                    ?>
+                </select>
+            </div>
+    
+            <!-- Stock -->
+            <div class="form-group">
+                <label for="stock">Stock</label>
+                <input type="text" id="stock" name="stock" placeholder="Ej: 10 unidades">
+            </div>
+    
+            <!-- Precio -->
+            <div class="form-group">
+                <label for="precio">Precio</label>
+                <input type="text" id="precio" name="precio">
+            </div>
+    
+            <!-- Botón de publicar -->
+            <div class="form-group">
+                <button type="submit">Publicar</button>
+            </div>
+        </form>
+    </div>
+    <div class="divTexto">
         <div class="container">
             <div class="image-section">
                 <div class="dos_elemetos">
                     <input id="imagenURL" type="text" placeholder="URL">
                     <button onclick="cargarimg()">Cargar</button>
                 </div>
-                <img class="image-placeholder" id="imagen">
+                
             </div>
             <div class="form-section">
                 <input type="text" placeholder="nombre" >
@@ -85,8 +174,13 @@
         const expansion = document.getElementById("collectionType");
         const expansionesDiv = document.getElementById("expansiones");
         const calidadStockDiv = document.getElementById("CalidadStock");
+        const inputURL = document.getElementById("url");
         multipleExpansion = false;
         expansiones = [];
+
+        inputURL.addEventListener("change", function(){
+            cargarimg()
+        });
         function tipo(){
             multipleExpansion = tipoComponent.value=="Carta";
             expansion.value = "Expansiones";
@@ -150,7 +244,8 @@
         }
 
         function cargarimg(){
-            document.getElementById("imagen").src = document.getElementById("imagenURL").value; 
+            alert("asas")
+            document.getElementById("imagen").src = inputURL.value; 
         }
         calidadStock()
     </script>

@@ -1,0 +1,324 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Mejorado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #a065d3, #6c2fc8);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background: #fff;
+            color: #333;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            padding: 20px 30px;
+            width: 700px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-container h2 {
+            grid-column: span 2;
+            text-align: center;
+            color: #6c2fc8;
+            margin-bottom: 10px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .form-group input[type="text"],
+        .form-group select,
+        .form-group textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .form-group input[type="file"] {
+            border: none;
+        }
+
+        .form-group button {
+            grid-column: span 2;
+            padding: 10px;
+            background-color: #6c2fc8;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-group button:hover {
+            background-color: #a065d3;
+        }
+
+        .preview {
+            height: 150px;
+            width: 100%;
+            background: #f4f4f4;
+            border: 1px dashed #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Publicar Artículo</h2>
+        
+
+        <div class="form-group" style="grid-column: span 2;">
+            <label for="url">URL</label>
+            <input type="text" id="url" name="url">
+        </div>
+
+        <div class="form-group">
+            <label>Vista previa</label>
+            <div class="preview">Imagen aquí</div>
+        </div>
+
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre">
+        </div>
+
+        <div class="form-group" style="grid-column: span 2;">
+            <label for="descripcion">Descripción</label>
+            <textarea id="descripcion" name="descripcion" rows="3"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="tipo-articulo">Tipo de Artículo</label>
+            <select id="tipo-articulo" name="tipo-articulo">
+                <option value="juegos">Juegos</option>
+                <option value="accesorios">Accesorios</option>
+                <option value="otro">Otro</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="expansion">Expansión</label>
+            <select id="expansion" name="expansion">
+                <option value="expansion1">Expansión 1</option>
+                <option value="expansion2">Expansión 2</option>
+                <option value="otro">Otro</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="idioma">Idioma</label>
+            <select id="idioma" name="idioma">
+                <option value="español">Español</option>
+                <option value="ingles">Inglés</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="stock">Stock</label>
+            <input type="text" id="stock" name="stock" placeholder="Ej: 10 unidades">
+        </div>
+
+        <div class="form-group">
+            <label for="precio">Precio</label>
+            <input type="text" id="precio" name="precio">
+        </div>
+
+        <div class="form-group">
+            <button type="submit">Publicar</button>
+        </div>
+    </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Mejorado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #a065d3, #6c2fc8);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background: #fff;
+            color: #333;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            padding: 20px 30px;
+            width: 800px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-container h2 {
+            grid-column: span 2;
+            text-align: center;
+            color: #6c2fc8;
+            margin-bottom: 10px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .form-group input[type="text"],
+        .form-group select,
+        .form-group textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .form-group input[type="file"] {
+            border: none;
+        }
+
+        .form-group button {
+            grid-column: span 2;
+            padding: 10px;
+            background-color: #6c2fc8;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-group button:hover {
+            background-color: #a065d3;
+        }
+
+        .preview {
+            height: 250px;
+            width: 100%;
+            background: #f4f4f4;
+            border: 1px dashed #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <form class="form-container">
+        <h2>Publicar Artículo</h2>
+        
+        <!-- URL -->
+        <div class="form-group">
+            <label for="url">URL</label>
+            <input type="text" id="url" name="url">
+        </div>
+
+        <!-- Nombre -->
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre">
+        </div>
+
+        <!-- Imagen de vista previa -->
+        <div class="form-group">
+            <label>Vista previa</label>
+            <div class="preview">Imagen aquí</div>
+        </div>
+
+        <!-- Descripción (Al lado de la Vista previa) -->
+        <div class="form-group">
+            <label for="descripcion">Descripción</label>
+            <textarea id="descripcion" name="descripcion" rows="10"></textarea>
+        </div>
+
+        <!-- Tipo de artículo -->
+        <div class="form-group">
+            <label for="tipo-articulo">Tipo de Artículo</label>
+            <select id="tipo-articulo" name="tipo-articulo">
+                <option value="juegos">Juegos</option>
+                <option value="accesorios">Accesorios</option>
+                <option value="otro">Otro</option>
+            </select>
+        </div>
+
+        <!-- Expansión -->
+        <div class="form-group">
+            <label for="expansion">Expansión</label>
+            <select id="expansion" name="expansion">
+                <option value="expansion1">Expansión 1</option>
+                <option value="expansion2">Expansión 2</option>
+                <option value="otro">Otro</option>
+            </select>
+        </div>
+
+        <!-- Idioma -->
+        <div class="form-group">
+            <label for="idioma">Idioma</label>
+            <select id="idioma" name="idioma">
+                <option value="español">Español</option>
+                <option value="ingles">Inglés</option>
+            </select>
+        </div>
+
+        <!-- Stock -->
+        <div class="form-group">
+            <label for="stock">Stock</label>
+            <input type="text" id="stock" name="stock" placeholder="Ej: 10 unidades">
+        </div>
+
+        <!-- Precio -->
+        <div class="form-group">
+            <label for="precio">Precio</label>
+            <input type="text" id="precio" name="precio">
+        </div>
+
+        <!-- Botón de publicar -->
+        <div class="form-group">
+            <button type="submit">Publicar</button>
+        </div>
+    </form>
+</body>
+</html>
