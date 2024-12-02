@@ -42,7 +42,7 @@
         static function getAllProductos(){
             try{
                 $conn = getDbConnection();
-                $query = $conn->query("Select * from productos NATURAL JOIN idioma ORDER BY fecha_agregado DESC");
+                $query = $conn->query("Select * from productos NATURAL JOIN idioma WHERE stock != 0 ORDER BY fecha_agregado DESC");
                 $result = $query->fetchAll(PDO::FETCH_ASSOC);
                 return $result;
             }catch(Exception $e){
@@ -58,7 +58,7 @@
 
                 try{
                     $conn = getDbConnection();
-                    $query = $conn->query("Select * from productos WHERE precio >= $min and precio <= $max $expansion $tipos $categorias $idioma ORDER BY fecha_agregado DESC");
+                    $query = $conn->query("Select * from productos WHERE stock != 0 and precio >= $min and precio <= $max $expansion $tipos $categorias $idioma ORDER BY fecha_agregado DESC");
                     $result = $query->fetchAll(PDO::FETCH_ASSOC);
                     return $result;
                 }catch(Exception $e){

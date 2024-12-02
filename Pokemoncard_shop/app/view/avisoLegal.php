@@ -15,7 +15,7 @@
         $usuarioController = new UsuarioController();
     ?>
     <header>
-        <img class="img-logo" src="/app/view/imagenes/image.png" alt="logo">
+        <a href="http://pokemoncardshop.com"><img class="img-logo" src="/app/view/imagenes/image.png" alt="logo"></a>
         <nav>
             <ul>
                 <li><a href="http://pokemoncardshop.com">Inicio</a></li>

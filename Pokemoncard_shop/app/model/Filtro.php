@@ -7,7 +7,7 @@
         static function getAllFiltros(){
             try{
                 $conn = getDbConnection();
-                $query = $conn->query("Select * from filtros");
+                $query = $conn->query("Select * from filtros ORDER BY nombre_filtro");
                 $result = $query->fetchAll(PDO::FETCH_ASSOC);
                 return $result;
             }catch(Exception $e){

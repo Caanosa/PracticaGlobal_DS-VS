@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="contenedor-registro">
-        <img src="/app/view/imagenes/PokemonCard_shop_LOGO.png" alt="logo">
+        <a href="http://pokemoncardshop.com"><img src="/app/view/imagenes/PokemonCard_shop_LOGO.png" alt="logo"></a>
         <div class="registro-div">
             <form id="registroForm" onsubmit="return validarFormulario(event)" method="POST">
               <p class="tituloRegistro">Registro</p>

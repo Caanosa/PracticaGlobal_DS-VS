@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="contenedor-login">
-        <img src="/app/view/imagenes/PokemonCard_shop_LOGO.png" alt="logo">
+        <a href="http://pokemoncardshop.com"><img src="/app/view/imagenes/PokemonCard_shop_LOGO.png" alt="logo"></a>
         <div class="login-div">
             <form  method="POST">
               <p class="tituloLogin">Iniciar sesión</p>

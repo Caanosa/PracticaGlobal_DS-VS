@@ -43,22 +43,10 @@
                 $marcarController->crear($expansionId,$idPr);
             }
             header('Location: /app/view/tienda.php');
-
-            // $userdata = $usuarioController->crearUsuario($campoNombreSaneado, $campoEmailSaneado, $campoContrasenaSaneado);
-            // if($userdata){
-            //     $usuarioController->guardarEnSesion($userdata[0]["usuario_id"],$userdata[0]["nombre"]);
-            //     
-            // }else{
-            //     echo ("<script>
-            //     var errorMensage = document.getElementById('error-mensage');
-            //     errorMensage.textContent = 'Ya existe un usuario con este correo o nombre';
-            //     </script>");
-            // }
-
         }
     ?>
     <header>
-        <img class="img-logo" src="/app/view/imagenes/image.png" alt="logo">
+        <a href="http://pokemoncardshop.com"><img class="img-logo" src="/app/view/imagenes/image.png" alt="logo"></a>
         <nav>
             <ul>
                 <li><a href="http://pokemoncardshop.com">Inicio</a></li>
