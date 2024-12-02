@@ -119,6 +119,19 @@
                 }
         }
 
+        static function recuperarPorId($id){
+                try{
+                        $conn = getDbConnection();
+                        $sentencia = $conn->prepare("SELECT * FROM `productos` NATURAL JOIN idioma WHERE producto_id = ? ");
+                        $sentencia->bindParam(1, $id);
+                        $sentencia->execute();
+                        $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+                        return $result;
+                }catch(Exception $e){
+                        echo "Error".$e->getMessage();
+                }
+        }
+
 
 
 

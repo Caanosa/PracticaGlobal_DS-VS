@@ -53,6 +53,10 @@
             }
         }
 
+        public function recuperarPorId($id){
+            return Productos::recuperarPorId($id);
+        }
+
         
     }
 ?>

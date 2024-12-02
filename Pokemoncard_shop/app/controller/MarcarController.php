@@ -7,5 +7,9 @@
             $marcar->setProducto_id($procuto_id);
             $marcar->crear();
         }
+
+        public function recuperarPorId($id){
+           return Marcar::recuperarPorId($id);
+        }
     }
 ?>
