@@ -138,7 +138,7 @@
             <!-- Precio -->
             <div class="form-group">
                 <label for="precio">Precio</label>
-                <input type="number" id="precio" name="precio" min="0" max="100000000" required>
+                <input type="number" id="precio" name="precio" min="0" max="100000000" required step="0.01">
             </div>
     
             <!-- Botón de publicar -->
@@ -147,64 +147,6 @@
             </div>
         </form>
     </div>
-    <!-- <div class="divTexto">
-        <div class="container">
-            <div class="image-section">
-                <div class="dos_elemetos">
-                    <input id="imagenURL" type="text" placeholder="URL">
-                    <button onclick="cargarimg()">Cargar</button>
-                </div>
-                
-            </div>
-            <div class="form-section">
-                <input type="text" placeholder="nombre" >
-                <textarea placeholder="Descripcion"></textarea>
-                <div class="dos_elementos">
-                    <select id="tipo" onchange="tipo()">
-                        <option>Tipo de articulo</option>
-                        <option valu="Pack">Pack</option>
-                        <option valu="Sobre">Sobre</option>
-                        <option valu="Carta">Carta</option>
-                    </select>
-                    <select id="collectionType" name="expansion" onchange="addExpansion()">
-                        <option>Expansiones</option>
-                        <?php
-                            require_once "../../app/controller/FiltroController.php";
-                            $filtroController = new FiltroController();
-
-                            $filtros = $filtroController->getAllFiltros();
-                            foreach ($filtros as $filtro) {
-                                echo "<option value='".$filtro["filtro_id"]."' ".(isset($expansion) && $expansion == $filtro["filtro_id"]?'selected':'').">".$filtro["nombre_filtro"]."</option>";
-                            }
-                        ?>
-                    </select>
-                </div>
-                <div id="expansiones">
-
-                </div>
-                <div class="dos_elementos">
-                    <select id="language" name="idioma">
-                        <?php
-                            require_once "../../app/controller/IdiomaController.php";
-                            $idiomaController = new IdiomaController();
-
-                            $idiomas = $idiomaController->getAllIdiomas();
-
-                            foreach ($idiomas as $idioma) {
-                                echo "<option value='".$idioma["idioma_id"]."' ".(isset($idiomasSelect) && $idiomasSelect == $idioma["idioma_id"]?'selected':'').">".$idioma["nombre_idioma"]."</option>";
-                            }
-                        ?>
-                    </select>
-                    <div id="CalidadStock">
-                        
-                    </div>
-                </div>
-                
-                <input type="text" placeholder="Precio">
-                <button class="publish-button">Publicar</button>
-            </div>
-        </div>
-    </div> -->
     <script>
         const tipoComponent = document.getElementById("tipo-articulo");
         const expansion = document.getElementById("expansion");
@@ -300,10 +242,6 @@
         }
 
         function eleiminar(item){
-            // alert(item);
-            // alert(expansiones.length);
-            // alert(expansiones.length != item+1);
-            // expansiones.length != item+1? expansiones.splice(item, 1):expansiones.pop();
             if(expansiones[item][0] == expansion.value){
                 expansion.value = "";
             }
