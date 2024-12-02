@@ -104,23 +104,10 @@ nav ul li a:hover {
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
-    animation-duration: 0.3s;
-    animation-name: disminuir;
     transform: scale(1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-@keyframes disminuir {
-    from {
-        box-shadow: 0.3px 0.3vw 0.5vw black;
-        transform: scale(1.1);
-        
-    }
-  
-    to {
-        box-shadow: 0px 0vw 0vw black;
-        transform: scale(1);
-    }
-}
 
 .image-options div div {
     justify-content: center;
@@ -134,22 +121,8 @@ nav ul li a:hover {
 }
 
 .image-options img:hover {
-    animation-duration: 0.3s;
-    animation-name: aumento2;
     transform: scale(1.1);
     box-shadow: 0.3px 0.3vw 0.5vw black;
-}
-
-@keyframes aumento2 {
-    from {
-        box-shadow: 0px 0vw 0vw black;
-        transform: scale(1);
-    }
-  
-    to {
-        box-shadow: 0.3px 0.3vw 0.5vw black;
-        transform: scale(1.1);
-    }
 }
 
 .close {
@@ -343,6 +316,7 @@ form, .editar{
     justify-content: center;
     font-size: 1vw;
     color: #333;
+    transition: transform 0.3s ease;
 }
 
 .info-galeria-item{
@@ -378,8 +352,6 @@ form, .editar{
     border-radius: 1vw;
 }
 .galeria-item:hover {
-    animation-duration: 0.3s;
-    animation-name: aumento;
     transform: scale(1.05);
 }
 
@@ -397,13 +369,3 @@ form, .editar{
     width: 16vw;
     height: 21vw;
 } */
-
-@keyframes aumento {
-    from {
-        transform: scale(1);
-    }
-  
-    to {
-        transform: scale(1.05);
-    }
-}

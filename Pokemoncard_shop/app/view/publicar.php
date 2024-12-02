@@ -8,22 +8,69 @@
     <link rel="stylesheet" href="/app/view/publicar.css">
 </head>
 <body>
-<header>
-        <img class="img-logo" src="imagenes/image.png" alt="logo">
+    <?php
+        require_once "../../app/controller/UsuarioController.php";
+        require_once "../../app/controller/ProductoController.php";
+        require_once "../../app/controller/MarcarController.php";
+        $usuarioController = new UsuarioController();
+        $productoController = new ProductoController();
+        $marcarController = new MarcarController();
+        session_start();
+        if ($usuarioController->getUSesion() == null) {
+            header('Location: /app/view/login.php');
+        }
+
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            $campoUrlSaneado = htmlspecialchars(($_POST["url"]));
+            $campoNombreSaneado = htmlspecialchars(($_POST["nombre"]));
+            $campoDescripcionSaneado = htmlspecialchars($_POST["descripcion"]);
+            $tipoArticulo = $_POST["tipo-articulo"];
+            $idioma = $_POST["idioma"];
+            $precio = $_POST["precio"];
+            $expansiones;
+            $stock = 1;
+            $caldad = null;
+            if($tipoArticulo == "Carta"){
+                $expansiones = explode(",",$_POST["Expansiones"]);
+                $caldad = $_POST["calidad"];
+            }else{
+                $expansiones = [$_POST["expansion"]];
+                $stock = $_POST["Stock"];
+            }
+            $idPr = $productoController->crearProducto($usuarioController->getUSesion()[0], $idioma, $campoNombreSaneado, $campoDescripcionSaneado, $precio,$stock, $caldad, $tipoArticulo, $campoUrlSaneado);
+    
+            foreach($expansiones as $expansionId){
+                $marcarController->crear($expansionId,$idPr);
+            }
+            header('Location: /app/view/tienda.php');
+
+            // $userdata = $usuarioController->crearUsuario($campoNombreSaneado, $campoEmailSaneado, $campoContrasenaSaneado);
+            // if($userdata){
+            //     $usuarioController->guardarEnSesion($userdata[0]["usuario_id"],$userdata[0]["nombre"]);
+            //     
+            // }else{
+            //     echo ("<script>
+            //     var errorMensage = document.getElementById('error-mensage');
+            //     errorMensage.textContent = 'Ya existe un usuario con este correo o nombre';
+            //     </script>");
+            // }
+
+        }
+    ?>
+    <header>
+        <img class="img-logo" src="/app/view/imagenes/image.png" alt="logo">
         <nav>
             <ul>
-
-                <li><a href="inicio.php">Inicio</a></li>
-                <li><a href="deseados.php">Deseados</a></li>
-                <li><a href="tienda.php">Tienda</a></li>
-                <li><a href="publicar.php">Publicar</a></li>
-                <li><a href="cuenta.php">Cuenta</a></li>
-
+                <li><a href="http://pokemoncardshop.com">Inicio</a></li>
+                <li><a href="/app/view/deseados.php">Deseados</a></li>
+                <li><a href="/app/view/tienda.php">Tienda</a></li>
+                <li><a href="/app/view/publicar.php">Publicar</a></li>
+                <li><a href="/app/view/cuenta.php"><?php echo $usuarioController->getUSesion()[1] ?></a></li>
             </ul>
         </nav>
     </header>
     <div class="divTexto">
-        <form class="form-container">
+        <form class="form-container" method="POST">
             <h2>Publicar Artículo</h2>
             
             <!-- URL -->
@@ -41,7 +88,7 @@
             <!-- Imagen de vista previa -->
             <div class="form-group">
                 <label>Vista previa</label>
-                <img class="image-placeholder" id="imagen">
+                <img class="image-placeholder" id="imagen" onerror="errorImagen()">
             </div>
     
             <!-- Descripción (Al lado de la Vista previa) -->
@@ -63,8 +110,8 @@
             <!-- Expansión -->
             <div class="form-group">
                 <label for="expansion">Expansión</label>
-                <select id="expansion" name="expansion" onchange="addExpansion()">
-                    <option></option>
+                <select id="expansion" name="expansion" onchange="addExpansion()" required>
+                    <option value="" selected disabled>Seleccioana una expansión</option>
                     <?php
                         require_once "../../app/controller/FiltroController.php";
                         $filtroController = new FiltroController();
@@ -100,11 +147,10 @@
             <!-- Stock/Categoria -->
             <div class="form-group"  id="CalidadStock">
             </div>
-    
             <!-- Precio -->
             <div class="form-group">
                 <label for="precio">Precio</label>
-                <input type="number" id="precio" name="precio" min="0" max="10" required>
+                <input type="number" id="precio" name="precio" min="0" max="100000000" required>
             </div>
     
             <!-- Botón de publicar -->
@@ -113,7 +159,7 @@
             </div>
         </form>
     </div>
-    <div class="divTexto">
+    <!-- <div class="divTexto">
         <div class="container">
             <div class="image-section">
                 <div class="dos_elemetos">
@@ -170,7 +216,7 @@
                 <button class="publish-button">Publicar</button>
             </div>
         </div>
-    </div>
+    </div> -->
     <script>
         const tipoComponent = document.getElementById("tipo-articulo");
         const expansion = document.getElementById("expansion");
@@ -190,6 +236,7 @@
         function tipo(){
             multipleExpansion = tipoComponent.value=="Carta";
             expansion.value = "";
+            expansion.required = true;
             if(!multipleExpansion){
                 expansionesDiv.innerHTML = "";
                 expansiones = [];
@@ -200,6 +247,7 @@
             if(multipleExpansion){
                 valor = [expansion.value,expansion.options[expansion.selectedIndex].text];
                 if(valor[1] != "" && !expansiones.some(e=> e[0]==valor[0])){
+                    expansion.required = false;
                     expansiones.push(valor);
                 }
                 cargarExpansiones();
@@ -209,13 +257,20 @@
 
         function cargarExpansiones(){
             expansionesDiv.innerHTML = "";
+            var expansionesHiden = "";
             for (let i = 0; i < expansiones.length; i++) {
-                    const p = document.createElement("p");
-                    p.classList.add("expansionUnica");
-                    p.textContent = expansiones[i][1];
-                    p.onclick = function() {eleiminar(i)};
-                    expansionesDiv.appendChild(p);
-                }
+                expansionesHiden +=  (i==0?"":",")+expansiones[i][0]; 
+                const p = document.createElement("p");
+                p.classList.add("expansionUnica");
+                p.textContent = expansiones[i][1];
+                p.onclick = function() {eleiminar(i)};
+                expansionesDiv.appendChild(p);
+            }
+            const input =document.createElement("input");
+            input.type = "hidden";
+            input.name = "Expansiones";
+            input.value = expansionesHiden;
+            expansionesDiv.appendChild(input);
         }
 
         function calidadStock(){
@@ -226,8 +281,15 @@
                 calidadStockDiv.appendChild(label);
                 const select = document.createElement("select");
                 select.name = "calidad";
+                select.required = true;
                 calidadStockDiv.appendChild(select);
-                var calidades = ['','Comun', 'Poco Comun', 'Rara', 'Holo Rara', 'Rara Inversa', 'Rara Ultra', 'Full Art', 'Secreta', 'Arcoiris', 'Dorada'];
+                const option1 =document.createElement("option");
+                option1.textContent = "Seleccioana una calidad";
+                option1.value = "";
+                option1.selected = true;
+                option1.disabled = true;
+                select.appendChild(option1);
+                var calidades = ['Comun', 'Poco Comun', 'Rara', 'Holo Rara', 'Rara Inversa', 'Rara Ultra', 'Full Art', 'Secreta', 'Arcoiris', 'Dorada'];
                 calidades.forEach(calidad=>{
                     const option =document.createElement("option");
                     option.textContent = calidad;
@@ -240,6 +302,7 @@
                 calidadStockDiv.appendChild(label);
                 const input =document.createElement("input");
                 input.type = "number";
+                input.name = "Stock";
                 input.min = 1;
                 input.max = 20;
                 input.required = true;
@@ -257,13 +320,36 @@
                 expansion.value = "";
             }
             expansiones.splice(item, 1);
+            if(expansiones.length == 0){
+                expansion.required = true;
+            }
+
             cargarExpansiones();
         }
 
         function cargarimg(value){
+            document.getElementById("imagen").style.objectFit = "contain";
             document.getElementById("imagen").src = value; 
+        }
+
+        function errorImagen(){
+            inputURL.value = "";
+            document.getElementById("imagen").style.objectFit = "cover";
+            document.getElementById("imagen").src = "/app/view/imagenes/fallo_imagen1.png";
         }
         calidadStock()
     </script>
 </body>
+<footer class="footer">
+        <div class="copyright">
+            <a href="http://pokemoncardshop.com">Copyright © 2024 PokemonCard_shop</a>
+        </div>
+        <div>
+            <a href="avisoLegal.php">Aviso legal</a> |
+            <a href="privacidad.php">Política de privacidad</a> |
+            <a href="coockies.php">Política de Cookies</a> |
+            <a href="envios.php">Política de envíos</a> |
+            <a href="reembolso.php">Política de reembolso</a>
+        </div>
+</footer>
 </html>

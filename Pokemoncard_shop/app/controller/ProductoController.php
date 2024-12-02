@@ -21,7 +21,7 @@
             $nuevoProducto->setCategoria($categoria);
             $nuevoProducto->setTipo($tipo);
             $nuevoProducto->setImagen_url($imagen_url);
-            $nuevoProducto->create();
+            return $nuevoProducto->create();
         }
 
         public function recuperarLikes($id){
