@@ -68,6 +68,7 @@ nav ul li a:hover {
     justify-content: center;
     font-size: 1vw;
     color: #333;
+    transition: transform 0.3s ease;
 }
 
 .info-galeria-item{
@@ -103,8 +104,6 @@ nav ul li a:hover {
     border-radius: 1vw;
 }
 .galeria-item:hover {
-    animation-duration: 0.3s;
-    animation-name: aumento;
     transform: scale(1.05);
 }
 
@@ -122,16 +121,6 @@ nav ul li a:hover {
     width: 16vw;
     height: 21vw;
 } */
-
-@keyframes aumento {
-    from {
-        transform: scale(1);
-    }
-  
-    to {
-        transform: scale(1.05);
-    }
-}
 .pagination {
     margin-top: 2vw;
     margin-bottom: 2vw;

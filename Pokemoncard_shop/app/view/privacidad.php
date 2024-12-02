@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aviso legal</title>
+    <title>PokémonCS - Privacidad</title>
+    <link rel="icon" href="/app/view/imagenes/logo_ventana3.png">
     <link rel="stylesheet" href="/app/view/enlacesFooter.css">
 </head>
 
@@ -14,10 +15,10 @@
         $usuarioController = new UsuarioController();
     ?>
     <header>
-        <img class="img-logo" src="/app/view/imagenes/image.png" alt="logo">
+        <a href="http://pokemoncardshop.com"><img class="img-logo" src="/app/view/imagenes/image.png" alt="logo"></a>
         <nav>
             <ul>
-                <li><a href="/app/view/inicio.php">Inicio</a></li>
+                <li><a href="http://pokemoncardshop.com">Inicio</a></li>
                 <li><a href="/app/view/deseados.php">Deseados</a></li>
                 <li><a href="/app/view/tienda.php">Tienda</a></li>
                 <li><a href="/app/view/publicar.php">Publicar</a></li>
@@ -28,7 +29,7 @@
 
     <div class="divTexto">
         <h1>POLÍTICA DE PRIVACIDAD DEL SITIO WEB</h1>
-        <p><a href="/app/view/inicio.php">http://www.pokemonCard_shop.es</a></p>
+        <p><a href="http://pokemoncardshop.com">http://www.pokemonCard_shop.es</a></p>
 
         <h2>I. POLÍTICA DE PRIVACIDAD Y PROTECCIÓN DE DATOS</h2>
         <p>Respetando lo establecido en la legislación vigente, Poke Bank (en adelante, también Sitio Web) se compromete
@@ -144,7 +145,7 @@
     </div>
     <footer class="footer">
         <div class="copyright">
-            <a href="https://creatuweb.xyz/">Copyright © 2024 PokemonCard_shop</a>
+            <a href="http://pokemoncardshop.com">Copyright © 2024 PokemonCard_shop</a>
         </div>
         <div>
             <a href="/app/view/avisoLegal.php">Aviso legal</a> |

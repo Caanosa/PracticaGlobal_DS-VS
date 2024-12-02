@@ -94,14 +94,20 @@ nav ul li a:hover {
 
 .image-options {
     margin-top: 0.7vw;
+    
 }
+
+
 
 .image-options div div img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
+    transform: scale(1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 
 .image-options div div {
     justify-content: center;
@@ -116,6 +122,7 @@ nav ul li a:hover {
 
 .image-options img:hover {
     transform: scale(1.1);
+    box-shadow: 0.3px 0.3vw 0.5vw black;
 }
 
 .close {
@@ -309,6 +316,7 @@ form, .editar{
     justify-content: center;
     font-size: 1vw;
     color: #333;
+    transition: transform 0.3s ease;
 }
 
 .info-galeria-item{
@@ -344,8 +352,6 @@ form, .editar{
     border-radius: 1vw;
 }
 .galeria-item:hover {
-    animation-duration: 0.3s;
-    animation-name: aumento;
     transform: scale(1.05);
 }
 
@@ -363,13 +369,3 @@ form, .editar{
     width: 16vw;
     height: 21vw;
 } */
-
-@keyframes aumento {
-    from {
-        transform: scale(1);
-    }
-  
-    to {
-        transform: scale(1.05);
-    }
-}

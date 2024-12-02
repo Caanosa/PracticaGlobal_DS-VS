@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deseados</title>
+    <title>PokémonCS - Deseados</title>
+    <link rel="icon" href="/app/view/imagenes/logo_ventana3.png">
     <link rel="stylesheet" href="deseados.css">
 </head>
 <body>
@@ -18,10 +19,10 @@
         }
     ?>
     <header>
-        <img class="img-logo" src="/app/view/imagenes/image.png" alt="logo">
+        <a href="http://pokemoncardshop.com"><img class="img-logo" src="/app/view/imagenes/image.png" alt="logo"></a>
         <nav>
             <ul>
-                <li><a href="/app/view/inicio.php">Inicio</a></li>
+                <li><a href="http://pokemoncardshop.com">Inicio</a></li>
                 <li><a href="/app/view/deseados.php">Deseados</a></li>
                 <li><a href="/app/view/tienda.php">Tienda</a></li>
                 <li><a href="/app/view/publicar.php">Publicar</a></li>
@@ -134,7 +135,7 @@
 </body>
 <footer class="footer">
         <div class="copyright">
-            <a href="">Copyright © 2024 PokemonCard_shop</a>
+            <a href="http://pokemoncardshop.com">Copyright © 2024 PokemonCard_shop</a>
         </div>
         <div>
             <a href="avisoLegal.php">Aviso legal</a> |

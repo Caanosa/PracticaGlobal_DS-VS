@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Registro</title>
+    <title>PokémonCS - Registro</title>
+    <link rel="icon" href="/app/view/imagenes/logo_ventana3.png">
     <link rel="stylesheet" href="/app/view/registro.css">
 </head>
 <body>
     <div class="contenedor-registro">
-        <img src="/app/view/imagenes/PokemonCard_shop_LOGO.png" alt="logo">
+        <a href="http://pokemoncardshop.com"><img src="/app/view/imagenes/PokemonCard_shop_LOGO.png" alt="logo"></a>
         <div class="registro-div">
             <form id="registroForm" onsubmit="return validarFormulario(event)" method="POST">
               <p class="tituloRegistro">Registro</p>

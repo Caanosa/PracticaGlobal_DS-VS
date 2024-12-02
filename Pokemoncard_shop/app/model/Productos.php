@@ -33,6 +33,7 @@
                     $sentencia->bindParam(8, $this->tipo);
                     $sentencia->bindParam(9, $this->imagen_url);
                     $sentencia->execute();
+                    return $conn->lastInsertId();
                 }catch(Exception $e){
                     echo "Error".$e->getMessage();
                 }
@@ -41,7 +42,7 @@
         static function getAllProductos(){
             try{
                 $conn = getDbConnection();
-                $query = $conn->query("Select * from productos NATURAL JOIN idioma");
+                $query = $conn->query("Select * from productos NATURAL JOIN idioma WHERE stock != 0 ORDER BY fecha_agregado DESC");
                 $result = $query->fetchAll(PDO::FETCH_ASSOC);
                 return $result;
             }catch(Exception $e){
@@ -57,7 +58,7 @@
 
                 try{
                     $conn = getDbConnection();
-                    $query = $conn->query("Select * from productos WHERE precio >= $min and precio <= $max $expansion $tipos $categorias $idioma");
+                    $query = $conn->query("Select * from productos WHERE stock != 0 and precio >= $min and precio <= $max $expansion $tipos $categorias $idioma ORDER BY fecha_agregado DESC");
                     $result = $query->fetchAll(PDO::FETCH_ASSOC);
                     return $result;
                 }catch(Exception $e){
@@ -68,7 +69,7 @@
         static function recuperarVendidos($id){
                 try{
                         $conn = getDbConnection();
-                        $sentencia = $conn->prepare("SELECT p.producto_id as producto_id, p.nombre AS nombre, p.precio as precio, p.imagen_url AS imagen_url FROM `usuarios` as u JOIN `productos`as p ON p.usuario_id = u.usuario_id JOIN  `pedidos` AS pe ON p.producto_id = pe.producto_id WHERE u.usuario_id = ? ORDER BY pe.fecha_pedido");
+                        $sentencia = $conn->prepare("SELECT p.producto_id as producto_id, p.nombre AS nombre, p.precio as precio, p.imagen_url AS imagen_url FROM `usuarios` as u JOIN `productos`as p ON p.usuario_id = u.usuario_id JOIN  `pedidos` AS pe ON p.producto_id = pe.producto_id WHERE u.usuario_id = ? ORDER BY pe.fecha_pedido DESC");
                         $sentencia->bindParam(1, $id);
                         $sentencia->execute();
                         $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
@@ -81,7 +82,7 @@
         static function recuperarComprados($id){
                 try{
                         $conn = getDbConnection();
-                        $sentencia = $conn->prepare("SELECT p.producto_id as producto_id, p.nombre AS nombre, p.precio as precio, p.imagen_url AS imagen_url FROM `usuarios` as u JOIN  `pedidos` AS pe ON u.usuario_id = pe.usuario_id JOIN `productos`as p ON p.producto_id = pe.producto_id  WHERE u.usuario_id = ? ORDER By pe.fecha_pedido;");
+                        $sentencia = $conn->prepare("SELECT p.producto_id as producto_id, p.nombre AS nombre, p.precio as precio, p.imagen_url AS imagen_url FROM `usuarios` as u JOIN  `pedidos` AS pe ON u.usuario_id = pe.usuario_id JOIN `productos`as p ON p.producto_id = pe.producto_id  WHERE u.usuario_id = ? ORDER By pe.fecha_pedido; DESC");
                         $sentencia->bindParam(1, $id);
                         $sentencia->execute();
                         $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
@@ -95,7 +96,7 @@
         static function recuperarLikes($id){
                 try{
                         $conn = getDbConnection();
-                        $sentencia = $conn->prepare("SELECT p.producto_id as producto_id, p.nombre AS nombre, p.precio as precio, p.imagen_url AS imagen_url FROM `usuarios` as u JOIN  `me_gusta` AS m ON u.usuario_id = m.usuario_id JOIN `productos`as p ON p.producto_id = m.producto_id  WHERE u.usuario_id = ? ORDER By m.fecha_me_gusta;");
+                        $sentencia = $conn->prepare("SELECT p.producto_id as producto_id, p.nombre AS nombre, p.precio as precio, p.imagen_url AS imagen_url FROM `usuarios` as u JOIN  `me_gusta` AS m ON u.usuario_id = m.usuario_id JOIN `productos`as p ON p.producto_id = m.producto_id  WHERE u.usuario_id = ? ORDER By m.fecha_me_gusta; DESC");
                         $sentencia->bindParam(1, $id);
                         $sentencia->execute();
                         $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
@@ -108,7 +109,7 @@
         static function recuperarDeseados($id){
                 try{
                         $conn = getDbConnection();
-                        $sentencia = $conn->prepare("SELECT p.producto_id as producto_id, p.nombre AS nombre, p.precio as precio, p.imagen_url AS imagen_url FROM `usuarios` as u JOIN  `lista_deseados` AS l ON u.usuario_id = l.usuario_id JOIN `productos`as p ON p.producto_id = l.producto_id  WHERE u.usuario_id = ? ORDER By l.fecha_agregado;");
+                        $sentencia = $conn->prepare("SELECT p.producto_id as producto_id, p.nombre AS nombre, p.precio as precio, p.imagen_url AS imagen_url FROM `usuarios` as u JOIN  `lista_deseados` AS l ON u.usuario_id = l.usuario_id JOIN `productos`as p ON p.producto_id = l.producto_id  WHERE u.usuario_id = ? ORDER By l.fecha_agregado; DESC");
                         $sentencia->bindParam(1, $id);
                         $sentencia->execute();
                         $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);

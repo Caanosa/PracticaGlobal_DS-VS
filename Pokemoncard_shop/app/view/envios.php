@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aviso legal</title>
+    <title>PokémonCS - Envios</title>
+    <link rel="icon" href="/app/view/imagenes/logo_ventana3.png">
     <link rel="stylesheet" href="/app/view/enlacesFooter.css">
 </head>
 
@@ -15,10 +16,10 @@
         session_start();
     ?>
     <header>
-        <img class="img-logo" src="/app/view/imagenes/image.png" alt="logo">
+        <a href="http://pokemoncardshop.com"><img class="img-logo" src="/app/view/imagenes/image.png" alt="logo"></a>
         <nav>
             <ul>
-                <li><a href="/app/view/inicio.php">Inicio</a></li>
+                <li><a href="http://pokemoncardshop.com">Inicio</a></li>
                 <li><a href="<?php echo $usuarioController->getUSesion() != null?"/app/view/deseados.php":"/app/view/login.php"?>">Deseados</a></li>
                 <li><a href="/app/view/tienda.php">Tienda</a></li>
                 <li><a href="/app/view/publicar.php">Publicar</a></li>
@@ -58,7 +59,7 @@
     </div>
     <footer class="footer">
         <div class="copyright">
-            <a href="https://creatuweb.xyz/">Copyright © 2024 PokemonCard_shop</a>
+            <a href="http://pokemoncardshop.com">Copyright © 2024 PokemonCard_shop</a>
         </div>
         <div>
             <a href="/app/view/avisoLegal.php">Aviso legal</a> |

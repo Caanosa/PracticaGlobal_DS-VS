@@ -4,10 +4,16 @@
         private $filtro_id;
         private $producto_id;
 
-        public function __construct($marcar_id, $filtro_id, $producto_id){
-            $this->marcar_id = $marcar_id;
-            $this->filtro_id = $filtro_id;
-            $this->producto_id = $producto_id;
+        public function crear(){
+                try{
+                        $conn = getDbConnection();
+                        $sentencia = $conn->prepare("INSERT INTO `marcar`(`filtro_id`, `producto_id`) VALUES (?,?)");
+                        $sentencia->bindParam(1, $this->filtro_id);
+                        $sentencia->bindParam(2, $this->producto_id);
+                        $sentencia->execute();
+                    }catch(Exception $e){
+                        echo "Error".$e->getMessage();
+                    }
         }
 
         
