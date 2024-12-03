@@ -22,7 +22,7 @@
                 }
         } 
 
-        static function  recuperarPorId($id){
+        static function recuperarPorId($id){
                 try{
                         $conn = getDbConnection();
                         $sentencia = $conn->prepare("SELECT * FROM `pedidos` WHERE pedido_id = ?");

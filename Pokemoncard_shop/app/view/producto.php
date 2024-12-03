@@ -5,10 +5,13 @@
     require_once "../../app/controller/ProductoController.php";
     require_once "../../app/controller/MarcarController.php";
     require_once "../../app/controller/PedidoController.php";
+    require_once "../../app/controller/MeGustaController.php";
     $usuarioController = new UsuarioController();
     $productoController = new ProductoController();
     $marcarController = new MarcarController();
     $pedidoController = new PedidoController ();
+    $meGustaController = new MeGustaController ();
+
     session_start();
     if($_SERVER['REQUEST_METHOD']=='GET'&& isset($_GET['producto_id'])){
         $prodcuto = $productoController->recuperarPorId($_GET['producto_id']);
@@ -18,8 +21,13 @@
             header('Location: /app/view/tienda.php');
         }
 
-        if(isset($_GET['pedido_id'])){
-            
+        if(isset($_GET['pedido_id']) && $usuarioController->getUSesion() != null){
+            $pedido = $pedidoController->recuperarPorId($_GET['pedido_id']);
+            if($pedido[0]['usuario_id'] != $usuarioController->getUSesion()[0] && $prodcuto[0]['usuario_id'] != $usuarioController->getUSesion()[0]){
+                header('Location: /app/view/producto.php?producto_id='.$_GET['producto_id']);
+                exit;
+            }
+            $meGusta = $meGustaController->recuperarPorId($usuarioController->getUSesion()[0],$prodcuto[0]['producto_id']);
         }
     }
     if($_SERVER['REQUEST_METHOD']=='POST'){
@@ -39,6 +47,8 @@
         }else if(isset($_POST['deseados'])){
             $productoController->guardarDeseadosSesion($prodcuto[0]['producto_id'],$prodcuto[0]['nombre'],$prodcuto[0]['precio'], $prodcuto[0]['imagen_url']);
             exit;
+        }else if(isset($_POST['pedido_id'])){
+            $meGustaController->setmegusta($usuarioController->getUSesion()[0], $prodcuto[0]['producto_id']);
         }
     }
     if(!isset($prodcuto)){
@@ -56,7 +66,6 @@
     <link rel="stylesheet" href="/app/view/producto.css">
 </head>
 <body>
-
     <header>
         <a href="http://pokemoncardshop.com"><img class="img-logo" src="/app/view/imagenes/image.png" alt="logo"></a>
         <nav>
@@ -74,7 +83,7 @@
             <!-- Panel izquierdo -->
             <div class="left-panel">
                 <img src="<?=$prodcuto[0]['imagen_url']?>" alt="Vista previa del producto">
-                <button class="like-button">❤</button>
+                <?= isset($pedido)&& $pedido[0]['usuario_id'] ==$usuarioController->getUSesion()[0]?"<button class='like-button".($meGusta?"1":"2")."' onclick='realizarMeGusta()'>❤</button>":"<div class='no_like'></div>";?>
             </div>
     
             <!-- Panel derecho -->
@@ -109,9 +118,10 @@
                     <input id='cantidad' type='number' name='cantidad' value='1' min='1' max='".$prodcuto[0]['stock']."' oninput='agregarPrecio()'>":"<input type='hidden' name='cantidad' value='1'>";
                     ?>
                     
+                    <?= ($usuarioController->getUSesion() == null || $prodcuto[0]['usuario_id']!= $usuarioController->getUSesion()[0])?"<button type='button' class='wishlist-button' id='deseadosb' onclick='clickDeseados()'>AÑADIR A DESEADOS</button>":""?>
                     
                     <?=
-                        ($usuarioController->getUSesion() == null || $prodcuto[0]['usuario_id']!= $usuarioController->getUSesion()[0])&&$prodcuto[0]['stock'] !=0?"<button type='button' class='wishlist-button' id='deseadosb' onclick='clickDeseados()'>AÑADIR A DESEADOS</button>
+                        ($usuarioController->getUSesion() == null || $prodcuto[0]['usuario_id']!= $usuarioController->getUSesion()[0])&&$prodcuto[0]['stock'] !=0?"
                     <input type='hidden' name='producto_id' value='".$prodcuto[0]['producto_id']."'><button id='comprar' class='buy-button' type='submit'>COMPRAR: ".$prodcuto[0]['precio']."€</button>":"";
                     ?>
                     
@@ -151,7 +161,7 @@
             }
         }
 
-        if(deseadosb != null){
+        if(deseadosb != null && <?=$usuarioController->getUSesion() != null?"true":"false";?>){
             isDeseados();
         }
 
@@ -164,7 +174,11 @@
             ajax.open('POST', window.location.href);
             ajax.setRequestHeader("content-type", "application/x-www-form-urlencoded");
             ajax.onload = function(){
-                window.location.href = window.location.href;
+                if(<?=$usuarioController->getUSesion() == null?>){
+                    window.location.href = "/app/view/login.php";
+                }else{
+                    window.location.href = window.location.href;
+                }
             }
             ajax.send('producto_id=<?=$prodcuto[0]['producto_id'];?>&deseados=1');
         }
@@ -179,6 +193,16 @@
                 deseadosb.style.backgroundColor = "#5f5f5f";
                 //deseadosb.style.textDecoration = "none";
             }   
+        }
+
+        function realizarMeGusta(){
+            var ajax = new XMLHttpRequest();
+            ajax.open('POST', window.location.href);
+            ajax.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+            ajax.onload = function(){
+                window.location.href = window.location.href;
+            }
+            ajax.send('producto_id=<?=$prodcuto[0]['producto_id'];?>&pedido_id=<?= isset($pedido)?$pedido[0]['pedido_id']:'';?>');
         }
 
     </script>

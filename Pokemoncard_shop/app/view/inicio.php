@@ -12,7 +12,9 @@
 <body>
     <?php
         require_once "../../app/controller/UsuarioController.php";
+        require_once "../../app/controller/ProductoController.php";
         $usuarioController = new UsuarioController();
+        $productoController = new ProductoController();
         session_start();
     ?>
     <header>
@@ -38,13 +40,13 @@
         <button class="next" onclick="moveSlide(1)">&#10095;</button>
     </div>
 
-    <div class="fondo_populares">
+    <div  class="fondo_populares">
         <div class="populares">
             <p>PRODUCTOS POPULARES</p>
         </div>
 
-        <div class="productos">
-            <div class="producto">
+        <div id="deseadosDiv" class="productos">
+            <!-- <div class="producto">
                 <h4>Producto 1</h4>
                 <p>Descripción del producto 1.</p>
             </div>
@@ -55,14 +57,14 @@
             <div class="producto">
                 <h4>Producto 3</h4>
                 <p>Descripción del producto 3.</p>
-            </div>
+            </div> -->
         </div>
     </div>
 
     <div class="fondo_recientes">
         <p class="recientes">PRODUCTOS RECIENTES</p>
-        <div class="nuevos">
-            <div class="nuevo">
+        <div id="recientesDiv" class="nuevos">
+            <!-- <div class="nuevo">
                 <h4>Producto 1</h4>
                 <p>Descripción del producto 1.</p>
             </div>
@@ -73,7 +75,7 @@
             <div class="nuevo">
                 <h4>Producto 3</h4>
                 <p>Descripción del producto 3.</p>
-            </div>
+            </div> -->
         </div>
     </div>
 
@@ -101,6 +103,55 @@
 
 
     <script>
+        const deseadosDiv = document.getElementById("deseadosDiv");
+        const recientesDiv = document.getElementById("recientesDiv");
+
+        deseados = <?= json_encode($productoController->masDeseados())?>;
+        recientes = <?= json_encode($productoController->masRecientes())?>;
+
+        for (let i = 0; i < 3; i++) {
+            if(deseados.length >i){
+                cargarTargeta(deseados[i], deseadosDiv);
+            }else{
+                const div1 = document.createElement("div");
+                div1.classList.add("producto");
+                deseadosDiv.appendChild(div1);
+            }
+            if(recientes.length >i){
+                cargarTargeta(recientes[i], recientesDiv);
+            }else{
+                const div1 = document.createElement("div");
+                div1.classList.add("producto");
+                recientesDiv.appendChild(div1);
+            }
+        }
+
+        function cargarTargeta(item, galeria){
+            const aLink = document.createElement("a");
+            aLink.href = "/app/view/producto.php?producto_id="+item['producto_id'];
+            galeria.appendChild(aLink);
+            const div1 = document.createElement("div");
+            div1.classList.add("galeria-item");
+            aLink.appendChild(div1);
+            const div2 = document.createElement("div");
+            div1.appendChild(div2);
+            const imagen = document.createElement("img");
+            imagen.src = item.imagen_url;
+            imagen.classList.add("imagen-galeria");
+            div2.appendChild(imagen);
+            const div3 = document.createElement("div");
+            div3.classList.add("info-galeria-item");
+            div1.appendChild(div3);
+            const div4 = document.createElement("div");
+            div4.classList.add("nombre_producto");
+            div4.textContent = item['nombre'];
+            div3.appendChild(div4);
+            const div5 = document.createElement("div");
+            div5.classList.add("precio");
+            div5.textContent = item['precio']+"€";
+            div3.appendChild(div5);
+        }
+
         let currentIndex = 0;
 
         function showSlide(index) {

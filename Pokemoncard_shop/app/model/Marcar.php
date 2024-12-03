@@ -11,9 +11,9 @@
                         $sentencia->bindParam(1, $this->filtro_id);
                         $sentencia->bindParam(2, $this->producto_id);
                         $sentencia->execute();
-                    }catch(Exception $e){
+                }catch(Exception $e){
                         echo "Error".$e->getMessage();
-                    }
+                }
         }
 
         static function recuperarPorId($id){

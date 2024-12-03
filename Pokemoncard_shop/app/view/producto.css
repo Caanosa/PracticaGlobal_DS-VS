@@ -103,7 +103,7 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #ffffffc2;
+    background-color: #b4b4b4;
     box-shadow: inset 5px 5px 100px 60px #000000;
     border-radius:  2vw 0vw 0vw 2vw;
 }
@@ -114,9 +114,8 @@ footer {
     object-fit: contain;
 }
 
-.like-button {
+.like-button1, .like-button2 {
     font-size: 2vw;
-    color: #e64242;
     border: none;
     padding: 0px;
     background-color: transparent;
@@ -125,6 +124,26 @@ footer {
     position: relative;
     bottom: 3vw;
     left: 9vw;
+    transition: transform 0.3s ease;
+}
+
+.no_like{
+    width: 1vw;
+    height: 1.5vw;
+}
+
+.like-button1:hover, .like-button2:hover {
+    transform: scale(1.1);
+}
+
+
+.like-button1{
+    color: #e64242;
+}
+
+.like-button2{
+    color: transparent;
+    -webkit-text-stroke: 0.2vw #e64242;
 }
 
 .right-panel {

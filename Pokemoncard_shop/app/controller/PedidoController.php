@@ -13,4 +13,8 @@
 
             return $pedido->crear();
         }
+
+        function recuperarPorId($id){
+            return Pedidos::recuperarPorId($id);
+        }
     }

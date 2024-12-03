@@ -80,5 +80,13 @@
         public function cambiarStock($id, $cantidad){
             Productos::cambiarStock($id, $cantidad);
         }
+
+        public function masDeseados(){
+            return Productos::masDeseados();
+        }
+
+        public function masRecientes(){
+            return Productos::masRecientes();
+        }
     }
 ?>
