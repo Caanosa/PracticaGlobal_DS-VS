@@ -134,7 +134,7 @@
         imagenes = ["/app/view/imagenes/vamoacalmarno.jpg", "/app/view/imagenes/gengar.jpg", "/app/view/imagenes/wingull.avif",
             "/app/view/imagenes/victini.png", "/app/view/imagenes/pikachu.jpeg", "/app/view/imagenes/oshawott.png"
         ];
-        posicion = <?= $usuario[0]['num_img'];?>;
+        posicion = <?= $usuario[0]['num_img']!=null?$usuario[0]['num_img']:"null";?>;
         if(posicion!=null){
             document.getElementById("circleImage").src = imagenes[posicion - 1];
         }else{
