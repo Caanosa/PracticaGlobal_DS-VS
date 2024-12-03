@@ -174,7 +174,7 @@
             ajax.open('POST', window.location.href);
             ajax.setRequestHeader("content-type", "application/x-www-form-urlencoded");
             ajax.onload = function(){
-                if(<?=$usuarioController->getUSesion() == null?>){
+                if(<?=$usuarioController->getUSesion() == null?"true":"false"?>){
                     window.location.href = "/app/view/login.php";
                 }else{
                     window.location.href = window.location.href;
