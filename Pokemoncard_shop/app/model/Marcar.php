@@ -11,6 +11,19 @@
                         $sentencia->bindParam(1, $this->filtro_id);
                         $sentencia->bindParam(2, $this->producto_id);
                         $sentencia->execute();
+                }catch(Exception $e){
+                        echo "Error".$e->getMessage();
+                }
+        }
+
+        static function recuperarPorId($id){
+                try{
+                        $conn = getDbConnection();
+                        $sentencia = $conn->prepare("SELECT * FROM `marcar` NATURAL JOIN filtros WHERE producto_id = ?");
+                        $sentencia->bindParam(1, $id);
+                        $sentencia->execute();
+                        $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+                        return $result;
                     }catch(Exception $e){
                         echo "Error".$e->getMessage();
                     }

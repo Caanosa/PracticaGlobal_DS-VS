@@ -178,7 +178,7 @@
         const listavaciaimg = document.getElementById("lista_vacia_img");
         const listavaciatitulo = document.getElementById("lista_vacia_titulo");
         imgen_vacio = "/app/view/imagenes/no vendidos1.png";
-        titulo_vacio = "Aun so as vendido ningun producto"
+        titulo_vacio = "Aún no as vendido ningún producto"
 
         const itemsPerPage = 8;
         let currentPage = 1;
@@ -200,9 +200,12 @@
                 listavaciaimg.src = "";
                 listavaciatitulo.textContent = "";
                 currentItems.forEach(item => {
+                    const aLink = document.createElement("a");
+                    aLink.href = "/app/view/producto.php?producto_id="+item['producto_id']+"&pedido_id="+item['pedido_id'];
+                    galeria.appendChild(aLink);
                     const div1 = document.createElement("div");
                     div1.classList.add("galeria-item");
-                    galeria.appendChild(div1);
+                    aLink.appendChild(div1);
                     const div2 = document.createElement("div");
                     div1.appendChild(div2);
                     const imagen = document.createElement("img");
@@ -218,7 +221,7 @@
                     div3.appendChild(div4);
                     const div5 = document.createElement("div");
                     div5.classList.add("precio");
-                    div5.textContent = item['precio'];
+                    div5.textContent = item['precio']+"€";
                     div3.appendChild(div5);
                 });
             }
@@ -248,17 +251,17 @@
                 case 1:
                     items = vendidos;
                     imgen_vacio = "/app/view/imagenes/no vendidos1.png";
-                    titulo_vacio = "Aun so as vendido ningun producto";
+                    titulo_vacio = "Aún no as vendido ningún producto";
                     break;
                 case 2:
                     items = comprados;
                     imgen_vacio = "/app/view/imagenes/no compras.png";
-                    titulo_vacio = "Aun so as comprado ningun producto";
+                    titulo_vacio = "Aún no as comprado ningún producto";
                     break;
                 case 3:
                     items = likes;
                     imgen_vacio = "/app/view/imagenes/cero megustas.png";
-                    titulo_vacio = "Dale megusta a los productos que hayas comprado";
+                    titulo_vacio = "Dale me gusta a los productos que hayas comprado";
                     break;
             }
             currentPage = 1;

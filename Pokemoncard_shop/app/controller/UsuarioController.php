@@ -56,5 +56,9 @@
                 return false;
             }
         }
+
+        public function getFiltradoById($id){
+            return Usuario::getFiltradoById($id);
+        }
     }
 ?>

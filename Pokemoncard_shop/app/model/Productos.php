@@ -69,7 +69,7 @@
         static function recuperarVendidos($id){
                 try{
                         $conn = getDbConnection();
-                        $sentencia = $conn->prepare("SELECT p.producto_id as producto_id, p.nombre AS nombre, p.precio as precio, p.imagen_url AS imagen_url FROM `usuarios` as u JOIN `productos`as p ON p.usuario_id = u.usuario_id JOIN  `pedidos` AS pe ON p.producto_id = pe.producto_id WHERE u.usuario_id = ? ORDER BY pe.fecha_pedido DESC");
+                        $sentencia = $conn->prepare("SELECT p.producto_id as producto_id, p.nombre AS nombre, p.precio as precio, p.imagen_url AS imagen_url, pe.pedido_id AS pedido_id FROM `usuarios` as u JOIN `productos`as p ON p.usuario_id = u.usuario_id JOIN  `pedidos` AS pe ON p.producto_id = pe.producto_id WHERE u.usuario_id = ? ORDER BY pe.fecha_pedido DESC");
                         $sentencia->bindParam(1, $id);
                         $sentencia->execute();
                         $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
@@ -82,7 +82,7 @@
         static function recuperarComprados($id){
                 try{
                         $conn = getDbConnection();
-                        $sentencia = $conn->prepare("SELECT p.producto_id as producto_id, p.nombre AS nombre, p.precio as precio, p.imagen_url AS imagen_url FROM `usuarios` as u JOIN  `pedidos` AS pe ON u.usuario_id = pe.usuario_id JOIN `productos`as p ON p.producto_id = pe.producto_id  WHERE u.usuario_id = ? ORDER By pe.fecha_pedido; DESC");
+                        $sentencia = $conn->prepare("SELECT p.producto_id as producto_id, p.nombre AS nombre, p.precio as precio, p.imagen_url AS imagen_url, pe.pedido_id AS pedido_id FROM `usuarios` as u JOIN  `pedidos` AS pe ON u.usuario_id = pe.usuario_id JOIN `productos`as p ON p.producto_id = pe.producto_id  WHERE u.usuario_id = ? ORDER By pe.fecha_pedido DESC");
                         $sentencia->bindParam(1, $id);
                         $sentencia->execute();
                         $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
@@ -96,7 +96,7 @@
         static function recuperarLikes($id){
                 try{
                         $conn = getDbConnection();
-                        $sentencia = $conn->prepare("SELECT p.producto_id as producto_id, p.nombre AS nombre, p.precio as precio, p.imagen_url AS imagen_url FROM `usuarios` as u JOIN  `me_gusta` AS m ON u.usuario_id = m.usuario_id JOIN `productos`as p ON p.producto_id = m.producto_id  WHERE u.usuario_id = ? ORDER By m.fecha_me_gusta; DESC");
+                        $sentencia = $conn->prepare("SELECT p.producto_id as producto_id, p.nombre AS nombre, p.precio as precio, p.imagen_url AS imagen_url, pe.pedido_id AS pedido_id  FROM `usuarios` as u JOIN  `me_gusta` AS m ON u.usuario_id = m.usuario_id JOIN `productos`as p ON p.producto_id = m.producto_id JOIN  `pedidos` AS pe ON u.usuario_id = pe.usuario_id WHERE u.usuario_id = ? GROUP BY m.me_gusta_id ORDER By m.fecha_me_gusta DESC");
                         $sentencia->bindParam(1, $id);
                         $sentencia->execute();
                         $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
@@ -109,7 +109,7 @@
         static function recuperarDeseados($id){
                 try{
                         $conn = getDbConnection();
-                        $sentencia = $conn->prepare("SELECT p.producto_id as producto_id, p.nombre AS nombre, p.precio as precio, p.imagen_url AS imagen_url FROM `usuarios` as u JOIN  `lista_deseados` AS l ON u.usuario_id = l.usuario_id JOIN `productos`as p ON p.producto_id = l.producto_id  WHERE u.usuario_id = ? ORDER By l.fecha_agregado; DESC");
+                        $sentencia = $conn->prepare("SELECT p.producto_id as producto_id, p.nombre AS nombre, p.precio as precio, p.imagen_url AS imagen_url FROM `usuarios` as u JOIN  `lista_deseados` AS l ON u.usuario_id = l.usuario_id JOIN `productos`as p ON p.producto_id = l.producto_id  WHERE u.usuario_id = ? ORDER By l.fecha_agregado DESC");
                         $sentencia->bindParam(1, $id);
                         $sentencia->execute();
                         $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
@@ -119,7 +119,54 @@
                 }
         }
 
+        static function recuperarPorId($id){
+                try{
+                        $conn = getDbConnection();
+                        $sentencia = $conn->prepare("SELECT * FROM `productos` NATURAL JOIN idioma WHERE producto_id = ? ");
+                        $sentencia->bindParam(1, $id);
+                        $sentencia->execute();
+                        $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+                        return $result;
+                }catch(Exception $e){
+                        echo "Error".$e->getMessage();
+                }
+        }
 
+        static function cambiarStock($id, $cantidad){
+                try{
+                        $conn = getDbConnection();
+                        $sentencia = $conn->prepare("UPDATE `productos` SET `stock`= (SELECT stock FROM `productos` WHERE producto_id = ?)-? WHERE producto_id = ?");
+                        $sentencia->bindParam(1, $id);
+                        $sentencia->bindParam(2, $cantidad);
+                        $sentencia->bindParam(3, $id);
+                        $sentencia->execute();
+                }catch(Exception $e){
+                        echo "Error".$e->getMessage();
+                }
+        }
+
+        static function masDeseados(){
+                try{
+                        $conn = getDbConnection();
+                        $sentencia = $conn->prepare("SELECT p.producto_id as producto_id, p.nombre as nombre, p.precio as precio, p.imagen_url AS imagen_url, COUNT(d.producto_id) AS veces_deseado FROM productos p JOIN lista_deseados d ON p.producto_id = d.producto_id GROUP BY p.producto_id ORDER BY veces_deseado DESC LIMIT 3;");
+                        $sentencia->execute();
+                        $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+                        return $result;
+                }catch(Exception $e){
+                        echo "Error".$e->getMessage();
+                }
+        }
+
+        static function masRecientes(){
+                try{
+                        $conn = getDbConnection();
+                        $query = $conn->query("Select * from productos NATURAL JOIN idioma ORDER BY fecha_agregado DESC LIMIT 3");
+                        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                        return $result;
+                    }catch(Exception $e){
+                        echo "Error al ejecutar la query";
+                    }
+        }
 
 
 

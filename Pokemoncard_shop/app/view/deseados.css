@@ -132,7 +132,7 @@ footer {
     cursor: pointer;
 }
 
-.pagination button:disabled {
+.pagination button:disabled, .search-bar-container button:disabled, .search-bar-container button:disabled:hover{
     background-color: #888;
     cursor: not-allowed;
 }

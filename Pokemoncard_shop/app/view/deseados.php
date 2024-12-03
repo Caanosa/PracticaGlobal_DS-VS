@@ -11,11 +11,17 @@
     <?php
         require_once "../../app/controller/UsuarioController.php";
         require_once "../../app/controller/ProductoController.php";
+        require_once "../../app/controller/Lista_deseadosController.php";
         $usuarioController = new UsuarioController();
         $productoController = new ProductoController();
+        $listaDeseadosController = new ListaDeseadosController ();
         session_start();
         if ($usuarioController->getUSesion() == null) {
             header('Location: /app/view/login.php');
+        }
+
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            $listaDeseadosController->addAll($usuarioController->getUSesion()[0]);
         }
     ?>
     <header>
@@ -35,7 +41,9 @@
         <div class="search-bar-container">
             <input type="text" id="searchInput" placeholder="Buscar productos...">
             <button onclick="searchItems()">Buscar</button>
-            <button>Guardar</button>
+            <form method="POST">
+                <button type="submit" id="guardar">Guardar</button>
+            </form>
         </div>
 
         <img id="cero_deseados_img" src="" alt="">
@@ -62,7 +70,9 @@
         let currentPage = 1;
         isSearching = false;
         searchResults = [];
-        items = <?= json_encode($productoController->reuperarDseseadsoSesionConjunto()) ?>;
+        items = <?= json_encode($productoController->reuperarDseseadsoSesionConjunto()); ?>;
+        
+        document.getElementById("guardar").disabled = <?= json_encode($productoController->reuperarDseseadsoSesion()); ?>.length ==0;
 
         function renderPage(page) {
             galeria.innerHTML = "";
@@ -72,18 +82,21 @@
             const currentItems = itemsToRender.slice(start, end);
             if(items.length == 0){
                 cerodeseadosimg.src = "/app/view/imagenes/lista deseados2.png";
-                cerodeseadosh1.textContent = "Aun no tienes nada en lista de deseados";
+                cerodeseadosh1.textContent = "Aún no tienes nada en lista de deseados";
             }else{
                 if(itemsToRender.length == 0){
                     cerodeseadosimg.src = "/app/view/imagenes/fallo busqueda.png";
-                    cerodeseadosh1.textContent = "No se an encotrado resultados";
+                    cerodeseadosh1.textContent = "No se han encotrado resultados";
                 }else{
                     cerodeseadosimg.src = "";
                     cerodeseadosh1.textContent = "";
                     currentItems.forEach(item => {
+                        const aLink = document.createElement("a");
+                        aLink.href = "/app/view/producto.php?producto_id="+item['producto_id'];
+                        galeria.appendChild(aLink);
                         const div1 = document.createElement("div");
                         div1.classList.add("galeria-item");
-                        galeria.appendChild(div1);
+                        aLink.appendChild(div1);
                         const div2 = document.createElement("div");
                         div1.appendChild(div2);
                         const imagen = document.createElement("img");
@@ -99,7 +112,7 @@
                         div3.appendChild(div4);
                         const div5 = document.createElement("div");
                         div5.classList.add("precio");
-                        div5.textContent = item['precio'];
+                        div5.textContent = item['precio']+"€";
                         div3.appendChild(div5);
                     });
                 }

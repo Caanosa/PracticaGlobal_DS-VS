@@ -6,11 +6,42 @@
         private $producto_id;
         private $fecha_me_gusta;
 
-        public function __construct($me_gusta_id, $usuairo_id, $producto_id, $fecha_agregado){
-            $this->me_gusta_id = $me_gusta_id;
-            $this->usuairo_id = $usuairo_id;
-            $this->producto_id = $producto_id;
-            $this->fecha_me_gusta = $fecha_agregado;
+        public function crear(){
+                try{
+                        $conn = getDbConnection();
+                        $sentencia = $conn->prepare("INSERT INTO `me_gusta`(`usuario_id`, `producto_id`) VALUES (?,?)");
+                        $sentencia->bindParam(1, $this->usuairo_id);
+                        $sentencia->bindParam(2, $this->producto_id);
+                        $sentencia->execute();
+                }catch(Exception $e){
+                        echo "Error".$e->getMessage();
+                }
+        }
+
+        static function recuperarPorId($usuairo_id, $producto_id){
+                try{
+                        $conn = getDbConnection();
+                        $sentencia = $conn->prepare("SELECT * FROM `me_gusta` WHERE usuario_id = ? AND producto_id = ?");
+                        $sentencia->bindParam(1, $usuairo_id);
+                        $sentencia->bindParam(2, $producto_id);
+                        $sentencia->execute();
+                        $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+                        return $result;
+                    }catch(Exception $e){
+                        echo "Error".$e->getMessage();
+                    }
+        }
+
+        static function eliminar($usuairo_id, $producto_id){
+                try{
+                        $conn = getDbConnection();
+                        $sentencia = $conn->prepare("DELETE FROM `me_gusta` WHERE usuario_id = ? AND producto_id = ?");
+                        $sentencia->bindParam(1, $usuairo_id);
+                        $sentencia->bindParam(2, $producto_id);
+                        $sentencia->execute();
+                }catch(Exception $e){
+                        echo "Error".$e->getMessage();
+                }
         }
 
         
