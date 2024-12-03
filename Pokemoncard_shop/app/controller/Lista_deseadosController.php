@@ -19,5 +19,9 @@
             $productoController = new ProductoController();
             $productoController->cargarDeseadosSesion($id);
         }
+
+        function eliminar($usuario_id, $producto_id){
+            ListaDeseados::eliminar($usuario_id, $producto_id);
+        }
     }
 ?>

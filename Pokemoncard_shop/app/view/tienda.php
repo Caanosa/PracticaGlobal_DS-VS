@@ -69,7 +69,7 @@
     <form id="formulario" class="filter-container"  method="POST">
         <h3>Filtros</h3>
         <div class="filter-section">
-            <label for="collectionType">Expansion:</label><br>
+            <label for="collectionType">Expansión:</label><br>
             <select id="collectionType" name="expansion">
                 <option value="">Todas</option>
                 <?php
@@ -187,7 +187,7 @@
             const currentItems = itemsToRender.slice(start, end);
             if(itemsToRender.length == 0){
                 cerodeseadosimg.src = "/app/view/imagenes/fallo busqueda.png";
-                cerodeseadosh1.textContent = "No se an encotrado resultados";
+                cerodeseadosh1.textContent = "No se han encotrado resultados";
             }else{
                 cerodeseadosimg.src = "";
                 cerodeseadosh1.textContent = "";
@@ -213,7 +213,7 @@
                     div3.appendChild(div4);
                     const div5 = document.createElement("div");
                     div5.classList.add("precio");
-                    div5.textContent = item['precio'];
+                    div5.textContent = item['precio']+"€";
                     div3.appendChild(div5);
                 });
             }

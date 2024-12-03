@@ -123,7 +123,20 @@
                 }catch(Exception $e){
                     echo "Error".$e->getMessage();
                 }
-            }
+        }
+
+        static function getFiltradoById($usuairo_id){
+                try{
+                        $conn = getDbConnection();
+                        $sentencia = $conn->prepare("SELECT usuario_id, nombre, num_img FROM usuarios WHERE usuario_id=?");
+                        $sentencia->bindParam(1, $usuairo_id);
+                        $sentencia->execute();
+                        $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+                        return $result;
+                }catch(Exception $e){
+                        echo "Error".$e->getMessage();
+                }
+        }
 
 
         public function getNombre()

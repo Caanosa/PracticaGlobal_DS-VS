@@ -116,7 +116,7 @@ footer {
 
 .like-button {
     font-size: 2vw;
-    color: #cc0000;
+    color: #e64242;
     border: none;
     padding: 0px;
     background-color: transparent;
@@ -141,7 +141,7 @@ footer {
     margin-bottom: 20px;
 }
 
-.info-section span {
+.info-section span:not(.usuario) {
     display: block;
     margin-bottom: 10px;
     font-size: 18px;
@@ -206,6 +206,7 @@ footer {
     flex-wrap: wrap;
     gap: 0px 0.2vw;
 }
+
 .expansionUnica{
     border-radius: 0.5vw;
     color: white;
@@ -214,3 +215,20 @@ footer {
     margin-top: 0px;
 }
 
+.circle-img{
+    width: 3vw;
+    height: 3vw;
+    border-radius: 50%;
+    background-color: rgb(172, 172, 172);
+    object-fit: cover;
+}
+
+.usuario{
+    display: flex;
+    align-items: center;
+    gap: 0px 0.4vw;
+}
+
+.usuario p{
+    color: #e64242;
+}

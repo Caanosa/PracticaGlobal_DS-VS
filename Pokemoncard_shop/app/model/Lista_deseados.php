@@ -15,7 +15,19 @@
             }catch(Exception $e){
                 echo "Error".$e->getMessage();
             }
-    }
+        }
+
+        static function eliminar($usuairo_id, $producto_id){
+            try{
+                $conn = getDbConnection();
+                $sentencia = $conn->prepare("DELETE FROM `lista_deseados` WHERE usuario_id  = ? AND producto_id = ?;");
+                $sentencia->bindParam(1, $usuairo_id);
+                $sentencia->bindParam(2, $producto_id);
+                $sentencia->execute();
+            }catch(Exception $e){
+                echo "Error".$e->getMessage();
+            }
+        }
 
         
         public function getLista_deseados_id()
