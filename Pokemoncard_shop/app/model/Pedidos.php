@@ -6,6 +6,7 @@
         private $cantidad;
         private $fecha_pedido;
         private $estado;
+        private $meGusta;
 
         public function crear(){
                 try{
@@ -34,6 +35,19 @@
                         echo "Error".$e->getMessage();
                 }
         }
+
+        static function updateMeGusta($id, $meGusta){
+                try{
+                        $conn = getDbConnection();
+                        $sentencia = $conn->prepare("UPDATE `pedidos` SET `me_gusta`=? WHERE pedido_id = ?");
+                        $sentencia->bindParam(1, $meGusta);
+                        $sentencia->bindParam(2, $id);
+                        $sentencia->execute();
+                }catch(Exception $e){
+                        echo "Error".$e->getMessage();
+                }
+        }
+
 
         public function getPadido_id()
         {
@@ -96,6 +110,18 @@
         public function setEstado($estado)
         {
                 $this->estado = $estado;
+
+                return $this;
+        }
+
+        public function getMeGusta()
+        {
+                return $this->meGusta;
+        }
+
+        public function setMeGusta($meGusta)
+        {
+                $this->meGusta = $meGusta;
 
                 return $this;
         }
