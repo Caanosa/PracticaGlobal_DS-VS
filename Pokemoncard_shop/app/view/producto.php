@@ -5,12 +5,10 @@
     require_once "../../app/controller/ProductoController.php";
     require_once "../../app/controller/MarcarController.php";
     require_once "../../app/controller/PedidoController.php";
-    require_once "../../app/controller/MeGustaController.php";
     $usuarioController = new UsuarioController();
     $productoController = new ProductoController();
     $marcarController = new MarcarController();
     $pedidoController = new PedidoController ();
-    $meGustaController = new MeGustaController ();
 
     session_start();
     if($_SERVER['REQUEST_METHOD']=='GET'&& isset($_GET['producto_id'])){
@@ -27,7 +25,8 @@
                 header('Location: /app/view/producto.php?producto_id='.$_GET['producto_id']);
                 exit;
             }
-            $meGusta = $meGustaController->recuperarPorId($usuarioController->getUSesion()[0],$prodcuto[0]['producto_id']);
+            $meGusta = $pedido[0]["me_gusta"] == 1;
+            $comprador = $usuarioController->getFiltradoById($pedido[0]['usuario_id']);
         }
     }
     if($_SERVER['REQUEST_METHOD']=='POST'){
@@ -48,7 +47,7 @@
             $productoController->guardarDeseadosSesion($prodcuto[0]['producto_id'],$prodcuto[0]['nombre'],$prodcuto[0]['precio'], $prodcuto[0]['imagen_url']);
             exit;
         }else if(isset($_POST['pedido_id'])){
-            $meGustaController->setmegusta($usuarioController->getUSesion()[0], $prodcuto[0]['producto_id']);
+            $pedidoController->updateMeGusta($_POST['pedido_id']);
         }
     }
     if(!isset($prodcuto)){
@@ -107,8 +106,18 @@
 
                     </div>
                 </div>
+                <?= isset($pedido)?"<div class='info-section'>
+                    <span><strong>Datos de compras:</strong></span>
+                    <div class='description'>
+                        <span class='usuario'><strong>Comprador:</strong><img id='circleImageComprador' src='/app/view/imagenes/no imagen.png' class='circle-img'><strong>".$comprador[0]['nombre']."</strong></span>
+                        <span><strong>Cantidad: </strong>".$pedido[0]['cantidad']."</span>
+                        <span><strong>Precio total: </strong>".($pedido[0]['cantidad']*$prodcuto[0]['precio'])."€</span>
+                        <span><strong>Fecha de pedido: </strong>".$pedido[0]['fecha_pedido']."</span>
+                        <span><strong>Estado de pedido: </strong>".$pedido[0]['estado']."</span>
+                    </div>
+                </div>": ""?>
                 <div class="info-section">
-                    <span><strong>Precio:</strong> <?=$prodcuto[0]['precio']?></span>
+                    <span><strong>Precio:</strong> <?=$prodcuto[0]['precio']?>€</span>
                     <span><strong>Stock:</strong><?=$prodcuto[0]['stock']?></span>
                     <span class="usuario"><img id="circleImage" src="/app/view/imagenes/no imagen.png" class="circle-img"><strong><?=$usuario[0]['nombre']?></strong><p><?= $likes[0]["likes"] ?>❤</p></span>
                 </div>
@@ -140,7 +149,15 @@
         }else{
             document.getElementById("circleImage").src = "/app/view/imagenes/no imagen.png";
         }
+        const circleImageComprador = document.getElementById("circleImageComprador");
         
+        if(circleImageComprador != null){
+            posicionComprador = <?= $comprador[0]['num_img']!=null?$comprador[0]['num_img']:"null";?>;
+            if(posicionComprador != null){
+                document.getElementById("circleImageComprador").src = imagenes[posicionComprador - 1];
+            }
+        }
+
         const expansionesDiv = document.getElementById("expansiones");
         const spanExpansion = document.getElementById("spanExpansion");
         const comprar = document.getElementById("comprar");

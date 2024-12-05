@@ -88,5 +88,9 @@
         public function masRecientes(){
             return Productos::masRecientes();
         }
+
+        public function setmegusta($id){
+            Pedidos::updateMeGusta($id, $this->recuperarPorId($id)[0]['me_gusta']==0?1:0);
+        }
     }
 ?>
