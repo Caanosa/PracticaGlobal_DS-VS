@@ -179,4 +179,6 @@ INSERT INTO `filtros`(`nombre_filtro`) VALUES
 ('Shrouded Fable'),
 ('Stellar Crown'),
 ('Surging Sparks'),
-('Prismatic Evolutions');
+('Prismatic Evolutions'),
+('Celebrations'),
+('Crown Zenith');

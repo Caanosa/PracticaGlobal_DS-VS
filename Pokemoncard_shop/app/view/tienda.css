@@ -60,27 +60,57 @@ nav ul li a:hover {
 .galeria-item {
     box-shadow: 0.3px 0.3vw 0.5vw black;
     border-radius: 1vw;
-    /* padding: 0.8vw; */
     width: 14vw;
     height: 20vw;
     display: flex;
+    flex-direction: column; /* Apila elementos */
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start; /* Alinea contenido al inicio */
     font-size: 1vw;
     color: #333;
     transition: transform 0.3s ease;
+    position: relative; /* Posiciona contenido interno */
+    overflow: hidden; /* Evita desbordamientos */
 }
 
-.info-galeria-item{
+.info-galeria-item {
     position: absolute;
+    bottom: 0;
     color: white;
     border-radius: 0 0 1vw 1vw;
     width: 14vw;
     background-color: #00000080;
-    margin-top: 15.55vw;
+    display: flex;
+    flex-direction: column; /* Apila elementos */
+    justify-content: space-between; /* Mantiene espacio entre nombre y precio */
+    align-items: center;
+    padding: 0.5vw;
+    box-sizing: border-box;
 }
 
-.precio{
+.nombre_producto {
+    color: #f0f0f0;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 0.65vw;
+    margin-top: 0.6vw;
+    font-size: 1vw; /* Tamaño inicial */
+    line-height: 1.2; /* Control de espacio entre líneas */
+    word-break: break-word; /* Permite división de palabras */
+    overflow-wrap: break-word; /* Ajuste automático de texto */
+    display: -webkit-box; /* Para detección de overflow */
+    -webkit-line-clamp: 2; /* Máximo 2 líneas visibles */
+    -webkit-box-orient: vertical;
+    overflow: hidden; /* Esconde texto que sobresale inicialmente */
+    transition: font-size 0.2s ease; /* Animación al cambiar tamaño */
+}
+
+/* Disminuye tamaño si el texto excede */
+.galeria-item:hover .nombre_producto {
+    font-size: 0.9vw; /* Ajusta dinámicamente cuando sea necesario */
+}
+
+.precio {
     color: #f0f0f0;
     text-align: center;
     font-weight: bold;
@@ -88,24 +118,18 @@ nav ul li a:hover {
     margin-bottom: 0.5vw;
 }
 
-.nombre_producto{
-    color: #f0f0f0;
-    font-size: 1.1vw;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 0.65vw;
-    margin-top: 0.6vw;
-}
-
-.imagen-galeria{
+.imagen-galeria {
     width: 14vw;
     height: 20.5vw;
     object-fit: cover;
     border-radius: 1vw;
+    background-color: white;
 }
+
 .galeria-item:hover {
     transform: scale(1.05);
 }
+
 
 /* .info-galeria-item :hover{
     position: fixed;
@@ -297,7 +321,7 @@ footer {
 }
 
 .cuerpo{
-    height: 78vw;
+    height: 82vw;
 }
 
 #cero_deseados_img{
