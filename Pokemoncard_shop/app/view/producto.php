@@ -82,6 +82,27 @@
             <button>🗑️</button>
             <button>✏</button>
         </div>
+        <dialog open id="administrar">
+            <h1>!!!!!AVISO!!!!!</h1>
+            <p>Parece que este producto esta relacionado con algu pedido o lista de deseados</p>
+            <div >
+                <table>
+                    <tr>
+                        <th>Pedidos</th>
+                    </tr>
+                    <td>
+                        <div id="tabla2">
+                            <p><Strong>PeId:</Strong>1 <Strong>UsId:</Strong>2</p>
+                            <p><Strong>PeId:</Strong>1<Strong>UsId:</Strong>2</p>
+                            <p><Strong>PeId:</Strong>1<Strong>UsId:</Strong>2</p>
+                            <p><Strong>PeId:</Strong>1<Strong>UsId:</Strong>2</p>
+                            <p><Strong>PeId:</Strong>1<Strong>UsId:</Strong>2</p>
+                            <p><Strong>PeId:</Strong>1<Strong>UsId:</Strong>2</p>
+                        </div>
+                    </td>
+                </table>
+            </div>
+        </dialog>
         <div class="container">
             <!-- Panel izquierdo -->
             <div class="left-panel">
@@ -144,6 +165,9 @@
         </div>
     </div>
     <script>
+        function hola2(){
+            alert("a");
+        }
         imagenes = ["/app/view/imagenes/vamoacalmarno.jpg", "/app/view/imagenes/gengar.jpg", "/app/view/imagenes/wingull.avif",
             "/app/view/imagenes/victini.png", "/app/view/imagenes/pikachu.jpeg", "/app/view/imagenes/oshawott.png"
         ];
