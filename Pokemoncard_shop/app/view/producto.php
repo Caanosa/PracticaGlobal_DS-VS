@@ -78,6 +78,10 @@
         </nav>
     </header>
     <div class="divTexto">
+        <div class="opciones_admin">
+            <button>🗑️</button>
+            <button>✏</button>
+        </div>
         <div class="container">
             <!-- Panel izquierdo -->
             <div class="left-panel">
@@ -150,9 +154,8 @@
             document.getElementById("circleImage").src = "/app/view/imagenes/no imagen.png";
         }
         const circleImageComprador = document.getElementById("circleImageComprador");
-        
         if(circleImageComprador != null){
-            posicionComprador = <?= $comprador[0]['num_img']!=null?$comprador[0]['num_img']:"null";?>;
+            posicionComprador = <?= isset($comprador) && $comprador[0]['num_img']!=null?$comprador[0]['num_img']:"null";?>;
             if(posicionComprador != null){
                 document.getElementById("circleImageComprador").src = imagenes[posicionComprador - 1];
             }
