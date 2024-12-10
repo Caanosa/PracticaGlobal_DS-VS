@@ -52,7 +52,6 @@ nav ul li a:hover {
 
 .carousel {
     background-color: rgba(54, 11, 11, 0.842);
-    /* width: 100vw; */
     position: relative;
     overflow: hidden;
 }
@@ -327,4 +326,9 @@ footer {
 }
 .galeria-item:hover {
     transform: scale(1.05);
+}
+
+.seleccionado{
+    background-color:#575757;
+    border-radius: 0.6vw;
 }

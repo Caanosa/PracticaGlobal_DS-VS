@@ -375,17 +375,7 @@ form, .editar{
     transform: scale(1.05);
 }
 
-/* .info-galeria-item :hover{
-    position: fixed;
-    color: white;
-    border-radius: 0 0 1vw 1vw;
-    width: 15vw;
-    background-color: #00000080;
-    margin-top: 15.55vw;
-} */
-
-/* .galeria-item :hover{
-    animation-name: aumento;
-    width: 16vw;
-    height: 21vw;
-} */
+.seleccionado{
+    background-color:#575757;
+    border-radius: 0.6vw;
+}

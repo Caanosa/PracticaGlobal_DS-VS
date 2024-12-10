@@ -144,3 +144,8 @@ button {
 .contenedor-registro {
     display: inline;
 }
+
+.seleccionado{
+    background-color:#575757;
+    border-radius: 0.6vw;
+}
