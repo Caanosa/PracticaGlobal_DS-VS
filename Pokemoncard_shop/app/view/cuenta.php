@@ -106,7 +106,7 @@
         </div>
 
         <p><?php echo $usuario[0]['nombre'] ?></p>
-        <p class="ercora"><?= $likes[0]["likes"] ?> ❤</p>
+        <p class="ercora"><?= $likes[0]["likes"] != null?$likes[0]["likes"]:0 ?> ❤</p>
         <div class="tabs">
             <input type="radio" name="tabs" id="tab-vendidos" checked>
             <label for="tab-vendidos" onclick="pestania(1)">Vendidos</label>

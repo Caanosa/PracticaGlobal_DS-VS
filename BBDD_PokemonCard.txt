@@ -41,6 +41,7 @@ CREATE TABLE Pedidos (
     cantidad INT,
     fecha_pedido TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     estado ENUM('pendiente', 'procesado', 'enviado', 'entregado', 'cancelado') DEFAULT 'pendiente',
+    me_gusta BOOLEAN DEFAULT 0,
     FOREIGN KEY (usuario_id) REFERENCES Usuarios(usuario_id),
     FOREIGN KEY (producto_id) REFERENCES Productos(producto_id)
 );
@@ -56,16 +57,6 @@ CREATE TABLE Marcar (
     producto_id INT,
     FOREIGN KEY (producto_id) REFERENCES Productos(producto_id),
     FOREIGN KEY (filtro_id) REFERENCES Filtros(filtro_id)
-);
-
-CREATE TABLE Me_gusta (
-    me_gusta_id INT AUTO_INCREMENT PRIMARY KEY,
-    usuario_id INT,
-    producto_id INT,
-    fecha_me_gusta TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (usuario_id) REFERENCES Usuarios(usuario_id),
-    FOREIGN KEY (producto_id) REFERENCES Productos(producto_id),
-    UNIQUE KEY (usuario_id, producto_id)
 );
 
 CREATE TABLE Lista_deseados (

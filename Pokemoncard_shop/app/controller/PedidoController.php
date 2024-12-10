@@ -17,4 +17,8 @@
         function recuperarPorId($id){
             return Pedidos::recuperarPorId($id);
         }
+
+        function updateMeGusta($id){
+            return Pedidos::updateMeGusta($id, $this->recuperarPorId($id)[0]['me_gusta']==1?0:1);
+        }
     }
