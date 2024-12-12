@@ -1,151 +1,150 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-image: url("imagenes/fondo_tienda.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url("imagenes/fondo_tienda.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 header {
-    background-color: #333;
-    color: white;
-    padding: 0.5vw 0;
+  background-color: #333;
+  color: white;
+  padding: 0.5vw 0;
 }
 
 nav ul {
-    list-style-type: none;
-    text-align: right;
-    margin-right: 15vw;
+  list-style-type: none;
+  text-align: right;
+  margin-right: 15vw;
 }
 
 nav ul li {
-    display: inline;
-    margin: 0 1.5vw;
+  display: inline;
+  margin: 0 1.5vw;
 }
 
 nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.4vw;
-    padding: 1vw 1vw;
+  color: white;
+  text-decoration: none;
+  font-size: 1.4vw;
+  padding: 1vw 1vw;
 }
 
 nav ul li a:hover {
-    background-color: #575757;
+  background-color: #575757;
 }
 
 .img-logo {
-    top: 0.3vw;
-    position: absolute;
-    width: 10vw;
-    margin-left: 4vw;
+  top: 0.3vw;
+  position: absolute;
+  width: 10vw;
+  margin-left: 4vw;
 }
-
 
 footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1vw;
-    background-color: #000;
-    color: #fff;
-    font-size: 0.7vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1vw;
+  background-color: #000;
+  color: #fff;
+  font-size: 0.7vw;
 }
 
-.copyright{
-    padding-right: 20vw;
-    padding-left: 20vw;
+.copyright {
+  padding-right: 20vw;
+  padding-left: 20vw;
 }
 
-.footer a{
-    color: #fff;
-    text-decoration: none;
-    margin: 0 0.5vw;
-
+.footer a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 0.5vw;
 }
 
 .footer a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-.contenido{
-    margin-top: 7vw;
-    height: 35.55vw;
+.contenido {
+  margin-top: 7vw;
+  height: 35.55vw;
 }
 
 .error-mensage {
-    color: red;
-    font-size: 0.9vw;
-    height: 0.5em;
-    margin-top: 2px;
-    text-align: left;
-    padding-left: 1vw;
-    display: block;
+  color: red;
+  font-size: 0.9vw;
+  height: 0.5em;
+  margin-top: 2px;
+  text-align: left;
+  padding-left: 1vw;
+  display: block;
 }
 
 .registro-div {
-    margin: auto;
-    background-color: white;
-    text-align: center;
-    padding: 20px;
-    width: 20vw;
-    height: 26.5vw;
-    border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: auto;
+  background-color: white;
+  text-align: center;
+  padding: 20px;
+  width: 20vw;
+  height: 26.5vw;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .tituloRegistro {
-    font-size: 2vw;
-    margin-bottom: 1vw;
-    margin-top: 0.3vw;
+  font-size: 2vw;
+  margin-bottom: 1vw;
+  margin-top: 0.3vw;
 }
 
 input {
-    width: 18vw;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    font-size: 0.7vw;
+  width: 18vw;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 0.7vw;
 }
 
 label {
-    width: 18vw;
-    padding-left: 10px;
-    padding-right: 10px;
-    display: flex;
-    text-align: left;
-    font-size: 1.1vw;
+  width: 18vw;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  text-align: left;
+  font-size: 1.1vw;
 }
 
 button {
-    margin-top: 1vh;
-    width: 18vw;
-    padding: 10px;
-    background-color: #3b82f6;
-    color: white;
-    font-size: 1vw;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  margin-top: 1vh;
+  width: 18vw;
+  padding: 10px;
+  background-color: #3b82f6;
+  color: white;
+  font-size: 1vw;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-
 .login-link {
-    display: flex;
-    justify-content: center;
-    padding-top: 0.5vw;
-    font-size: 0.9vw;
+  display: flex;
+  justify-content: center;
+  padding-top: 0.5vw;
+  font-size: 0.9vw;
 }
 
 .contenedor-registro {
-    display: inline;
+  display: inline;
 }
 
-.seleccionado{
-    background-color:#575757;
-    border-radius: 0.6vw;
+.seleccionado {
+  background-color: #575757;
+  border-radius: 0.6vw;
 }
+
+/*# sourceMappingURL=editarUsuario.css.map */
