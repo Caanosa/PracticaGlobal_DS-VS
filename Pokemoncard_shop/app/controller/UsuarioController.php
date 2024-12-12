@@ -60,5 +60,9 @@
         public function getFiltradoById($id){
             return Usuario::getFiltradoById($id);
         }
+
+        public function getAdminId($id){
+            return Usuario::getAdminId($id);
+        }
     }
 ?>

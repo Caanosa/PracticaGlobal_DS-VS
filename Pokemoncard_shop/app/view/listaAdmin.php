@@ -82,7 +82,7 @@
                 cerodeseadosh1.textContent = "";
                 currentItems.forEach(item => {
                     const aLink = document.createElement("a");
-                    aLink.href = "/app/view/producto.php?producto_id="+item['producto_id'];
+                    aLink.href = "/app/view/editarProducto.php?producto_id="+item['producto_id'];
                     galeria.appendChild(aLink);
                     const div1 = document.createElement("div");
                     div1.classList.add("galeria-item");

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PokémonCS - Publicar</title>
     <link rel="icon" href="/app/view/imagenes/logo_ventana3.png">
-    <link rel="stylesheet" href="/app/view/publicar.css">
+    <link rel="stylesheet" href="/app/view/editarProducto.css">
 </head>
 <body>
     <?php
@@ -22,8 +22,18 @@
         if($_SERVER['REQUEST_METHOD']=='GET'){
             if ($usuarioController->getUSesion() == null && $usuarioController->getById($usuarioController->getUSesion()[0])[0]['administrador'] ==1) {
                 header('Location: /app/view/publicar.php');
+                exit;
             }
-        
+            if(!isset($_GET['producto_id'])){
+                header('Location: /app/view/listaAdmin.php');
+                exit;
+            }
+            $producto = $productoController->recuperarPorId($_GET['producto_id']);
+            if($producto == null){
+                header('Location: /app/view/listaAdmin.php');
+                exit;
+            }
+            $marcas = $marcarController->recuperarPorId($_GET['producto_id']);
         }
         if($_SERVER['REQUEST_METHOD']=='POST'){
             $campoUrlSaneado = htmlspecialchars(($_POST["url"]));
@@ -42,10 +52,10 @@
                 $expansiones = [$_POST["expansion"]];
                 $stock = $_POST["Stock"];
             }
-            $idPr = $productoController->crearProducto($usuarioController->getUSesion()[0], $idioma, $campoNombreSaneado, $campoDescripcionSaneado, $precio,$stock, $caldad, $tipoArticulo, $campoUrlSaneado);
+            //$idPr = $productoController->crearProducto($usuarioController->getUSesion()[0], $idioma, $campoNombreSaneado, $campoDescripcionSaneado, $precio,$stock, $caldad, $tipoArticulo, $campoUrlSaneado);
     
             foreach($expansiones as $expansionId){
-                $marcarController->crear($expansionId,$idPr);
+                //$marcarController->crear($expansionId,$idPr);
             }
             header('Location: /app/view/tienda.php');
         }
@@ -65,38 +75,45 @@
     <div class="divTexto">
         <form class="form-container" method="POST">
             <h2>Publicar Artículo</h2>
-            
+            <div class="usid form-group">
+                <label for="url">Usuario Id</label>
+                <input type="number" name="url" value="<?=$producto[0]['usuario_id']?>" required>
+            </div>
             <!-- URL -->
             <div class="form-group">
+            
                 <label for="url">URL</label>
-                <input type="text" id="url" name="url" required>
+                <input type="text" id="url" name="url" value="<?=$producto[0]['imagen_url']?>" required>
             </div>
     
             <!-- Nombre -->
             <div class="form-group">
                 <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" name="nombre" required>
+                <input type="text" id="nombre" name="nombre" value="<?=$producto[0]['nombre']?>" required>
             </div>
     
             <!-- Imagen de vista previa -->
             <div class="form-group">
                 <label>Vista previa</label>
-                <img class="image-placeholder" id="imagen" onerror="errorImagen()">
+                <img class="image-placeholder" id="imagen" onerror="errorImagen()" src="<?=$producto[0]['imagen_url']?>">
             </div>
     
             <!-- Descripción (Al lado de la Vista previa) -->
             <div class="form-group">
                 <label for="descripcion">Descripción</label>
-                <textarea id="descripcion" name="descripcion" rows="10"  required></textarea>
+                <textarea id="descripcion" name="descripcion" rows="10" required><?=$producto[0]['descripcion']?></textarea>
             </div>
     
             <!-- Tipo de artículo -->
             <div class="form-group">
                 <label for="tipo-articulo">Tipo de Artículo</label>
                 <select id="tipo-articulo" name="tipo-articulo"  onchange="tipo()">
-                    <option valu="Pack">Pack</option>
-                    <option valu="Sobre">Sobre</option>
-                    <option valu="Carta">Carta</option>
+                    <?php
+                        $opciones = ["Pack","Sobre","Carta"];
+                        foreach ($opciones as $opcion) {
+                            echo "<option valu='".$opcion."' ".($opcion == $producto[0]['tipo']?'selected':'').">".$opcion."</option>";
+                        }
+                    ?>
                 </select>
             </div>
     
@@ -110,13 +127,19 @@
                         $filtroController = new FiltroController();
 
                         $filtros = $filtroController->getAllFiltros();
-                        foreach ($filtros as $filtro) {
-                            echo "<option value='".$filtro["filtro_id"]."' ".(isset($expansion) && $expansion == $filtro["filtro_id"]?'selected':'').">".$filtro["nombre_filtro"]."</option>";
+                        if($producto[0]["tipo"]!="Carta"){
+                            foreach ($filtros as $filtro) {
+                                echo "<option value='".$filtro["filtro_id"]."' ".($filtro["filtro_id"]  == $marcas[0]["filtro_id"]?'selected':'').">".$filtro["nombre_filtro"]."</option>";
+                            }
+                        }else{
+                            foreach ($filtros as $filtro) {
+                                echo "<option value='".$filtro["filtro_id"]."'>".$filtro["nombre_filtro"]."</option>";
+                            }
                         }
+                        
                     ?>
                 </select>
                 <div id="expansiones">
-
                 </div>
             </div>
     
@@ -131,7 +154,7 @@
                         $idiomas = $idiomaController->getAllIdiomas();
 
                         foreach ($idiomas as $idioma) {
-                            echo "<option value='".$idioma["idioma_id"]."' ".(isset($idiomasSelect) && $idiomasSelect == $idioma["idioma_id"]?'selected':'').">".$idioma["nombre_idioma"]."</option>";
+                            echo "<option value='".$idioma["idioma_id"]."' ".($producto[0]['idioma_id'] == $idioma["idioma_id"]?'selected':'').">".$idioma["nombre_idioma"]."</option>";
                         }
                     ?>
                 </select>
@@ -143,7 +166,7 @@
             <!-- Precio -->
             <div class="form-group">
                 <label for="precio">Precio</label>
-                <input type="number" id="precio" name="precio" min="0" max="100000000" required step="0.01">
+                <input type="number" id="precio" name="precio" min="0" max="100000000" value="<?=$producto[0]['precio']?>" required step="0.01">
             </div>
     
             <!-- Botón de publicar -->
@@ -158,8 +181,22 @@
         const expansionesDiv = document.getElementById("expansiones");
         const calidadStockDiv = document.getElementById("CalidadStock");
         const inputURL = document.getElementById("url");
-        multipleExpansion = false;
+        multipleExpansion = <?=$producto[0]['tipo']=="Carta" ? "true":"false"?>;
         expansiones = [];
+        expansionesinit = []
+        
+        if("<?=$producto[0]["tipo"]?>" == "Carta"){
+            var marcas = <?=json_encode($marcas);?>;
+
+            marcas.forEach(marca => {
+                expansionesinit.push([marca['filtro_id'],marca['nombre_filtro']]);
+            });
+            expansion.required = false;
+            expansiones = expansionesinit;
+            cargarExpansiones();
+        }
+
+        calidadStock();
 
         inputURL.addEventListener("change", function(){
             cargarimg(inputURL.value)
@@ -175,7 +212,14 @@
             if(!multipleExpansion){
                 expansionesDiv.innerHTML = "";
                 expansiones = [];
+            }else{
+                expansiones = expansionesinit;
+                if(expansiones.length  >=1){
+                    expansion.required = false;
+                }
+                cargarExpansiones();
             }
+
             calidadStock();
         }
         function addExpansion(){
@@ -229,6 +273,7 @@
                     const option =document.createElement("option");
                     option.textContent = calidad;
                     option.value =calidad;
+                    option.selected = calidad=="<?=$producto[0]['categoria']!= null  ?$producto[0]['categoria']:null;?>";
                     select.appendChild(option);
                 });
             }else{
@@ -240,6 +285,7 @@
                 input.name = "Stock";
                 input.min = 1;
                 input.max = 20;
+                input.value  = <?= $producto[0]['stock']?>;
                 input.required = true;
                 calidadStockDiv.appendChild(input);
             }

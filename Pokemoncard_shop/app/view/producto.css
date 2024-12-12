@@ -285,42 +285,7 @@ footer {
     transform: rotate(-140deg);
 }
 
-#administrar{
-    width: 50vw;
-    height: 30vw;
-    border-radius: 1vw;
-    border: none;
-    text-align: center;
-}
 
-
-
-#administrar table{
-    width: 10vw;
-    text-align: center;
-    border-collapse: collapse;
-}
-
-#administrar table, #administrar th{
-    border: #000 1px solid;
-}
-
-#administrar th{
-    padding: 0.4vw;
-}
-
-#tabla2{
-    height: 100px;
-    overflow-y:auto;
-}
-
-
-#tabla2 p{
-    padding: 0.4vw;
-    border-radius: 0.5vw;
-    background-color: #a325bd;
-    color: white;
-}
 
 
 

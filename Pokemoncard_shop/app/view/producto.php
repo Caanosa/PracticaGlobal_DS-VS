@@ -78,31 +78,11 @@
         </nav>
     </header>
     <div class="divTexto">
-        <div class="opciones_admin">
-            <button>🗑️</button>
-            <button>✏</button>
-        </div>
-        <dialog open id="administrar">
-            <h1>!!!!!AVISO!!!!!</h1>
-            <p>Parece que este producto esta relacionado con algu pedido o lista de deseados</p>
-            <div >
-                <table>
-                    <tr>
-                        <th>Pedidos</th>
-                    </tr>
-                    <td>
-                        <div id="tabla2">
-                            <p><Strong>PeId:</Strong>1 <Strong>UsId:</Strong>2</p>
-                            <p><Strong>PeId:</Strong>1<Strong>UsId:</Strong>2</p>
-                            <p><Strong>PeId:</Strong>1<Strong>UsId:</Strong>2</p>
-                            <p><Strong>PeId:</Strong>1<Strong>UsId:</Strong>2</p>
-                            <p><Strong>PeId:</Strong>1<Strong>UsId:</Strong>2</p>
-                            <p><Strong>PeId:</Strong>1<Strong>UsId:</Strong>2</p>
-                        </div>
-                    </td>
-                </table>
-            </div>
-        </dialog>
+        <?=$usuarioController->getUSesion() != null&& $usuarioController->getAdminId($usuarioController->getUSesion()[0])[0]['administrador']==1? 
+            "<div class='opciones_admin'>
+            <a href='/app/view/editarProducto.php?producto_id=".$prodcuto[0]['producto_id']."'><button>✏</button></a>
+            </div>":"";
+        ?>
         <div class="container">
             <!-- Panel izquierdo -->
             <div class="left-panel">
