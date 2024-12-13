@@ -1,0 +1,108 @@
+$color : white;
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url("imagenes/fondo_tienda.png");
+    font-family: Arial, sans-serif;
+    flex-direction: column;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+
+
+}
+
+header {
+    background-color: #333;
+    color: $color;
+    padding: 0.5vw 0;
+    /* width: 100vw; */
+}
+
+nav ul {
+    list-style-type: none;
+    text-align: right;
+    margin-right: 15vw;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 1.5vw;
+}
+
+nav ul li a {
+    color: $color;
+    text-decoration: none;
+    font-size: 1.4vw;
+    padding: 1vw 1vw;
+}
+
+nav ul li a:hover {
+    background-color: #575757;
+}
+
+.img-logo {
+    top: 0.3vw;
+    position: absolute;
+    width: 10vw;
+    margin-left: 4vw;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1vw;
+    background-color: #000;
+    color: #fff;
+    font-size: 0.7vw;
+}
+
+
+.copyright{
+    padding-right: 20vw;
+    padding-left: 20vw;
+}
+
+.footer a{
+    color: #fff;
+    text-decoration: none;
+    margin: 0 0.5vw;
+
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+
+.texto {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 1vw;
+}
+h1, h2 {
+    color: #333;
+}
+h1 {
+    font-size: 2vw;
+    margin-top: 1vw;
+}
+h2 {
+    font-size: 1.2vw;
+    margin-top: 1vw;
+}
+p {
+    margin: 02vw 0;
+}
+
+.divTexto{
+    text-align: justify;
+    margin: 5vw 20vw;
+    padding: 4vw;
+    background-color: #ffffffbe;
+    border-radius: 5vw;
+}

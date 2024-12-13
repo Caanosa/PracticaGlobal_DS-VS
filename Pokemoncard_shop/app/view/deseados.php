@@ -29,7 +29,7 @@
         <nav>
             <ul>
                 <li><a href="http://pokemoncardshop.com">Inicio</a></li>
-                <li><a href="/app/view/deseados.php">Deseados</a></li>
+                <li><a class="seleccionado" href="/app/view/deseados.php">Deseados</a></li>
                 <li><a href="/app/view/tienda.php">Tienda</a></li>
                 <li><a href="/app/view/publicar.php">Publicar</a></li>
                 <li><a href="/app/view/cuenta.php"><?php echo $usuarioController->getUSesion()[1] ?></a></li>
