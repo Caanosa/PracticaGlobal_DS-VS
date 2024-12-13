@@ -12,7 +12,7 @@
                 $nuevoProducto->setNombre($nombre);
                 $nuevoProducto->setEmail($email);
                 $nuevoProducto->setContrasena($contrasena);
-                $nuevoProducto->setAdministrador(1);
+                $nuevoProducto->setAdministrador(0);
                 $nuevoProducto->create();
                 return Usuario::getLogin($email, $contrasena);
             }
@@ -59,6 +59,10 @@
 
         public function getFiltradoById($id){
             return Usuario::getFiltradoById($id);
+        }
+
+        public function getAdminId($id){
+            return Usuario::getAdminId($id);
         }
     }
 ?>

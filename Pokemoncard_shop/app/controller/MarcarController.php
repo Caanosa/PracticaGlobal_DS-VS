@@ -11,5 +11,9 @@
         public function recuperarPorId($id){
            return Marcar::recuperarPorId($id);
         }
+
+        public function elimarPorId($id){
+            return Marcar::elimarPorId($id);
+        }
     }
 ?>
