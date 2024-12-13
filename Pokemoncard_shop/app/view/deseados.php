@@ -65,6 +65,7 @@
         const galeria = document.getElementById("galeria");
         const prevBtn = document.getElementById("prevBtn");
         const nextBtn = document.getElementById("nextBtn");
+        const pageIndicator = document.getElementById("pageIndicator");
         const cerodeseadosimg = document.getElementById("cero_deseados_img");
         const cerodeseadosh1 = document.getElementById("cero_deseados_titulo");
         const itemsPerPage = 12;
@@ -118,6 +119,7 @@
                     });
                 }
             }
+            pageIndicator.textContent = `Página ${page}`;
             prevBtn.disabled = page === 1;
             nextBtn.disabled = end >= itemsToRender.length;
         }
