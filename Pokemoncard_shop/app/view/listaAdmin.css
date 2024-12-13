@@ -237,4 +237,9 @@ footer {
   transform: scale(1.05);
 }
 
+.seleccionado {
+  background-color: #575757;
+  border-radius: 0.6vw;
+}
+
 /*# sourceMappingURL=listaAdmin.css.map */

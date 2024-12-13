@@ -77,7 +77,7 @@
                 <li><a href="/app/view/deseados.php">Deseados</a></li>
                 <li><a href="/app/view/tienda.php">Tienda</a></li>
                 <li><a href="/app/view/publicar.php">Publicar</a></li>
-                <?=$usuarioController->getUSesion() != null&& $usuarioController->getAdminId($usuarioController->getUSesion()[0])[0]['administrador']==1?"<li><a href='/app/view/listaAdmin.php'>Modificar</a></li>":""?>
+                <?=$usuarioController->getUSesion() != null&& $usuarioController->getAdminId($usuarioController->getUSesion()[0])[0]['administrador']==1?"<li><a class='seleccionado' href='/app/view/listaAdmin.php'>Modificar</a></li>":""?>
                 <li><a href="/app/view/cuenta.php"><?php echo $usuarioController->getUSesion()[1] ?></a></li>
             </ul>
         </nav>
@@ -85,7 +85,7 @@
     <div class="divTexto">
         <form class="form-container" method="POST" onsubmit="validarFormulario(event)">
             <input type="hidden" name="producto_id" value="<?=$producto[0]['producto_id']?>">
-            <h2>Publicar Artículo</h2>
+            <h2>Editar Artículo</h2>
             <div class="usid form-group">
                 <label for="url">Usuario Id</label>
                 <input type="number" name="usuario_id" id="usuario_id" value="<?=$producto[0]['usuario_id']?>" required>
