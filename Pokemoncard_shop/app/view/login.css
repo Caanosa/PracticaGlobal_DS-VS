@@ -1,79 +1,81 @@
-body{
-    background-image: url("imagenes/fondo_login.png");
-    height: 100%;
-    padding-top: 20vh;
+body {
+  background-image: url("imagenes/fondo_login.png");
+  height: 100%;
+  padding-top: 20vh;
 }
 
 .tituloLogin {
-    font-size: 1.7vw;
-    margin-bottom: 1vw;
-    margin-top: 0.3vw;
+  font-size: 1.7vw;
+  margin-bottom: 1vw;
+  margin-top: 0.3vw;
 }
 
 .login-div {
-    margin-left: 63vw;
-    background-color: white;
-    text-align: center;
-    padding: 20px;
-    width: 20vw;
-    height: 18vw;
-    border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-left: 63vw;
+  background-color: white;
+  text-align: center;
+  padding: 20px;
+  width: 20vw;
+  height: 18vw;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .error-mensage {
-    color: red;
-    font-size: 0.9vw;
-    height: 0.5em;
-    margin-top: 2px;
-    text-align: left;
-    padding-left: 1vw;
-    display: block;
+  color: red;
+  font-size: 0.9vw;
+  height: 0.5em;
+  margin-top: 2px;
+  text-align: left;
+  padding-left: 1vw;
+  display: block;
 }
 
-img{
-    margin-left: 7%;
-    width: 40vw;
-    position: absolute;
+img {
+  margin-left: 7%;
+  width: 40vw;
+  position: absolute;
 }
 
-input{
-    width: 18vw;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    font-size: 0.7vw;
+input {
+  width: 18vw;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 0.7vw;
 }
 
-label{
-    width: 18%;
-    padding-left: 10px;
-    padding-right: 10px;
-    display: flex;
-    text-align: left;
-    font-size: 1.1vw;
+label {
+  width: 18%;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  text-align: left;
+  font-size: 1.1vw;
 }
 
-button{
-    margin-top: 0.6vw;
-    width: 18vw;
-    padding: 10px;
-    background-color: #3b82f6;
-    color: white;
-    font-size: 1vw;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+button {
+  margin-top: 0.6vw;
+  width: 18vw;
+  padding: 10px;
+  background-color: #3b82f6;
+  color: white;
+  font-size: 1vw;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.registro-link{
-    display: flex;
-    justify-content: center;
-    padding-top: 0.5vw;
-    font-size: 0.9vw;
+.registro-link {
+  display: flex;
+  justify-content: center;
+  padding-top: 0.5vw;
+  font-size: 0.9vw;
 }
 
-.contenedor-login{
-    display: inline;
+.contenedor-login {
+  display: inline;
 }
+
+/*# sourceMappingURL=login.css.map */

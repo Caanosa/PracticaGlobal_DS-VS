@@ -29,7 +29,7 @@
                 <li><a href="/app/view/tienda.php">Tienda</a></li>
                 <li><a href="/app/view/publicar.php">Publicar</a></li>
                 <?=$usuarioController->getUSesion() != null&& $usuarioController->getAdminId($usuarioController->getUSesion()[0])[0]['administrador']==1?"<li><a href='/app/view/listaAdmin.php'>Modificar</a></li>":""?>
-                <li><a href="/app/view/cuenta.php"><?php echo $usuarioController->getUSesion()[1] ?></a></li>
+                <li><a class="seleccionado" href="/app/view/cuenta.php"><?php echo $usuarioController->getUSesion()[1] ?></a></li>
             </ul>
         </nav>
     </header>

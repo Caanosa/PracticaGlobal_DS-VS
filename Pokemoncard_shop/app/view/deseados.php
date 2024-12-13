@@ -29,7 +29,7 @@
         <nav>
             <ul>
                 <li><a href="http://pokemoncardshop.com">Inicio</a></li>
-                <li><a href="/app/view/deseados.php">Deseados</a></li>
+                <li><a class="seleccionado" href="/app/view/deseados.php">Deseados</a></li>
                 <li><a href="/app/view/tienda.php">Tienda</a></li>
                 <li><a href="/app/view/publicar.php">Publicar</a></li>
                 <?=$usuarioController->getUSesion() != null&& $usuarioController->getAdminId($usuarioController->getUSesion()[0])[0]['administrador']==1?"<li><a href='/app/view/listaAdmin.php'>Modificar</a></li>":""?>
