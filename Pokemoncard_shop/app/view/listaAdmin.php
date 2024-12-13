@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PokémonCS - Deseados</title>
+    <title>PokémonCS - Administrar Productos</title>
     <link rel="icon" href="/app/view/imagenes/logo_ventana3.png">
     <link rel="stylesheet" href="deseados.css">
 </head>
@@ -14,7 +14,7 @@
         $usuarioController = new UsuarioController();
         $productoController = new ProductoController();
         session_start();
-        if ($usuarioController->getUSesion() == null && $usuarioController->getById($usuarioController->getUSesion()[0])[0]['administrador'] ==1) {
+        if ($usuarioController->getUSesion() == null ||($usuarioController->getUSesion() != null && $usuarioController->getById($usuarioController->getUSesion()[0])[0]['administrador'] !=1)) {
             header('Location: /app/view/login.php');
         }
     ?>
@@ -26,6 +26,7 @@
                 <li><a href="/app/view/deseados.php">Deseados</a></li>
                 <li><a href="/app/view/tienda.php">Tienda</a></li>
                 <li><a href="/app/view/publicar.php">Publicar</a></li>
+                <?=$usuarioController->getUSesion() != null&& $usuarioController->getAdminId($usuarioController->getUSesion()[0])[0]['administrador']==1?"<li><a href='/app/view/listaAdmin.php'>Modificar</a></li>":""?>
                 <li><a href="/app/view/cuenta.php"><?php echo $usuarioController->getUSesion()[1] ?></a></li>
             </ul>
         </nav>
@@ -35,9 +36,6 @@
         <div class="search-bar-container">
             <input type="text" id="searchInput" placeholder="Buscar productos...">
             <button onclick="searchItems()">Buscar</button>
-            <form method="POST">
-                <button type="submit" id="guardar">Guardar</button>
-            </form>
         </div>
 
         <img id="cero_deseados_img" src="" alt="">
@@ -64,7 +62,7 @@
         let currentPage = 1;
         isSearching = false;
         searchResults = [];
-        items = <?= json_encode($productoController->getAllProductos()); ?>;
+        items = <?= json_encode($productoController->getAllProductosAdmin()); ?>;
 
 
         function renderPage(page) {
@@ -112,7 +110,7 @@
 
         function searchItems() {
             const searchTerm = document.getElementById("searchInput").value.toLowerCase();
-            searchResults = items.filter(item => item.nombre.toLowerCase().includes(searchTerm));
+            searchResults = items.filter(item => ("prid:"+item.producto_id+"puid:"+item.usuario_id+item.nombre.toLowerCase()).includes(searchTerm));
             isSearching = true;
             currentPage = 1;
             renderPage(currentPage);

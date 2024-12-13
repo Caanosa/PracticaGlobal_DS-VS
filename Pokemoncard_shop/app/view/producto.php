@@ -73,6 +73,7 @@
                 <li><a href="<?php echo $usuarioController->getUSesion() != null?"/app/view/deseados.php":"/app/view/login.php"?>">Deseados</a></li>
                 <li><a href="/app/view/tienda.php">Tienda</a></li>
                 <li><a href="/app/view/publicar.php">Publicar</a></li>
+                <?=$usuarioController->getUSesion() != null&& $usuarioController->getAdminId($usuarioController->getUSesion()[0])[0]['administrador']==1?"<li><a href='/app/view/listaAdmin.php'>Modificar</a></li>":""?>
                 <li><a href="<?php echo $usuarioController->getUSesion() != null ? "/app/view/cuenta.php" : "/app/view/login.php" ?>"><?php echo $usuarioController->getUSesion() != null ? $usuarioController->getUSesion()[1] : "Cuenta" ?></a></li>
             </ul>
         </nav>
@@ -124,7 +125,7 @@
                 <div class="info-section">
                     <span><strong>Precio:</strong> <?=$prodcuto[0]['precio']?>€</span>
                     <span><strong>Stock:</strong><?=$prodcuto[0]['stock']?></span>
-                    <span class="usuario"><img id="circleImage" src="/app/view/imagenes/no imagen.png" class="circle-img"><strong><?=$usuario[0]['nombre']?></strong><p><?= $likes[0]["likes"] ?>❤</p></span>
+                    <span class="usuario"><img id="circleImage" src="/app/view/imagenes/no imagen.png" class="circle-img"><strong><?=$usuario[0]['nombre']?></strong><p><?= $likes[0]["likes"] != null?$likes[0]["likes"]:"0"  ?>❤</p></span>
                 </div>
                 <form class="wishlistComprar" method="POST">
                     <?php

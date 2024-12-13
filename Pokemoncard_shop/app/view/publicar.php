@@ -53,6 +53,7 @@
                 <li><a href="/app/view/deseados.php">Deseados</a></li>
                 <li><a href="/app/view/tienda.php">Tienda</a></li>
                 <li><a href="/app/view/publicar.php">Publicar</a></li>
+                <?=$usuarioController->getUSesion() != null&& $usuarioController->getAdminId($usuarioController->getUSesion()[0])[0]['administrador']==1?"<li><a href='/app/view/listaAdmin.php'>Modificar</a></li>":""?>
                 <li><a href="/app/view/cuenta.php"><?php echo $usuarioController->getUSesion()[1] ?></a></li>
             </ul>
         </nav>
@@ -64,13 +65,13 @@
             <!-- URL -->
             <div class="form-group">
                 <label for="url">URL</label>
-                <input type="text" id="url" name="url" required>
+                <input type="text" id="url" name="url" maxlength="255" required>
             </div>
     
             <!-- Nombre -->
             <div class="form-group">
                 <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" name="nombre" required>
+                <input type="text" id="nombre" name="nombre" maxlength="60" required>
             </div>
     
             <!-- Imagen de vista previa -->
@@ -82,7 +83,7 @@
             <!-- Descripción (Al lado de la Vista previa) -->
             <div class="form-group">
                 <label for="descripcion">Descripción</label>
-                <textarea id="descripcion" name="descripcion" rows="10"  required></textarea>
+                <textarea id="descripcion" name="descripcion" rows="10" maxlength="500" required></textarea>
             </div>
     
             <!-- Tipo de artículo -->
