@@ -248,12 +248,7 @@ footer {
   gap: 0px 0.4vw;
 }
 
-.usuario p {
-  color: #e64242;
-}
 
-
-/* añadir a scss */
 .usuario p{
     color: #e64242;
 }
