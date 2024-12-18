@@ -189,7 +189,7 @@
             const currentItems = itemsToRender.slice(start, end);
             if(itemsToRender.length == 0){
                 cerodeseadosimg.src = "/app/view/imagenes/fallo busqueda.png";
-                cerodeseadosh1.textContent = "No se han encotrado resultados";
+                cerodeseadosh1.textContent = "No se han encontrado resultados";
             }else{
                 cerodeseadosimg.src = "";
                 cerodeseadosh1.textContent = "";

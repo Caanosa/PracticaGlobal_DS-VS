@@ -61,7 +61,7 @@
         
         <form method="POST">
             <input type="hidden" name="formulario" value="1">
-            <button type="submit" class="salir">Cerrar Sessión</button>
+            <button type="submit" class="salir">Cerrar Sesión</button>
         </form> 
 
 

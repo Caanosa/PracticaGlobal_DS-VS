@@ -113,11 +113,10 @@
         static function modificar($id, $nombre, $email, $contrasena, $administrador){
                 try{
                     $conn = getDbConnection();
-                    $sentencia = $conn->prepare("UPDATE `usuarios` SET nombre=?, email=?, contrasena=?, administrador=? WHERE usuario_id=?");
+                    $sentencia = $conn->prepare("UPDATE `usuarios` SET nombre=?, email=?, contrasena=? WHERE usuario_id=?");
                     $sentencia->bindParam(1, $nombre);
                     $sentencia->bindParam(2, $email);
                     $sentencia->bindParam(3, $contrasena);
-                    $sentencia->bindParam(4, $administrador);
                     $sentencia->bindParam(5, $id);
                     $sentencia->execute();
                 }catch(Exception $e){
