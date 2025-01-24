@@ -46,13 +46,7 @@ class Marcar {
                         echo "Error".$e->getMessage();
                 }
         }
-
-        
-        public function getMarcar_id()
-        {
-                return $this->marcar_id;
-        }
-    }
+    
 
     /**
      * Recupera las relaciones marcadas por ID de producto.

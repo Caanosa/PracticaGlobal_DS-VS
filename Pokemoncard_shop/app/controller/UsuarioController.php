@@ -122,9 +122,10 @@ class UsuarioController {
             return false;
         }
 
-        public function getAdminId($id){
-            return Usuario::getAdminId($id);
-        }
+    }
+
+    public function getAdminId($id){
+        return Usuario::getAdminId($id);
     }
 
     /**
