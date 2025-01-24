@@ -1,30 +1,29 @@
 <?php
-    // Se requiere la clase Productos para manejar las operaciones relacionadas con productos
-    // Se requiere Lista_deseadosController para manejar la lista de productos deseados
+    // Se requiere la clase Productos para gestionar los productos y Lista_deseadosController para manejar la lista de deseados
     require_once "../../app/model/Productos.php";
     require_once "../../app/controller/Lista_deseadosController.php";
 
     /**
-     * Clase controladora para gestionar las operaciones relacionadas con los productos.
+     * Clase controladora para manejar las operaciones relacionadas con los productos.
      */
     class ProductoController {
 
         /**
-         * Recupera todos los productos.
+         * Obtiene todos los productos.
          *
-         * @return array Lista de todos los productos.
+         * @return array Lista de productos.
          */
         public function getAllProductos() {
             return Productos::getAllProductos();
         }
 
         /**
-         * Recupera productos filtrados según los parámetros especificados.
+         * Obtiene productos filtrados según los criterios especificados.
          *
-         * @param string $expansion Expansión del producto.
-         * @param string $tipos Tipos de productos.
-         * @param string $categorias Categorías de productos.
-         * @param string $idioma Idioma del producto.
+         * @param string $expansion El criterio de expansión.
+         * @param array $tipos Los tipos de productos.
+         * @param array $categorias Las categorías de productos.
+         * @param string $idioma El idioma del producto.
          * @param float $min Precio mínimo.
          * @param float $max Precio máximo.
          * 
@@ -37,17 +36,17 @@
         /**
          * Crea un nuevo producto.
          *
-         * @param int $usuario_id ID del usuario creador.
+         * @param int $usuario_id ID del usuario.
          * @param int $idioma_id ID del idioma.
          * @param string $nombre Nombre del producto.
          * @param string $descripcion Descripción del producto.
          * @param float $precio Precio del producto.
-         * @param int $stock Cantidad de stock disponible.
+         * @param int $stock Cantidad disponible.
          * @param string $categoria Categoría del producto.
          * @param string $tipo Tipo del producto.
          * @param string $imagen_url URL de la imagen del producto.
          * 
-         * @return bool Resultado de la operación de creación.
+         * @return bool Resultado de la creación del producto.
          */
         public function crearProducto($usuario_id, $idioma_id, $nombre, $descripcion, $precio, $stock, $categoria, $tipo, $imagen_url) {
             $nuevoProducto = new Productos();
@@ -64,18 +63,18 @@
         }
 
         /**
-         * Recupera el número de 'me gusta' de un producto.
+         * Recupera la cantidad de "me gusta" de un producto.
          *
          * @param int $id ID del producto.
          * 
-         * @return int Número de 'me gusta'.
+         * @return int Cantidad de "me gusta".
          */
         public function recuperarLikes($id) {
             return Productos::recuperarLikes($id);
         }
 
         /**
-         * Recupera el número de unidades vendidas de un producto.
+         * Recupera la cantidad de productos vendidos.
          *
          * @param int $id ID del producto.
          * 
@@ -86,7 +85,7 @@
         }
 
         /**
-         * Recupera el número de unidades compradas de un producto.
+         * Recupera la cantidad de productos comprados.
          *
          * @param int $id ID del producto.
          * 
@@ -97,7 +96,7 @@
         }
 
         /**
-         * Carga los productos deseados de un usuario en la sesión.
+         * Carga la lista de productos deseados en la sesión.
          *
          * @param int $id ID del usuario.
          * 
@@ -109,7 +108,7 @@
         }
 
         /**
-         * Guarda un producto deseado en la sesión o lo elimina si ya existe.
+         * Guarda un producto en la lista de deseados de la sesión.
          *
          * @param int $id ID del producto.
          * @param string $nombre Nombre del producto.
@@ -127,7 +126,7 @@
         }
 
         /**
-         * Elimina un producto deseado de la sesión o de la base de datos.
+         * Elimina un producto de la lista de deseados.
          *
          * @param int $id ID del producto.
          * @param string $nombre Nombre del producto.
@@ -147,9 +146,9 @@
         }
 
         /**
-         * Recupera los productos deseados en sesión.
-         *
-         * @return array|null Lista de productos deseados en sesión.
+         * Recupera la lista de deseados de la sesión.
+         * 
+         * @return array|null Lista de deseados o null si no está definida.
          */
         public function reuperarDseseadsoSesion() {
             if (isset($_SESSION['deseados'])) {
@@ -158,9 +157,9 @@
         }
 
         /**
-         * Recupera todos los productos deseados, combinando los de la sesión y la base de datos.
-         *
-         * @return array|null Lista combinada de productos deseados.
+         * Recupera la lista de deseados combinada entre la sesión y la base de datos.
+         * 
+         * @return array|null Lista combinada de deseados o null si no está definida.
          */
         public function reuperarDseseadsoSesionConjunto() {
             if (isset($_SESSION['deseados']) && isset($_SESSION['deseadosDB'])) {
@@ -173,14 +172,14 @@
          *
          * @param int $id ID del producto.
          * 
-         * @return array Datos del producto.
+         * @return array Datos del producto recuperado.
          */
         public function recuperarPorId($id) {
             return Productos::recuperarPorId($id);
         }
 
         /**
-         * Actualiza el stock de un producto.
+         * Cambia el stock de un producto.
          *
          * @param int $id ID del producto.
          * @param int $cantidad Nueva cantidad de stock.
@@ -192,25 +191,25 @@
         }
 
         /**
-         * Recupera los productos más deseados.
+         * Obtiene los productos más deseados.
          *
-         * @return array Lista de productos más deseados.
+         * @return array Lista de los productos más deseados.
          */
         public function masDeseados() {
             return Productos::masDeseados();
         }
 
         /**
-         * Recupera los productos más recientes.
+         * Obtiene los productos más recientes.
          *
-         * @return array Lista de productos más recientes.
+         * @return array Lista de los productos más recientes.
          */
         public function masRecientes() {
             return Productos::masRecientes();
         }
 
         /**
-         * Alterna el estado de 'me gusta' de un producto.
+         * Alterna el estado de "me gusta" de un producto.
          *
          * @param int $id ID del producto.
          * 
