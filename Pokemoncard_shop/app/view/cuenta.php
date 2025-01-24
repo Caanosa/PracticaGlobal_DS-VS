@@ -47,6 +47,7 @@
                 <li><a href="/app/view/deseados.php">Deseados</a></li>
                 <li><a href="/app/view/tienda.php">Tienda</a></li>
                 <li><a href="/app/view/publicar.php">Publicar</a></li>
+                <?=$usuarioController->getUSesion() != null&& $usuarioController->getAdminId($usuarioController->getUSesion()[0])[0]['administrador']==1?"<li><a href='/app/view/listaAdmin.php'>Modificar</a></li>":""?>
                 <li><a class="seleccionado" href="/app/view/cuenta.php"><?php echo $usuarioController->getUSesion()[1] ?></a></li>
             </ul>
         </nav>
@@ -60,7 +61,7 @@
         
         <form method="POST">
             <input type="hidden" name="formulario" value="1">
-            <button type="submit" class="salir">Cerrar Sessión</button>
+            <button type="submit" class="salir">Cerrar Sesión</button>
         </form> 
 
 

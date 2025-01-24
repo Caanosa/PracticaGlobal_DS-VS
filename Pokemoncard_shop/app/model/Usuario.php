@@ -208,23 +208,18 @@ class Usuario
          * @param bool $administrador Indica si el usuario será administrador.
          * @return void
          */
-        static function modificar($id, $nombre, $email, $contrasena, $administrador)
-        {
-                try {
-                        $conn = getDbConnection();
-                        $sentencia = $conn->prepare("
-                UPDATE `usuarios` 
-                SET nombre=?, email=?, contrasena=?, administrador=? 
-                WHERE usuario_id=?
-            ");
-                        $sentencia->bindParam(1, $nombre);
-                        $sentencia->bindParam(2, $email);
-                        $sentencia->bindParam(3, $contrasena);
-                        $sentencia->bindParam(4, $administrador);
-                        $sentencia->bindParam(5, $id);
-                        $sentencia->execute();
-                } catch (Exception $e) {
-                        echo "Error" . $e->getMessage();
+        static function modificar($id, $nombre, $email, $contrasena, $administrador){
+                try{
+                    $conn = getDbConnection();
+                    $sentencia = $conn->prepare("UPDATE `usuarios` SET nombre=?, email=?, contrasena=? WHERE usuario_id=?");
+                    $sentencia->bindParam(1, $nombre);
+                    $sentencia->bindParam(2, $email);
+                    $sentencia->bindParam(3, $contrasena);
+                    $sentencia->bindParam(5, $id);
+                    $sentencia->execute();
+                }catch(Exception $e){
+                    echo "Error".$e->getMessage();
+
                 }
         }
 
@@ -252,7 +247,21 @@ class Usuario
                 }
         }
 
-        /**
+
+        static function getAdminId($usuairo_id){
+                try{
+                        $conn = getDbConnection();
+                        $sentencia = $conn->prepare("SELECT administrador FROM usuarios WHERE usuario_id=?");
+                        $sentencia->bindParam(1, $usuairo_id);
+                        $sentencia->execute();
+                        $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+                        return $result;
+                }catch(Exception $e){
+                        echo "Error".$e->getMessage();
+                }
+        }
+
+          /**
          * Obtiene el nombre del usuario.
          *
          * @return string El nombre del usuario.

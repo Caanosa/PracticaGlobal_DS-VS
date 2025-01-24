@@ -23,6 +23,8 @@
                 <li><a href="<?php echo $usuarioController->getUSesion() != null?"/app/view/deseados.php":"/app/view/login.php"?>">Deseados</a></li>
                 <li><a class="seleccionado" href="/app/view/tienda.php">Tienda</a></li>
                 <li><a href="/app/view/publicar.php">Publicar</a></li>
+                <?=$usuarioController->getUSesion() != null&& $usuarioController->getAdminId($usuarioController->getUSesion()[0])[0]['administrador']==1?"<li><a href='/app/view/listaAdmin.php'>Modificar</a></li>":""?>
+                
                 <li><a href="<?php echo $usuarioController->getUSesion() != null ? "/app/view/cuenta.php" : "/app/view/login.php" ?>"><?php echo $usuarioController->getUSesion() != null ? $usuarioController->getUSesion()[1] : "Cuenta" ?></a></li>
             </ul>
         </nav>
@@ -187,7 +189,7 @@
             const currentItems = itemsToRender.slice(start, end);
             if(itemsToRender.length == 0){
                 cerodeseadosimg.src = "/app/view/imagenes/fallo busqueda.png";
-                cerodeseadosh1.textContent = "No se han encotrado resultados";
+                cerodeseadosh1.textContent = "No se han encontrado resultados";
             }else{
                 cerodeseadosimg.src = "";
                 cerodeseadosh1.textContent = "";

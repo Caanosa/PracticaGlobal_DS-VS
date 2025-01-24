@@ -73,11 +73,17 @@
                 <li><a href="<?php echo $usuarioController->getUSesion() != null?"/app/view/deseados.php":"/app/view/login.php"?>">Deseados</a></li>
                 <li><a href="/app/view/tienda.php">Tienda</a></li>
                 <li><a href="/app/view/publicar.php">Publicar</a></li>
+                <?=$usuarioController->getUSesion() != null&& $usuarioController->getAdminId($usuarioController->getUSesion()[0])[0]['administrador']==1?"<li><a href='/app/view/listaAdmin.php'>Modificar</a></li>":""?>
                 <li><a href="<?php echo $usuarioController->getUSesion() != null ? "/app/view/cuenta.php" : "/app/view/login.php" ?>"><?php echo $usuarioController->getUSesion() != null ? $usuarioController->getUSesion()[1] : "Cuenta" ?></a></li>
             </ul>
         </nav>
     </header>
     <div class="divTexto">
+        <?=$usuarioController->getUSesion() != null&& $usuarioController->getAdminId($usuarioController->getUSesion()[0])[0]['administrador']==1? 
+            "<div class='opciones_admin'>
+            <a href='/app/view/editarProducto.php?producto_id=".$prodcuto[0]['producto_id']."'><button>✏</button></a>
+            </div>":"";
+        ?>
         <div class="container">
             <!-- Panel izquierdo -->
             <div class="left-panel">
@@ -119,7 +125,7 @@
                 <div class="info-section">
                     <span><strong>Precio:</strong> <?=$prodcuto[0]['precio']?>€</span>
                     <span><strong>Stock:</strong><?=$prodcuto[0]['stock']?></span>
-                    <span class="usuario"><img id="circleImage" src="/app/view/imagenes/no imagen.png" class="circle-img"><strong><?=$usuario[0]['nombre']?></strong><p><?= $likes[0]["likes"] ?>❤</p></span>
+                    <span class="usuario"><img id="circleImage" src="/app/view/imagenes/no imagen.png" class="circle-img"><strong><?=$usuario[0]['nombre']?></strong><p><?= $likes[0]["likes"] != null?$likes[0]["likes"]:"0"  ?>❤</p></span>
                 </div>
                 <form class="wishlistComprar" method="POST">
                     <?php
@@ -140,6 +146,9 @@
         </div>
     </div>
     <script>
+        function hola2(){
+            alert("a");
+        }
         imagenes = ["/app/view/imagenes/vamoacalmarno.jpg", "/app/view/imagenes/gengar.jpg", "/app/view/imagenes/wingull.avif",
             "/app/view/imagenes/victini.png", "/app/view/imagenes/pikachu.jpeg", "/app/view/imagenes/oshawott.png"
         ];
@@ -150,9 +159,8 @@
             document.getElementById("circleImage").src = "/app/view/imagenes/no imagen.png";
         }
         const circleImageComprador = document.getElementById("circleImageComprador");
-        
         if(circleImageComprador != null){
-            posicionComprador = <?= $comprador[0]['num_img']!=null?$comprador[0]['num_img']:"null";?>;
+            posicionComprador = <?= isset($comprador) && $comprador[0]['num_img']!=null?$comprador[0]['num_img']:"null";?>;
             if(posicionComprador != null){
                 document.getElementById("circleImageComprador").src = imagenes[posicionComprador - 1];
             }

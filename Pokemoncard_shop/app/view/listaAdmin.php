@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PokémonCS - Deseados</title>
+    <title>PokémonCS - Administrar Productos</title>
     <link rel="icon" href="/app/view/imagenes/logo_ventana3.png">
     <link rel="stylesheet" href="deseados.css">
 </head>
@@ -11,17 +11,11 @@
     <?php
         require_once "../../app/controller/UsuarioController.php";
         require_once "../../app/controller/ProductoController.php";
-        require_once "../../app/controller/Lista_deseadosController.php";
         $usuarioController = new UsuarioController();
         $productoController = new ProductoController();
-        $listaDeseadosController = new ListaDeseadosController ();
         session_start();
-        if ($usuarioController->getUSesion() == null) {
+        if ($usuarioController->getUSesion() == null ||($usuarioController->getUSesion() != null && $usuarioController->getById($usuarioController->getUSesion()[0])[0]['administrador'] !=1)) {
             header('Location: /app/view/login.php');
-        }
-
-        if($_SERVER['REQUEST_METHOD']=='POST'){
-            $listaDeseadosController->addAll($usuarioController->getUSesion()[0]);
         }
     ?>
     <header>
@@ -29,10 +23,10 @@
         <nav>
             <ul>
                 <li><a href="http://pokemoncardshop.com">Inicio</a></li>
-                <li><a class="seleccionado" href="/app/view/deseados.php">Deseados</a></li>
+                <li><a href="/app/view/deseados.php">Deseados</a></li>
                 <li><a href="/app/view/tienda.php">Tienda</a></li>
                 <li><a href="/app/view/publicar.php">Publicar</a></li>
-                <?=$usuarioController->getUSesion() != null&& $usuarioController->getAdminId($usuarioController->getUSesion()[0])[0]['administrador']==1?"<li><a href='/app/view/listaAdmin.php'>Modificar</a></li>":""?>
+                <?=$usuarioController->getUSesion() != null&& $usuarioController->getAdminId($usuarioController->getUSesion()[0])[0]['administrador']==1?"<li><a class='seleccionado' href='/app/view/listaAdmin.php'>Modificar</a></li>":""?>
                 <li><a href="/app/view/cuenta.php"><?php echo $usuarioController->getUSesion()[1] ?></a></li>
             </ul>
         </nav>
@@ -42,9 +36,6 @@
         <div class="search-bar-container">
             <input type="text" id="searchInput" placeholder="Buscar productos...">
             <button onclick="searchItems()">Buscar</button>
-            <form method="POST">
-                <button type="submit" id="guardar">Guardar</button>
-            </form>
         </div>
 
         <img id="cero_deseados_img" src="" alt="">
@@ -72,9 +63,8 @@
         let currentPage = 1;
         isSearching = false;
         searchResults = [];
-        items = <?= json_encode($productoController->reuperarDseseadsoSesionConjunto()); ?>;
-        
-        document.getElementById("guardar").disabled = <?= json_encode($productoController->reuperarDseseadsoSesion()); ?>.length ==0;
+        items = <?= json_encode($productoController->getAllProductosAdmin()); ?>;
+
 
         function renderPage(page) {
             galeria.innerHTML = "";
@@ -82,42 +72,38 @@
             const start = (page - 1) * itemsPerPage;
             const end = start + itemsPerPage;
             const currentItems = itemsToRender.slice(start, end);
-            if(items.length == 0){
-                cerodeseadosimg.src = "/app/view/imagenes/lista deseados2.png";
-                cerodeseadosh1.textContent = "Aún no tienes nada en lista de deseados";
+            
+            if(itemsToRender.length == 0){
+                cerodeseadosimg.src = "/app/view/imagenes/fallo busqueda.png";
+                cerodeseadosh1.textContent = "No se han encontrado resultados";
             }else{
-                if(itemsToRender.length == 0){
-                    cerodeseadosimg.src = "/app/view/imagenes/fallo busqueda.png";
-                    cerodeseadosh1.textContent = "No se han encontrado resultados";
-                }else{
-                    cerodeseadosimg.src = "";
-                    cerodeseadosh1.textContent = "";
-                    currentItems.forEach(item => {
-                        const aLink = document.createElement("a");
-                        aLink.href = "/app/view/producto.php?producto_id="+item['producto_id'];
-                        galeria.appendChild(aLink);
-                        const div1 = document.createElement("div");
-                        div1.classList.add("galeria-item");
-                        aLink.appendChild(div1);
-                        const div2 = document.createElement("div");
-                        div1.appendChild(div2);
-                        const imagen = document.createElement("img");
-                        imagen.src = item.imagen_url;
-                        imagen.classList.add("imagen-galeria");
-                        div2.appendChild(imagen);
-                        const div3 = document.createElement("div");
-                        div3.classList.add("info-galeria-item");
-                        div1.appendChild(div3);
-                        const div4 = document.createElement("div");
-                        div4.classList.add("nombre_producto");
-                        div4.textContent = item['nombre'];
-                        div3.appendChild(div4);
-                        const div5 = document.createElement("div");
-                        div5.classList.add("precio");
-                        div5.textContent = item['precio']+"€";
-                        div3.appendChild(div5);
-                    });
-                }
+                cerodeseadosimg.src = "";
+                cerodeseadosh1.textContent = "";
+                currentItems.forEach(item => {
+                    const aLink = document.createElement("a");
+                    aLink.href = "/app/view/editarProducto.php?producto_id="+item['producto_id'];
+                    galeria.appendChild(aLink);
+                    const div1 = document.createElement("div");
+                    div1.classList.add("galeria-item");
+                    aLink.appendChild(div1);
+                    const div2 = document.createElement("div");
+                    div1.appendChild(div2);
+                    const imagen = document.createElement("img");
+                    imagen.src = item.imagen_url;
+                    imagen.classList.add("imagen-galeria");
+                    div2.appendChild(imagen);
+                    const div3 = document.createElement("div");
+                    div3.classList.add("info-galeria-item");
+                    div1.appendChild(div3);
+                    const div4 = document.createElement("div");
+                    div4.classList.add("nombre_producto");
+                    div4.textContent = item['nombre'];
+                    div3.appendChild(div4);
+                    const div5 = document.createElement("div");
+                    div5.classList.add("precio");
+                    div5.textContent = item['precio']+"€";
+                    div3.appendChild(div5);
+                });
             }
             pageIndicator.textContent = `Página ${page}`;
             prevBtn.disabled = page === 1;
@@ -126,7 +112,7 @@
 
         function searchItems() {
             const searchTerm = document.getElementById("searchInput").value.toLowerCase();
-            searchResults = items.filter(item => item.nombre.toLowerCase().includes(searchTerm));
+            searchResults = items.filter(item => ("prid:"+item.producto_id+"puid:"+item.usuario_id+item.nombre.toLowerCase()).includes(searchTerm));
             isSearching = true;
             currentPage = 1;
             renderPage(currentPage);

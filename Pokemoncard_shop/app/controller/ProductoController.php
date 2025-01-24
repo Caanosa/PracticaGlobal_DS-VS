@@ -218,5 +218,23 @@
         public function setmegusta($id) {
             Pedidos::updateMeGusta($id, $this->recuperarPorId($id)[0]['me_gusta'] == 0 ? 1 : 0);
         }
+
+        public function modificar($producto_id,$usuario_id, $idioma_id, $nombre, $descripcion, $precio,$stock, $categoria, $tipo, $imagen_url){
+            $nuevoProducto = new Productos();
+            $nuevoProducto->setUsuario_id($usuario_id);
+            $nuevoProducto->setIdioma_id($idioma_id);
+            $nuevoProducto->setNombre($nombre);
+            $nuevoProducto->setDescripcion($descripcion);
+            $nuevoProducto->setPrecio($precio);
+            $nuevoProducto->setStock($stock);
+            $nuevoProducto->setCategoria($categoria);
+            $nuevoProducto->setTipo($tipo);
+            $nuevoProducto->setImagen_url($imagen_url);
+            return $nuevoProducto->modificar($producto_id);
+        }
+
+        public function getAllProductosAdmin(){
+            return Productos::getAllProductosAdmin();
+        }
     }
 ?>

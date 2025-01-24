@@ -290,6 +290,37 @@ class Productos
                 }
         }
 
+        public function modificar($id){
+                try{
+                    $conn = getDbConnection();
+                    $sentencia = $conn->prepare("UPDATE `productos` SET `usuario_id`= ?,`idioma_id`= ?,`nombre`= ?,`descripcion`= ?,`precio`= ?,`stock`= ?,`categoria`= ?,`tipo`= ?,`imagen_url`= ? WHERE producto_id = ?");
+                    $sentencia->bindParam(1, $this->usuario_id);
+                    $sentencia->bindParam(2, $this->idioma_id);
+                    $sentencia->bindParam(3, $this->nombre);
+                    $sentencia->bindParam(4, $this->descripcion);
+                    $sentencia->bindParam(5, $this->precio);
+                    $sentencia->bindParam(6, $this->stock);
+                    $sentencia->bindParam(7, $this->categoria);
+                    $sentencia->bindParam(8, $this->tipo);
+                    $sentencia->bindParam(9, $this->imagen_url);
+                    $sentencia->bindParam(10, $id);
+                    $sentencia->execute();
+                    return $conn->lastInsertId();
+                }catch(Exception $e){
+                    echo "Error".$e->getMessage();
+                }
+        } 
+
+        static function getAllProductosAdmin(){
+                try{
+                    $conn = getDbConnection();
+                    $query = $conn->query("Select * from productos NATURAL JOIN idioma ORDER BY fecha_agregado DESC");
+                    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                    return $result;
+                }catch(Exception $e){
+                    echo "Error al ejecutar la query";
+                }
+            }
 
 
 

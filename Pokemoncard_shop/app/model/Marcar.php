@@ -36,6 +36,24 @@ class Marcar {
         }
     }
 
+        static function elimarPorId($id){
+                try{
+                        $conn = getDbConnection();
+                        $sentencia = $conn->prepare("DELETE FROM `marcar` WHERE producto_id = ?");
+                        $sentencia->bindParam(1, $id);
+                        $sentencia->execute();
+                }catch(Exception $e){
+                        echo "Error".$e->getMessage();
+                }
+        }
+
+        
+        public function getMarcar_id()
+        {
+                return $this->marcar_id;
+        }
+    }
+
     /**
      * Recupera las relaciones marcadas por ID de producto.
      *
