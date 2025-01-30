@@ -3,6 +3,7 @@
      * Clase Pedidos
      * Representa el modelo de datos para la tabla "pedidos" en la base de datos.
      */
+    require_once "../../config/dbConnection.php";
     class Pedidos{
         /**
          * @var int $padido_id ID del pedido (atributo privado).

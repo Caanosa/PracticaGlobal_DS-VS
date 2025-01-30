@@ -3,6 +3,7 @@
      * Clase ListaDeseados
      * Representa el modelo de datos para la tabla "lista_deseados" en la base de datos.
      */
+    require_once "../../config/dbConnection.php";
     class ListaDeseados{
         /**
          * @var int $lista_deseados_id ID de la lista de deseados (atributo privado).

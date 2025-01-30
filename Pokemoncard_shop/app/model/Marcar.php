@@ -3,6 +3,7 @@
  * Clase Marcar
  * Responsable de gestionar la relación entre filtros y productos en la base de datos.
  */
+require_once "../../config/dbConnection.php";
 class Marcar {
     /**
      * @var int ID de la relación "marcar".
@@ -36,16 +37,16 @@ class Marcar {
         }
     }
 
-        static function elimarPorId($id){
-                try{
-                        $conn = getDbConnection();
-                        $sentencia = $conn->prepare("DELETE FROM `marcar` WHERE producto_id = ?");
-                        $sentencia->bindParam(1, $id);
-                        $sentencia->execute();
-                }catch(Exception $e){
-                        echo "Error".$e->getMessage();
-                }
-        }
+    static function elimarPorId($id){
+            try{
+                    $conn = getDbConnection();
+                    $sentencia = $conn->prepare("DELETE FROM `marcar` WHERE producto_id = ?");
+                    $sentencia->bindParam(1, $id);
+                    $sentencia->execute();
+            }catch(Exception $e){
+                    echo "Error".$e->getMessage();
+            }
+    }
     
 
     /**

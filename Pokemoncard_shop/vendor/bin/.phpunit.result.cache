@@ -1,0 +1,1 @@
+{"version":1,"defects":{"MarcarControllerTest::testCrear":7,"MarcarControllerTest::testRecuperarPorId":7,"MarcarControllerTest::testEliminarPorId":7},"times":{"MarcarControllerTest::testCrear":0.195,"MarcarControllerTest::testRecuperarPorId":0.018,"MarcarControllerTest::testEliminarPorId":0.004}}
