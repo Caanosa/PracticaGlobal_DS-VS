@@ -109,7 +109,7 @@
         <p><?php echo $usuario[0]['nombre'] ?></p>
         <p class="ercora"><?= $likes[0]["likes"] != null?$likes[0]["likes"]:0 ?> ❤</p>
         <div class="tabs">
-            <input type="radio" name="tabs" id="tab-vendidos" checked>
+            <input type="radio" name="tabs" id="tab-vendidos" checked class="tabSeleccioanado">
             <label for="tab-vendidos" onclick="pestania(1)">Vendidos</label>
 
             <input type="radio" name="tabs" id="tab-comprados">
@@ -172,6 +172,8 @@
             }
             closePopup(); // Cerrar el popup al seleccionar la imagen
         }
+
+
 
         const galeria = document.getElementById("vendidos");
         const prevBtn = document.getElementById("prevBtn");
@@ -248,21 +250,25 @@
         }
 
         function pestania(tipo) {
+            document.getElementsByClassName("tabSeleccioanado")[0].className = "";
             switch (tipo) {
                 case 1:
                     items = vendidos;
                     imgen_vacio = "/app/view/imagenes/no vendidos1.png";
                     titulo_vacio = "Aún no as vendido ningún producto";
+                    document.getElementById("tab-vendidos").className = "tabSeleccioanado";  
                     break;
                 case 2:
                     items = comprados;
                     imgen_vacio = "/app/view/imagenes/no compras.png";
                     titulo_vacio = "Aún no as comprado ningún producto";
+                    document.getElementById("tab-comprados").className = "tabSeleccioanado";  
                     break;
                 case 3:
                     items = likes;
                     imgen_vacio = "/app/view/imagenes/cero megustas.png";
                     titulo_vacio = "Dale me gusta a los productos que hayas comprado";
+                    document.getElementById("tab-megusta").className = "tabSeleccioanado";  
                     break;
             }
             currentPage = 1;

@@ -151,7 +151,7 @@ p {
   border-bottom: 2px solid transparent;
 }
 
-.tabs input:checked + label {
+.tabSeleccioanado + label {
   border-bottom: 2px solid #fff;
 }
 
