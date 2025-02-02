@@ -58,7 +58,7 @@ class Productos
         /**
          * Crea un nuevo producto en la base de datos.
          * 
-         * @return int|false Identificador del producto creado o false en caso de error.
+         * @return int|null Identificador del producto creado o null en caso de error.
          */
         public function create()
         {
@@ -84,7 +84,7 @@ class Productos
         /**
          * Recupera todos los productos disponibles.
          * 
-         * @return array|false Lista de productos o false en caso de error.
+         * @return array|null Lista de productos o null en caso de error.
          */
         static function getAllProductos()
         {
@@ -106,7 +106,7 @@ class Productos
          * @param string $idioma Identificador del idioma.
          * @param float $min Precio mínimo.
          * @param float $max Precio máximo.
-         * @return array|false Lista de productos filtrados o false en caso de error.
+         * @return array|null Lista de productos filtrados o null en caso de error.
          */
         static function getAllProductosFiltered($expansion, $tipos, $categorias, $idioma, $min, $max)
         {
@@ -128,7 +128,7 @@ class Productos
          * Recupera los productos vendidos por un usuario específico.
          * 
          * @param int $id Identificador del usuario.
-         * @return array|false Lista de productos vendidos o false en caso de error.
+         * @return array|null Lista de productos vendidos o null en caso de error.
          */
         static function recuperarVendidos($id)
         {
@@ -147,7 +147,7 @@ class Productos
          * Recupera los productos comprados por un usuario específico.
          * 
          * @param int $id Identificador del usuario.
-         * @return array|false Lista de productos comprados o false en caso de error.
+         * @return array|null Lista de productos comprados o null en caso de error.
          */
         static function recuperarComprados($id)
         {
@@ -169,7 +169,7 @@ class Productos
          * Recupera los productos que un usuario ha marcado como "me gusta".
          * 
          * @param int $id Identificador del usuario.
-         * @return array|false Lista de productos que el usuario ha marcado como "me gusta" o false en caso de error.
+         * @return array|null Lista de productos que el usuario ha marcado como "me gusta" o null en caso de error.
          */
         static function recuperarLikes($id)
         {
@@ -193,7 +193,7 @@ class Productos
          * Recupera los productos que un usuario ha agregado a su lista de deseos.
          * 
          * @param int $id Identificador del usuario.
-         * @return array|false Lista de productos deseados por el usuario o false en caso de error.
+         * @return array|null Lista de productos deseados por el usuario o null en caso de error.
          */
         static function recuperarDeseados($id)
         {
@@ -217,7 +217,7 @@ class Productos
          * Recupera un producto específico a través de su identificador único.
          * 
          * @param int $id Identificador único del producto.
-         * @return array|false Detalles del producto o false en caso de error.
+         * @return array|null Detalles del producto o null en caso de error.
          */
         static function recuperarPorId($id)
         {
@@ -256,7 +256,7 @@ class Productos
         /**
          * Recupera los tres productos más deseados.
          * 
-         * @return array|false Lista de los tres productos más deseados o false en caso de error.
+         * @return array|null Lista de los tres productos más deseados o null en caso de error.
          */
         static function masDeseados()
         {
@@ -277,7 +277,7 @@ class Productos
         /**
          * Recupera los tres productos más recientes agregados.
          * 
-         * @return array|false Lista de los tres productos más recientes o false en caso de error.
+         * @return array|null Lista de los tres productos más recientes o null en caso de error.
          */
         static function masRecientes()
         {
@@ -289,7 +289,11 @@ class Productos
                         echo "Error al ejecutar la query";
                 }
         }
-
+        /**
+         * Modifica un producto en la base de datos.
+         * 
+         * @return int|null Identificador del producto modificado o null en caso de error.
+         */
         public function modificar($id){
                 try{
                     $conn = getDbConnection();
@@ -311,6 +315,11 @@ class Productos
                 }
         } 
 
+        /**
+         * Recupera todos los productos.
+         * 
+         * @return array|null Lista de productos o null en caso de error.
+         */
         static function getAllProductosAdmin(){
                 try{
                     $conn = getDbConnection();

@@ -247,7 +247,12 @@ class Usuario
                 }
         }
 
-
+        /**
+         * Obtiene la informacion del atributo admin de un usuario.
+         *
+         * @param int $usuairo_id ID del usuario.
+         * @return array Resultado de la consulta con los datos del atributo admin.
+         */
         static function getAdminId($usuairo_id){
                 try{
                         $conn = getDbConnection();

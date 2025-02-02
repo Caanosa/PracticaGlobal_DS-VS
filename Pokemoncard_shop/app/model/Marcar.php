@@ -36,7 +36,11 @@ class Marcar {
             echo "Error: " . $e->getMessage();
         }
     }
-
+    /**
+     * Elimina una entrada en la tabla `marcar`.
+     *
+     * Borra la relación entre un filtro y un producto en la base de datos.
+     */
     static function elimarPorId($id){
             try{
                     $conn = getDbConnection();

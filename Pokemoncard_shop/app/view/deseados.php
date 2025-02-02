@@ -73,7 +73,6 @@
         isSearching = false;
         searchResults = [];
         items = <?= json_encode($productoController->reuperarDseseadsoSesionConjunto()); ?>;
-        
         document.getElementById("guardar").disabled = <?= json_encode($productoController->reuperarDseseadsoSesion()); ?>.length ==0;
 
         function renderPage(page) {

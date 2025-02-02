@@ -1,4 +1,5 @@
-<?php    require_once "../../app/model/Pedidos.php";
+<?php    
+    require_once "../../app/model/Pedidos.php";
     require_once "../../app/controller/ProductoController.php";
 
     /**
@@ -13,7 +14,7 @@
          * @param int $producto_id El ID del producto que se está pidiendo.
          * @param int $cantidad La cantidad del producto que se está pidiendo.
          * 
-         * @return int Retorna el resultado de la creación del pedido.
+         * @return int Retorna el id del pedido resultado de la creación del mismo.
          */
         function crear($usuario_id, $producto_id, $cantidad){
             $productoController = new ProductoController();
@@ -43,8 +44,6 @@
          * Actualiza la preferencia 'me gusta' de un pedido, alternando su estado entre 0 y 1.
          *
          * @param int $id El ID del pedido que se actualizará.
-         * 
-         * @return int El resultado de la actualización.
          */
         function updateMeGusta($id){
             return Pedidos::updateMeGusta($id, $this->recuperarPorId($id)[0]['me_gusta'] == 1 ? 0 : 1);

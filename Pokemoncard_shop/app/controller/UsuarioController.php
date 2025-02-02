@@ -25,7 +25,7 @@ class UsuarioController {
     }
 
     /**
-     * Crea un nuevo usuario si el correo electrónico no está registrado previamente.
+     * Crea un nuevo usuario si el correo electrónico o nombre no están registrados previamente.
      *
      * @param string $nombre Nombre del usuario.
      * @param string $email Correo electrónico del usuario.
@@ -71,7 +71,7 @@ class UsuarioController {
      * Obtiene un usuario por su ID.
      *
      * @param int $usuario_id ID del usuario.
-     * @return Usuario|null Objeto Usuario si se encuentra, de lo contrario null.
+     * @return array|null array con la informacion del usuario si se encuentra, de lo contrario null.
      */
     public function getById($usuario_id) {
         return Usuario::getById($usuario_id);
@@ -95,10 +95,10 @@ class UsuarioController {
     }
 
     /**
-     * Recupera los likes asociados a un usuario.
+     * Recupera el número total de "me gusta" de los productos de un usuario
      *
      * @param int $id ID del usuario.
-     * @return array Lista de likes del usuario.
+     * @return array Resultado de la consulta con la suma de "me gusta".
      */
     public function recuperarLikes($id) {
         return Usuario::recuperarLikes($id);
@@ -124,15 +124,21 @@ class UsuarioController {
 
     }
 
+    /**
+     * Recupera el atributo de administrador del usuairo con dicho id.
+     *
+     * @param int $id ID del usuario.
+     * @return array|null Array con el atributo administrador o null en caso de fallo.
+     */
     public function getAdminId($id){
         return Usuario::getAdminId($id);
     }
 
     /**
-     * Obtiene un filtro de usuario por su ID.
+     * Obtiene informacion filtrada del usuario por su ID.
      *
      * @param int $id ID del usuario.
-     * @return mixed Resultado filtrado del usuario.
+     * @return array Resultado filtrado del usuario.
      */
     public function getFiltradoById($id) {
         return Usuario::getFiltradoById($id);
