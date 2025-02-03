@@ -124,7 +124,7 @@
             </div>
             <button class="prev" onclick="prevPage()" id="prevBtn">&#10094;</button>
             <img id="lista_vacia_img" src="/app/view/imagenes/cero megustas.png" alt="">
-            <h1 id="lista_vacia_titulo">Aun so as vendido ningun producto</h1>
+            <h1 id="lista_vacia_titulo">Aun no has vendido ningun producto</h1>
             <button class="next" onclick="nextPage()" id="nextBtn">&#10095;</button>
         </div>
     </div>
@@ -181,7 +181,7 @@
         const listavaciaimg = document.getElementById("lista_vacia_img");
         const listavaciatitulo = document.getElementById("lista_vacia_titulo");
         imgen_vacio = "/app/view/imagenes/no vendidos1.png";
-        titulo_vacio = "Aún no as vendido ningún producto"
+        titulo_vacio = "Aún no has vendido ningún producto"
 
         const itemsPerPage = 8;
         let currentPage = 1;
