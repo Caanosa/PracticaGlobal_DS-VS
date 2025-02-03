@@ -255,13 +255,13 @@
                 case 1:
                     items = vendidos;
                     imgen_vacio = "/app/view/imagenes/no vendidos1.png";
-                    titulo_vacio = "Aún no as vendido ningún producto";
+                    titulo_vacio = "Aún no has vendido ningún producto";
                     document.getElementById("tab-vendidos").className = "tabSeleccioanado";  
                     break;
                 case 2:
                     items = comprados;
                     imgen_vacio = "/app/view/imagenes/no compras.png";
-                    titulo_vacio = "Aún no as comprado ningún producto";
+                    titulo_vacio = "Aún no has comprado ningún producto";
                     document.getElementById("tab-comprados").className = "tabSeleccioanado";  
                     break;
                 case 3:
