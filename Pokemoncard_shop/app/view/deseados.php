@@ -22,6 +22,8 @@
 
         if($_SERVER['REQUEST_METHOD']=='POST'){
             $listaDeseadosController->addAll($usuarioController->getUSesion()[0]);
+            header('Location: /app/view/deseados.php');
+            exit();
         }
     ?>
     <header>

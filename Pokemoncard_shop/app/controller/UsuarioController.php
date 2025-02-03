@@ -113,7 +113,7 @@ class UsuarioController {
      */
     public function modificar($id, $nombre, $email, $contrasena) {
         if (!Usuario::varificarModificacion($id, $nombre, $email)) {
-            Usuario::modificar($id, $nombre, $email, $contrasena, 1);
+            Usuario::modificar($id, $nombre, $email, $contrasena);
             $this->guardarEnSesion($id, $nombre);
             return true;
         } else {

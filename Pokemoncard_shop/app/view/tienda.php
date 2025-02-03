@@ -32,13 +32,13 @@
     <?php
     require_once "../../app/controller/ProductoController.php";
     $productoController = new ProductoController();
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $expansion = $_POST["expansion"];
+    if (count($_GET) >0) {
+        $expansion = $_GET["expansion"];
         $tiposNombre = ["Pack", "Sobre", "Carta"];
         $tiposInt = [];
         $tipos = [];
         foreach ($tiposNombre as $tipo) {
-            if (in_array($tipo, $_POST)) {
+            if (in_array($tipo, $_GET)) {
                 array_push($tiposInt, 1);
                 array_push($tipos, $tipo);
             } else {
@@ -49,16 +49,16 @@
         $categoriasInt = [];
         $categorias = [];
         foreach ($categoriasNombre as $categoria) {
-            if (in_array($categoria, $_POST)) {
+            if (in_array($categoria, $_GET)) {
                 array_push($categoriasInt, 1);
                 array_push($categorias, $categoria);
             } else {
                 array_push($categoriasInt, 0);
             }
         }
-        $idiomasSelect = $_POST["idioma"];
-        $min = $_POST["min"];
-        $max = $_POST["max"];
+        $idiomasSelect = $_GET["idioma"];
+        $min = $_GET["min"];
+        $max = $_GET["max"];
 
         $productos = $productoController->getAllProductosFiltered($expansion, $tipos, $categorias, $idiomasSelect, $min, $max);
     } else {
@@ -68,7 +68,7 @@
     ?>
     <div class="cuerpo">
     <!-- onsubmit="manejarEnvio(event)" -->
-    <form id="formulario" class="filter-container"  method="POST">
+    <form id="formulario" class="filter-container"  method="GET">
         <h3>Filtros</h3>
         <div class="filter-section">
             <label for="collectionType">Expansión:</label><br>
