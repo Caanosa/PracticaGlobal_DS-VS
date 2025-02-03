@@ -36,7 +36,7 @@ class UsuarioController {
             $nuevoProducto->setNombre($nombre);
             $nuevoProducto->setEmail($email);
             $nuevoProducto->setContrasena($contrasena);
-            $nuevoProducto->setAdministrador(1);
+            $nuevoProducto->setAdministrador(0);
             $nuevoProducto->create();
             return Usuario::getLogin($email, $contrasena);
         }
