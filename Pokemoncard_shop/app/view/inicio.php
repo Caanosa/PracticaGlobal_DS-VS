@@ -47,36 +47,12 @@
         </div>
 
         <div id="deseadosDiv" class="productos">
-            <!-- <div class="producto">
-                <h4>Producto 1</h4>
-                <p>Descripción del producto 1.</p>
-            </div>
-            <div class="producto">
-                <h4>Producto 2</h4>
-                <p>Descripción del producto 2.</p>
-            </div>
-            <div class="producto">
-                <h4>Producto 3</h4>
-                <p>Descripción del producto 3.</p>
-            </div> -->
         </div>
     </div>
 
     <div class="fondo_recientes">
         <p class="recientes">PRODUCTOS RECIENTES</p>
         <div id="recientesDiv" class="nuevos">
-            <!-- <div class="nuevo">
-                <h4>Producto 1</h4>
-                <p>Descripción del producto 1.</p>
-            </div>
-            <div class="nuevo">
-                <h4>Producto 2</h4>
-                <p>Descripción del producto 2.</p>
-            </div>
-            <div class="nuevo">
-                <h4>Producto 3</h4>
-                <p>Descripción del producto 3.</p>
-            </div> -->
         </div>
     </div>
 
