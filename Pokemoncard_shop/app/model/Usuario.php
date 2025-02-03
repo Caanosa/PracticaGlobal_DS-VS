@@ -1,13 +1,14 @@
 <?php
-
-/**
- * Se incluye el archivo para obtener la conexión a la base de datos.
- */
 require_once "../../config/dbConnection.php";
 
 /**
- * Clase Usuario que representa un usuario del sistema.
+ * Clase Usuario.
+ * 
+ * Se incluye el archivo para obtener la conexión a la base de datos.
+ * 
+ * @package Model
  */
+ 
 class Usuario
 {
         /** @var int $usuairo_id Identificador único del usuario. */

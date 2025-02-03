@@ -3,7 +3,10 @@
 
     /**
      * Clase IdiomaController
+     * 
      * Controlador que gestiona las operaciones relacionadas con la clase Idioma.
+     * 
+     * @package Controller
      */
     class IdiomaController{
         /**

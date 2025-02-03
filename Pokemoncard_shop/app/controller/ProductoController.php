@@ -7,7 +7,11 @@ use SebastianBergmann\Environment\Console;
     require_once "../../app/controller/Lista_deseadosController.php";
 
     /**
+     * Clase ProductoController
+     * 
      * Clase controladora para manejar las operaciones relacionadas con los productos.
+     * 
+     * @package Controller
      */
     class ProductoController {
 

@@ -1,10 +1,15 @@
 <?php
+require_once "../../config/dbConnection.php";
+
 /**
  * Clase Marcar
+ * 
  * Responsable de gestionar la relación entre filtros y productos en la base de datos.
+ * 
+ * @package Model
  */
-require_once "../../config/dbConnection.php";
-class Marcar {
+class Marcar
+{
     /**
      * @var int ID de la relación "marcar".
      */
@@ -25,7 +30,8 @@ class Marcar {
      *
      * Inserta una relación entre un filtro y un producto en la base de datos.
      */
-    public function crear() {
+    public function crear()
+    {
         try {
             $conn = getDbConnection();
             $sentencia = $conn->prepare("INSERT INTO `marcar`(`filtro_id`, `producto_id`) VALUES (?, ?)");
@@ -41,17 +47,18 @@ class Marcar {
      *
      * Borra la relación entre un filtro y un producto en la base de datos.
      */
-    static function elimarPorId($id){
-            try{
-                    $conn = getDbConnection();
-                    $sentencia = $conn->prepare("DELETE FROM `marcar` WHERE producto_id = ?");
-                    $sentencia->bindParam(1, $id);
-                    $sentencia->execute();
-            }catch(Exception $e){
-                    echo "Error".$e->getMessage();
-            }
+    static function elimarPorId($id)
+    {
+        try {
+            $conn = getDbConnection();
+            $sentencia = $conn->prepare("DELETE FROM `marcar` WHERE producto_id = ?");
+            $sentencia->bindParam(1, $id);
+            $sentencia->execute();
+        } catch (Exception $e) {
+            echo "Error" . $e->getMessage();
+        }
     }
-    
+
 
     /**
      * Recupera las relaciones marcadas por ID de producto.
@@ -61,7 +68,8 @@ class Marcar {
      * @param int $id ID del producto.
      * @return array|null Lista de relaciones encontradas o null en caso de error.
      */
-    static function recuperarPorId($id) {
+    static function recuperarPorId($id)
+    {
         try {
             $conn = getDbConnection();
             $sentencia = $conn->prepare("SELECT * FROM `marcar` NATURAL JOIN filtros WHERE producto_id = ?");
@@ -79,7 +87,8 @@ class Marcar {
      *
      * @return int ID de la relación "marcar".
      */
-    public function getMarcar_id() {
+    public function getMarcar_id()
+    {
         return $this->marcar_id;
     }
 
@@ -88,7 +97,8 @@ class Marcar {
      *
      * @return int ID del filtro.
      */
-    public function getFiltro_id() {
+    public function getFiltro_id()
+    {
         return $this->filtro_id;
     }
 
@@ -98,7 +108,8 @@ class Marcar {
      * @param int $filtro_id ID del filtro.
      * @return $this Instancia actual del objeto.
      */
-    public function setFiltro_id($filtro_id) {
+    public function setFiltro_id($filtro_id)
+    {
         $this->filtro_id = $filtro_id;
         return $this;
     }
@@ -108,7 +119,8 @@ class Marcar {
      *
      * @return int ID del producto.
      */
-    public function getProducto_id() {
+    public function getProducto_id()
+    {
         return $this->producto_id;
     }
 
@@ -118,9 +130,9 @@ class Marcar {
      * @param int $producto_id ID del producto.
      * @return $this Instancia actual del objeto.
      */
-    public function setProducto_id($producto_id) {
+    public function setProducto_id($producto_id)
+    {
         $this->producto_id = $producto_id;
         return $this;
     }
 }
-?>

@@ -3,7 +3,11 @@
     require_once "../../app/controller/ProductoController.php";
 
     /**
+     * Clase PedidoController
+     * 
      * Clase controladora que gestiona las operaciones relacionadas con los pedidos.
+     * 
+     * @package Controller
      */
     class PedidoController{
         

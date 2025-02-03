@@ -3,7 +3,10 @@
 
     /**
      * Clase FiltroController
+     * 
      * Controlador que gestiona las operaciones relacionadas con la clase Filtro.
+     * 
+     * @package Controller
      */
     class FiltroController{
         /**

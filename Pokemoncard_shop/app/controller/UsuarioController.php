@@ -1,15 +1,13 @@
 <?php
-/**
- * Archivo que contiene la clase UsuarioController.
- * Responsable de gestionar las operaciones relacionadas con los usuarios.
- */
-
 require_once "../../app/model/Usuario.php";
 require_once "../../app/controller/ProductoController.php";
 
 /**
  * Clase UsuarioController
+ * 
  * Proporciona métodos para manejar operaciones relacionadas con los usuarios.
+ * 
+ * @package Controller
  */
 class UsuarioController {
 

@@ -3,7 +3,10 @@
 
     /**
      * Clase Idioma
+     * 
      * Representa el modelo de datos para la tabla "idioma" en la base de datos.
+     * 
+     * @package Model
      */
     class Idioma{
         /**

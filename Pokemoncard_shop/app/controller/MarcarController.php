@@ -1,9 +1,12 @@
 <?php
-    // Se requiere la clase Marcar para manejar las operaciones relacionadas con las marcas
     require_once "../../app/model/Marcar.php";
 
     /**
+     * Clase MarcarController
+     * 
      * Clase controladora que gestiona las operaciones relacionadas con la entidad Marcar.
+     * 
+     * @package Controller
      */
     class MarcarController {
 

@@ -1,14 +1,13 @@
 <?php
+require_once "../../config/dbConnection.php";
 
 /**
  * Clase Productos
  * 
  * Esta clase representa la lógica de negocio para los productos, incluyendo métodos para crear, recuperar, y filtrar productos en la base de datos.
  * 
- * @package Productos
+ * @package Model
  */
-
-require_once "../../config/dbConnection.php";
 
 class Productos
 {

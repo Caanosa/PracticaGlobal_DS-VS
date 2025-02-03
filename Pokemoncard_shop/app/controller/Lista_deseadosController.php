@@ -4,7 +4,10 @@
 
     /**
      * Clase ListaDeseadosController
+     * 
      * Controlador que gestiona las operaciones relacionadas con la clase ListaDeseados.
+     * 
+     * @package Controller
      */
     class ListaDeseadosController{
         /**

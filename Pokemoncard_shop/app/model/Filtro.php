@@ -3,7 +3,10 @@
 
     /**
      * Clase Filtro
+     * 
      * Representa el modelo de datos para la tabla "filtros" en la base de datos.
+     * 
+     * @package Model
      */
     class Filtro {
         /**
