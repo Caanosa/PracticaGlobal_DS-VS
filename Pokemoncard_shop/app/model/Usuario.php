@@ -209,14 +209,14 @@ class Usuario
          * @param bool $administrador Indica si el usuario será administrador.
          * @return void
          */
-        static function modificar($id, $nombre, $email, $contrasena, $administrador){
+        static function modificar($id, $nombre, $email, $contrasena){
                 try{
                     $conn = getDbConnection();
                     $sentencia = $conn->prepare("UPDATE `usuarios` SET nombre=?, email=?, contrasena=? WHERE usuario_id=?");
                     $sentencia->bindParam(1, $nombre);
                     $sentencia->bindParam(2, $email);
                     $sentencia->bindParam(3, $contrasena);
-                    $sentencia->bindParam(5, $id);
+                    $sentencia->bindParam(4, $id);
                     $sentencia->execute();
                 }catch(Exception $e){
                     echo "Error".$e->getMessage();
