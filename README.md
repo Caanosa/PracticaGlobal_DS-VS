@@ -48,3 +48,40 @@ Este repositorio contiene una práctica global para el módulo de Desarrollo de 
 
    ```bash
    git clone https://github.com/Caanosa/PracticaGlobal_DS-VS.git
+
+2. **Configurar el servidor web:**
+
+   - Copia la carpeta `Pokemoncard_shop/` al directorio `htdocs/` de XAMPP.
+   - Asegúrate de que Apache y MySQL estén en ejecución.
+
+3. **Importar la base de datos:**
+
+   - Accede a phpMyAdmin.
+   - Crea una nueva base de datos, por ejemplo, `pokemoncard_db`.
+   - Importa el archivo `BBDD_PokemonCard.txt` para crear las tablas necesarias.
+
+4. **Configurar la conexión a la base de datos:**
+
+   - Abre el archivo de configuración de la base de datos en `Pokemoncard_shop/` (por ejemplo, `config.php`).
+   - Actualiza los parámetros de conexión (`host`, `usuario`, `contraseña`, `nombre de la base de datos`) según tu configuración local.
+
+5. **Generar la documentación del código:**
+
+   ```bash
+   php phpDocumentor.phar run -d Pokemoncard_shop -t documentacion
+   (La documentación generada estará disponible en la carpeta documentacion/.)
+
+
+## 🧪 Pruebas
+
+Actualmente, no se han implementado pruebas automatizadas. Se recomienda realizar pruebas manuales de las funcionalidades principales de la aplicación y considerar la integración de un framework de pruebas como PHPUnit en el futuro.
+
+## 📄 Licencia
+
+Este proyecto se distribuye bajo la licencia MIT. Consulta el archivo `LICENSE` para más información.
+
+## 🤝 Contribuciones
+
+Las contribuciones son bienvenidas. Por favor, abre un *issue* para discutir cambios importantes antes de enviar un *pull request*.
+
+
