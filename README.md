@@ -69,6 +69,7 @@ Este repositorio contiene una práctica global para el módulo de Desarrollo de 
 
    ```bash
    php phpDocumentor.phar run -d Pokemoncard_shop -t documentacion
+   ```
    (La documentación generada estará disponible en la carpeta documentacion/.)
 
 
