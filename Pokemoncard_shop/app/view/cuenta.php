@@ -8,6 +8,109 @@
     <link rel="icon" href="/app/view/imagenes/logo_ventana3.png">
     <link rel="stylesheet" href="/app/view/cuenta.css">
 </head>
+<style>
+        #chatbot-toggle {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color:rgb(52, 52, 52);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            z-index: 1000;
+        }
+
+        #chatbot-panel {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
+            transition: right 0.3s ease;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #chatbot-panel.active {
+            right: 0;
+        }
+
+        #chatbot-close {
+            align-self: flex-end;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        #chatbot-content {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        /* Mensajes del chatbot (bot) */
+#chatbot-content p.bot {
+    max-width: 75%;
+    background-color: #fff;
+    padding: 10px 14px;
+    border-radius: 8px 8px 8px 0;
+    margin: 8px 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    align-self: flex-start;
+    box-shadow: 0 1px 1.5px rgba(0,0,0,0.1);
+}
+
+/* Mensajes del usuario (user) */
+#chatbot-content p.user {
+    max-width: 75%;
+    background-color: #dcf8c6;
+    padding: 10px 14px;
+    border-radius: 8px 8px 0 8px;
+    margin: 8px 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    align-self: flex-end;
+    box-shadow: 0 1px 1.5px rgba(0,0,0,0.1);
+}
+
+        /* Estilos básicos del chatbot */
+        #chatbot-content p {
+            margin: 0.5em 0;
+        }
+
+        #chatbot-input-container {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        #chatbot-input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #chatbot-send {
+            margin-left: 10px;
+            padding: 10px 15px;
+            background-color: #ffcc00;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+</style>
 
 <body>
     <?php
@@ -53,6 +156,21 @@
         </nav>
     </header>
     <div class="cuerpo">
+
+    <!-- Botón del chatbot -->
+    <button id="chatbot-toggle" aria-label="Abrir chatbot">💬</button>
+
+    <!-- Panel del chatbot (misma clase) -->
+    <div id="chatbot-panel">
+        <button id="chatbot-close" aria-label="Cerrar chatbot">&times;</button>
+        <div id="chatbot-content">
+            <p><strong>Chatbot:</strong> ¡Hola! ¿En qué puedo ayudarte?</p>
+        </div>
+        <div id="chatbot-input-container">
+            <input type="text" id="chatbot-input" placeholder="Escribe un mensaje...">
+            <button id="chatbot-send">Enviar</button>
+        </div>
+    </div>
 
         <a href="/app/view/editarUsuario.php" class="editar">
             <button type="submit" class="editar_usuario">Editar usuario</button>
@@ -276,6 +394,75 @@
         }
 
         renderPage(currentPage);
+        const toggle = document.getElementById('chatbot-toggle');
+        const panel = document.getElementById('chatbot-panel');
+        const closeBtn = document.getElementById('chatbot-close');
+        const content = document.getElementById('chatbot-content');
+        const input = document.getElementById('chatbot-input');
+        const sendBtn = document.getElementById('chatbot-send');
+
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            panel.classList.toggle('active');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            panel.classList.remove('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!panel.contains(e.target) && !toggle.contains(e.target)) {
+                panel.classList.remove('active');
+            }
+        });
+
+        chatbotContent = document.getElementById('chatbot-content');
+const chatbotInput = document.getElementById('chatbot-input');
+const chatbotSend = document.getElementById('chatbot-send');
+
+chatbotSend.addEventListener('click', () => {
+    const message = chatbotInput.value.trim();
+    if (!message) return;
+
+    // Mensaje usuario
+    const userMsg = document.createElement('p');
+    userMsg.className = 'user';
+    userMsg.textContent = message;
+    chatbotContent.appendChild(userMsg);
+
+    chatbotInput.value = '';
+    chatbotContent.scrollTop = chatbotContent.scrollHeight;
+
+    // Respuesta bot (simple lógica)
+    let respuesta = "Lo siento, no entiendo tu pregunta.";
+
+    const msgLower = message.toLowerCase();
+    if (msgLower.includes("hola") || msgLower.includes("buenos días")) {
+        respuesta = "¡Hola! ¿En qué puedo ayudarte?";
+    } else if (msgLower.includes("precio de pikachu")) {
+        respuesta = "El precio de la carta Pikachu es 3.50€.";
+    } else if (msgLower.includes("envío")) {
+        respuesta = "Ofrecemos envío gratuito en pedidos superiores a 20€.";
+    } else if (msgLower.includes("devolución")) {
+        respuesta = "Puedes devolver cualquier producto en un plazo de 14 días.";
+    } else if (msgLower.includes("contacto")) {
+        respuesta = "Puedes contactarnos al email soporte@pokemarket.com.";
+    }
+
+    // Mensaje bot
+    const botMsg = document.createElement('p');
+    botMsg.className = 'bot';
+    botMsg.textContent = respuesta;
+    chatbotContent.appendChild(botMsg);
+    chatbotContent.scrollTop = chatbotContent.scrollHeight;
+});
+
+        // Permitir enviar con Enter
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') sendBtn.click();
+        });
+
+        
     </script>
 </body>
 
