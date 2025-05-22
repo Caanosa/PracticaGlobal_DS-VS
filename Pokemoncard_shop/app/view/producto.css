@@ -110,7 +110,8 @@ footer {
 .left-panel img {
   width: 100%;
   border-radius: 8px;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .like-button1, .like-button2 {
@@ -186,6 +187,7 @@ footer {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  width: -moz-fit-content;
   width: fit-content;
 }
 
@@ -203,9 +205,10 @@ footer {
 
 .divTexto {
   border-radius: 5vw;
+  width: -moz-fit-content;
   width: fit-content;
   margin: auto;
-  margin-top: 2vw;
+  margin-top: 6vw;
 }
 
 .wishlistComprar strong {
@@ -239,7 +242,8 @@ footer {
   height: 3vw;
   border-radius: 50%;
   background-color: rgb(172, 172, 172);
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .usuario {
@@ -248,39 +252,35 @@ footer {
   gap: 0px 0.4vw;
 }
 
-
-.usuario p{
-    color: #e64242;
+.usuario p {
+  color: #e64242;
 }
 
-.opciones_admin{
-    display: flex;
-    gap: 0.5vw;
-    flex-direction: row-reverse;
-    padding-bottom: 0.3vw;
-    margin: 0 1.5vw 0 1.5vw;
+.opciones_admin {
+  display: flex;
+  gap: 0.5vw;
+  flex-direction: row-reverse;
+  padding-bottom: 0.3vw;
+  margin: 0 1.5vw 0 1.5vw;
 }
 
-.opciones_admin button{
-    width: 1.4vw;
-    height: 1.4vw;
-    background-color: #333;
-    color: white;
-    border-radius: 50%;
-    font-size: 0.5vw;
-    border: none;
-    transition: transform 0.5s;
+.opciones_admin button {
+  width: 1.4vw;
+  height: 1.4vw;
+  background-color: #333;
+  color: white;
+  border-radius: 50%;
+  font-size: 0.5vw;
+  border: none;
+  transition: transform 0.5s;
 }
 
-.opciones_admin button:last-child{
-    transform: rotate(130deg);
-    font-size: 0.6vw;
+.opciones_admin button:last-child {
+  transform: rotate(130deg);
+  font-size: 0.6vw;
 }
 
-.opciones_admin button:hover{
-    transform: scale(1.1);
-    transform: rotate(-140deg);
-}
-
-/*# sourceMappingURL=producto.css.map */
-
+.opciones_admin button:hover {
+  transform: scale(1.1);
+  transform: rotate(-140deg);
+}/*# sourceMappingURL=producto.css.map */

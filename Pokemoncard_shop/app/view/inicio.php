@@ -7,31 +7,33 @@
     <title>Pokémon Card Shop</title>
     <link rel="icon" href="/app/view/imagenes/logo_ventana3.png">
     <link rel="stylesheet" href="/app/view/inicio.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
+
 
 <body>
     <?php
-        require_once "../../app/controller/UsuarioController.php";
-        require_once "../../app/controller/ProductoController.php";
-        $usuarioController = new UsuarioController();
-        $productoController = new ProductoController();
-        session_start();
+    require_once "../../app/controller/UsuarioController.php";
+    require_once "../../app/controller/ProductoController.php";
+    $usuarioController = new UsuarioController();
+    $productoController = new ProductoController();
+    session_start();
     ?>
     <header>
         <a href="http://pokemoncardshop.com"><img class="img-logo" src="/app/view/imagenes/image.png" alt="logo"></a>
         <nav>
             <ul>
-                <li><a  class="seleccionado" href="http://pokemoncardshop.com">Inicio</a></li>
-                <li><a href="<?php echo $usuarioController->getUSesion() != null?"/app/view/deseados.php":"/app/view/login.php"?>">Deseados</a></li>
+                <li><a class="seleccionado" href="http://pokemoncardshop.com">Inicio</a></li>
+                <li><a href="<?php echo $usuarioController->getUSesion() != null ? "/app/view/deseados.php" : "/app/view/login.php" ?>">Deseados</a></li>
                 <li><a href="/app/view/tienda.php">Tienda</a></li>
                 <li><a href="/app/view/publicar.php">Publicar</a></li>
-                <?=$usuarioController->getUSesion() != null&& $usuarioController->getAdminId($usuarioController->getUSesion()[0])[0]['administrador']==1?"<li><a href='/app/view/listaAdmin.php'>Modificar</a></li>":""?>
+                <?= $usuarioController->getUSesion() != null && $usuarioController->getAdminId($usuarioController->getUSesion()[0])[0]['administrador'] == 1 ? "<li><a href='/app/view/listaAdmin.php'>Modificar</a></li>" : "" ?>
                 <li><a href="<?php echo $usuarioController->getUSesion() != null ? "/app/view/cuenta.php" : "/app/view/login.php" ?>"><?php echo $usuarioController->getUSesion() != null ? $usuarioController->getUSesion()[1] : "Cuenta" ?></a></li>
             </ul>
         </nav>
     </header>
 
-    <div class="carousel">
+    <!-- <div class="carousel">
         <div class="carousel-images">
             <img class="carrusel2" src="/app/view/imagenes/carrusel2.png" alt="Imagen 2">
             <img class="carrusel3" src="/app/view/imagenes/carrusel3.png" alt="Imagen 3">
@@ -39,9 +41,64 @@
         </div>
         <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
         <button class="next" onclick="moveSlide(1)">&#10095;</button>
-    </div>
+    </div> -->
 
-    <div  class="fondo_populares">
+    <!-- Swiper Carrusel -->
+    <div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <div class="image-wrapper">
+                <img src="/app/view/imagenes/PrismaticsEvolutions.avif" alt="Prismatics Evolutions">
+            </div>
+            <span class="carrusel-title-wrapper">
+                <span class="carrusel-title carrusel-title-2x">¡Descubre la magia de Prismatics Evolutions!</span>
+            </span>
+            <div class="swiper-slide-footer">
+                <a href="#" class="botoia botoia-negatiboa">Más información</a>
+            </div>
+        </div>
+        <div class="swiper-slide swiper-slide-negatiboa">
+            <div class="image-wrapper">
+                <img src="app/view/imagenes/Isla.jpg" alt="Isla mágica">
+            </div>
+            <span class="carrusel-title-wrapper">
+                <span class="carrusel-title carrusel-title-2x">Explora la Isla: una aventura sin límites</span>
+            </span>
+            <div class="swiper-slide-footer">
+                <a href="https://www.pokemon.com/el/app/pokemon-trading-card-game-pocket" class="botoia">Más información</a>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="image-wrapper">
+                <img src="app/view/imagenes/Destinos_de_paldea_alta_resolucion.jpg" alt="Destinos de Paldea">
+            </div>
+            <span class="carrusel-title-wrapper">
+                <span class="carrusel-title carrusel-title-2x">Pokémon Destinos de Paldea: ¡Brilla como nunca!</span>
+            </span>
+            <div class="swiper-slide-footer">
+                <a href="#" class="botoia botoia-negatiboa">Más información</a>
+            </div>
+        </div>
+        <div class="swiper-slide swiper-slide-negatiboa">
+            <div class="image-wrapper">
+                <img src="/app/view/imagenes/Juntos_De_Aventuras.jpg" alt="Juntos de Aventuras">
+            </div>
+            <span class="carrusel-title-wrapper">
+                <span class="carrusel-title carrusel-title-2x">Juntos de Aventuras: ¡Colecciona y juega!</span>
+            </span>
+            <div class="swiper-slide-footer">
+                <a href="#" class="botoia">Más información</a>
+            </div>
+        </div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+</div>
+
+
+
+
+    <div class="fondo_populares">
         <div class="populares">
             <p>PRODUCTOS POPULARES</p>
         </div>
@@ -83,29 +140,29 @@
         const deseadosDiv = document.getElementById("deseadosDiv");
         const recientesDiv = document.getElementById("recientesDiv");
 
-        deseados = <?= json_encode($productoController->masDeseados())?>;
-        recientes = <?= json_encode($productoController->masRecientes())?>;
+        deseados = <?= json_encode($productoController->masDeseados()) ?>;
+        recientes = <?= json_encode($productoController->masRecientes()) ?>;
 
         for (let i = 0; i < 3; i++) {
-            if(deseados.length >i){
+            if (deseados.length > i) {
                 cargarTargeta(deseados[i], deseadosDiv);
-            }else{
+            } else {
                 const div1 = document.createElement("div");
                 div1.classList.add("producto");
                 deseadosDiv.appendChild(div1);
             }
-            if(recientes.length >i){
+            if (recientes.length > i) {
                 cargarTargeta(recientes[i], recientesDiv);
-            }else{
+            } else {
                 const div1 = document.createElement("div");
                 div1.classList.add("producto");
                 recientesDiv.appendChild(div1);
             }
         }
 
-        function cargarTargeta(item, galeria){
+        function cargarTargeta(item, galeria) {
             const aLink = document.createElement("a");
-            aLink.href = "/app/view/producto.php?producto_id="+item['producto_id'];
+            aLink.href = "/app/view/producto.php?producto_id=" + item['producto_id'];
             galeria.appendChild(aLink);
             const div1 = document.createElement("div");
             div1.classList.add("galeria-item");
@@ -125,7 +182,7 @@
             div3.appendChild(div4);
             const div5 = document.createElement("div");
             div5.classList.add("precio");
-            div5.textContent = item['precio']+"€";
+            div5.textContent = item['precio'] + "€";
             div3.appendChild(div5);
         }
 
@@ -153,8 +210,21 @@
         }, 3000);
 
         showSlide(currentIndex);
-
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        new Swiper('.swiper-container', {
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            loop: true,
+            autoplay: {
+                delay: 4000,
+            },
+        });
+    </script>
+
 </body>
 
 </html>

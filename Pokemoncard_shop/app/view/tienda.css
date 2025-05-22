@@ -119,7 +119,8 @@ nav ul li a:hover {
 .imagen-galeria {
   width: 14vw;
   height: 20.5vw;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 1vw;
   background-color: white;
 }
@@ -319,6 +320,4 @@ footer {
 .seleccionado {
   background-color: #575757;
   border-radius: 0.6vw;
-}
-
-/*# sourceMappingURL=tienda.css.map */
+}/*# sourceMappingURL=tienda.css.map */

@@ -192,14 +192,14 @@ footer {
   width: 14vw;
   height: 20vw;
   display: flex;
-  flex-direction: column; /* Apila elementos */
+  flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* Alinea contenido al inicio */
+  justify-content: flex-start;
   font-size: 1vw;
   color: #333;
   transition: transform 0.3s ease;
-  position: relative; /* Posiciona contenido interno */
-  overflow: hidden; /* Evita desbordamientos */
+  position: relative;
+  overflow: hidden;
 }
 
 .info-galeria-item {
@@ -210,8 +210,8 @@ footer {
   width: 14vw;
   background-color: rgba(0, 0, 0, 0.5019607843);
   display: flex;
-  flex-direction: column; /* Apila elementos */
-  justify-content: space-between; /* Mantiene espacio entre nombre y precio */
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   padding: 0.5vw;
   box-sizing: border-box;
@@ -249,7 +249,8 @@ footer {
 .imagen-galeria {
   width: 15vw;
   height: 20.5vw;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 1vw;
 }
 
@@ -260,6 +261,4 @@ footer {
 .seleccionado {
   background-color: #575757;
   border-radius: 0.6vw;
-}
-
-/*# sourceMappingURL=deseados.css.map */
+}/*# sourceMappingURL=deseados.css.map */

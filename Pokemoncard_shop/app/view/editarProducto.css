@@ -55,6 +55,7 @@ nav ul li a:hover {
 
 .divTexto {
   border-radius: 5vw;
+  width: -moz-fit-content;
   width: fit-content;
   margin: auto;
   margin-top: 6vw;
@@ -69,7 +70,8 @@ nav ul li a:hover {
   justify-content: center;
   align-items: center;
   color: #888;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 #expansiones {
@@ -198,6 +200,4 @@ footer {
 .seleccionado {
   background-color: #575757;
   border-radius: 0.6vw;
-}
-
-/*# sourceMappingURL=editarProducto.css.map */
+}/*# sourceMappingURL=editarProducto.css.map */
